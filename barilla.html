@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elena Polleri - Project 09</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Collega il tuo file CSS principale -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Stili specifici per la pagina progetto -->
+    <link rel="stylesheet" href="project-style.css">
+
+    <!-- Libreria PageFlip per un vero effetto libro 3D professionale -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+
+    <!-- STILE CSS: Ombra 3D realistica e contatore tra le frecce -->
+    <style>
+        .book-carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        
+        .book-viewport {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2 / 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            overflow: hidden;
+            margin: 0 auto;
+            /* Effetto ombra 3D intorno al libro */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        #book {
+            display: none; /* Attivato via script a caricamento completato */
+        }
+
+        #book img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .carousel-controls {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+        }
+        .carousel-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.2s;
+            z-index: 50;
+        }
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* Stile per il numeratore delle pagine posizionato tra i bottoni */
+        .page-counter {
+            font-family: 'Fira Sans Condensed', sans-serif;
+            font-size: 0.95rem;
+            color: #666;
+            letter-spacing: 1px;
+            font-weight: 500;
+            min-width: 70px;
+            text-align: center;
+        }
+        
+        /* Stili per il contenitore video con copertina e pulsante play */
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin: 40px auto;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #000;
+        }
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+        .video-poster-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/barilla-frame.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+        .play-button-large {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 32px;
+            padding-left: 6px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .video-poster-overlay:hover .play-button-large {
+            transform: scale(1.1);
+            background-color: #111;
+        }
+        .video-container.playing .video-poster-overlay {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Stile bottone Scroll Top tondo, con sfondo bianco e border-radius 50% */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ffffff;
+            color: #111;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, background 0.2s ease, transform 0.2s ease;
+            z-index: 999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 1px solid #ddd;
+        }
+        .scroll-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scroll-top-btn:hover {
+            background: #f5f5f5;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR CON SFONDO BIANCO/CHIARO -->
+    <header class="navbar project-navbar">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#home" data-translate="nav-home">Homepage</a></li>
+                <li><a href="index.html#about" data-translate="nav-about">About me</a></li>
+                <li><a href="index.html#works" class="active" data-translate="nav-works">Selected works</a></li>
+                <li><a href="index.html#contacts" data-translate="nav-contacts">Contacts</a></li>
+            </ul>
+
+            <div class="lang-switch">
+                <a href="#" class="lang-option active" data-lang="en">ENG</a>
+                <span class="lang-divider">|</span>
+                <a href="#" class="lang-option" data-lang="it">ITA</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- MAIN CONTENT - CASE STUDY -->
+    <main class="project-main">
+        <div class="project-container">
+
+            <!-- TORNA AI PROGETTI (IN CIMA CON FRECCIA A SX) -->
+            <div class="back-to-works-wrapper">
+                <a href="index.html#works" class="back-to-works-btn" data-translate="back-works">
+                    &larr; Back to all projects
+                </a>
+            </div>
+
+            <!-- HEADER DEL PROGETTO -->
+            <header class="project-header">
+                <div class="section-title-wrapper">
+                    <div class="line"></div>
+                    <span class="project-number">09.</span>
+                </div>
+                <h1 class="project-title" data-translate="proj-title">Designing for product</h1>
+                <p class="project-subtitle">
+                    <em data-translate="proj-subtitle">Strategic product design and circular service innovation developed in response to a Barilla brief, centered on active aging, advanced prototyping, and comprehensive multimedia storytelling.</em>
+                </p>
+
+                <div class="project-tags-container">
+                    <span class="card-tags" data-translate="proj-tags">
+                       3D MODELING — 3D PRINTING — VIDEO MAKING — MARKET RESEARCH — 2D GRAPHICS — PRODUCT DESIGN
+                    </span>
+                </div>
+            </header>
+
+            <!-- SEZIONE 1: LA STRATEGIA E LA RICERCA UTENTE -->
+            <section class="project-section">
+                <h2 data-translate="sec1-title">Human-Centered Intelligence & Market Strategy</h2>
+                <p data-translate="sec1-p1">
+                    Commissioned directly through a prestigious design brief by <strong>Barilla</strong>, this project represents an exhaustive exploration into <strong>inclusive product development</strong> and sustainable packaging systems tailored for the elderly demographic. The primary challenge demanded a deep synthesis of industrial manufacturing constraints and ergonomic sensitivity, shifting the design focus toward <strong>accessibility, cognitive clarity, and independence</strong> for third-age users.
+                </p>
+                <p data-translate="sec1-p2">
+                    To establish an uncompromised foundation of empirical evidence, I led an intensive, multi-layered <strong>market research</strong> campaign. This involved conducting immersive shadowing sessions and contextual qualitative interviews with senior citizens at a local community center in Mornese. By closely observing everyday rituals, motor limitations, and consumption habits, alongside mapping competitive benchmarks in large-scale retail packaging, I was able to isolate critical unmet needs and translate them into <strong>actionable design drivers</strong>.
+                </p>
+            </section>
+
+            <!-- SEZIONE 2: CONCEPT DESIGN, PROTOTIPAZIONE E MATERIALI -->
+            <section class="project-section">
+                <h2 data-translate="sec2-title">From Concept Architecture to 3D Prototyping</h2>
+                <p data-translate="sec2-p1">
+                    The resulting design solution is an innovative single-serving breakfast cup engineered specifically for liquid bases (milk or yogurt) combined with dry cereals. The concept introduces a groundbreaking <strong>circular service model</strong>: once the content is consumed, the outer container is structurally reconfigured to serve as a <strong>reusable planting box</strong>, equipped with organic seeds integrated into its rear compartment. This closes the product lifecycle loop, transforming food packaging into an engaging, <strong>sustainable gardening activity</strong>.
+                </p>
+                <p data-translate="sec2-p2">
+                    My methodological execution spanned across multiple advanced competencies: starting from meticulous <strong>2D graphics</strong> and branding guidelines for clear visual communication, moving into sophisticated <strong>3D modeling</strong> environments to optimize wall thicknesses, snap-fit mechanisms, and structural integrity. The iterative phase culminated in functional physical testing through <strong>3D printing</strong> prototyping, evaluated directly through usability sessions with students from UniGe's third-age programs to fine-tune <strong>opening forces and haptic feedback</strong>.
+                </p>
+            </section>
+
+            <!-- SEZIONE 3: CONTENUTO MULTIMEDIALE 1 - LIBRO INTERATTIVO 3D -->
+            <section class="project-section">
+                <h2 data-translate="sec3-title">Editorial Design & Presentation Architecture</h2>
+                <p data-translate="sec3-p1">
+                    To articulate the entire trajectory of the project—from early contextual ethnography and technical material specifications to final CAD assemblies, rendering outputs, and systemic service frameworks—I curated and designed an extensive, publication-grade presentation book featuring a custom hardcover design layout. You can interact with and explore the complete digital edition using the interactive viewer below.
+                </p>
+
+                <!-- VISUALIZZATORE LIBRO -->
+                <div class="book-carousel-container">
+                    <div class="book-viewport">
+                        <div id="book">
+                            <!-- Le pagine vengono inserite via script -->
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" id="prev-btn">&#10094;</button>
+                        <div class="page-counter" id="pageCounter">1 / 33</div>
+                        <button class="carousel-btn carousel-next" id="next-btn">&#10095;</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEZIONE 4: CONTENUTO MULTIMEDIALE 2 - VIDEO SPOT -->
+            <section class="project-section">
+                <h2 data-translate="sec4-title">Multimedia Storytelling & Advertising Direction</h2>
+                <p data-translate="sec4-p1">
+                    As a capstone to the strategic product development process, I independently managed the full cycle of <strong>videomaking</strong> and commercial direction. I conceptualized, shot, and edited an emotional, high-impact advertising spot designed to communicate both the ergonomic convenience of the product and its circular environmental philosophy. Watch the official promotional campaign video below.
+                </p>
+
+                <div class="video-container" id="videoContainer">
+                    <div class="video-poster-overlay" id="videoOverlay">
+                        <div class="play-button-large">&#9658;</div>
+                    </div>
+                    <video id="spotVideo" controls preload="metadata">
+                        <source src="images/barilla-spot.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </section>
+
+            <!-- NAVIGAZIONE TRA I PROGETTI (IN FONDO) -->
+            <nav class="project-pagination" aria-label="Project Navigation">
+                <a href="fascicolo.html" class="pagination-link back-to-grid" data-translate="nav-prev-project">
+                    &larr; Previous project
+                </a>
+                <a href="bookedtime.html" class="pagination-link next-project" data-translate="nav-next-project">
+                    Next project &rarr;
+                </a>
+            </nav>
+
+        </div>
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <h2 class="footer-title" data-translate="footer-title">
+                I'm always open to meaningful opportunities.
+            </h2>
+
+            <div class="footer-actions">
+                <a href="mailto:elenapolleri@gmail.com" class="footer-btn" data-translate="footer-email">
+                    Contact me via email &rarr;
+                </a>
+                <a href="https://www.linkedin.com/in/elenapolleri/" target="_blank" rel="noopener noreferrer" class="footer-btn" data-translate="footer-linkedin">
+                    Connect on LinkedIn &rarr;
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- BOTTONE BACK TO TOP -->
+    <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </a>
+
+    <!-- SCRIPT GESTIONE -->
+    <script>
+        const translations = {
+            en: {
+                "nav-home": "Homepage",
+                "nav-about": "About me",
+                "nav-works": "Selected works",
+                "nav-contacts": "Contacts",
+                "back-works": "&larr; Back to all projects",
+                "proj-title": "Designing for product",
+                "proj-subtitle": "Strategic product design and circular service innovation developed in response to a Barilla brief, centered on active aging, advanced prototyping, and comprehensive multimedia storytelling.",
+                "proj-tags": "3D MODELING — 3D PRINTING — VIDEO MAKING — MARKET RESEARCH — 2D GRAPHICS — PRODUCT DESIGN",
+                "sec1-title": "Human-Centered Intelligence & Market Strategy",
+                "sec1-p1": "Commissioned directly through a prestigious design brief by <strong>Barilla</strong>, this project represents an exhaustive exploration into <strong>inclusive product development</strong> and sustainable packaging systems tailored for the elderly demographic. The primary challenge demanded a deep synthesis of industrial manufacturing constraints and ergonomic sensitivity, shifting the design focus toward <strong>accessibility, cognitive clarity, and independence</strong> for third-age users.",
+                "sec1-p2": "To establish an uncompromised foundation of empirical evidence, I led an intensive, multi-layered market research campaign. This involved conducting immersive shadowing sessions and contextual qualitative interviews with senior citizens at a local community center in Mornese. By closely observing everyday rituals, motor limitations, and consumption habits, alongside mapping competitive benchmarks in large-scale retail packaging, I was able to isolate critical unmet needs and translate them into <strong>actionable design drivers</strong>.",
+                "sec2-title": "From Concept Architecture to 3D Prototyping",
+                "sec2-p1": "The resulting design solution is an innovative single-serving breakfast cup engineered specifically for liquid bases (milk or yogurt) combined with dry cereals. The concept introduces a groundbreaking <strong>circular service model</strong>: once the content is consumed, the outer container is structurally reconfigured to serve as a <strong>reusable planting box</strong>, equipped with organic seeds integrated into its rear compartment. This closes the product lifecycle loop, transforming food packaging into an engaging, <strong>sustainable gardening activity</strong>.",
+                "sec2-p2": "My methodological execution spanned across multiple advanced competencies: starting from meticulous <strong>2D graphics</strong> and branding guidelines for clear visual communication, moving into sophisticated <strong>3D modeling</strong> environments to optimize wall thicknesses, snap-fit mechanisms, and structural integrity. The iterative phase culminated in functional physical testing through <strong>3D printing</strong> prototyping, evaluated directly through usability sessions with students from UniGe's third-age programs to fine-tune <strong>opening forces and haptic feedback</strong>.",
+                "sec3-title": "Editorial Design & Presentation Architecture",
+                "sec3-p1": "To articulate the entire trajectory of the project—from early contextual ethnography and technical material specifications to final CAD assemblies, rendering outputs, and systemic service frameworks—I curated and designed an extensive, publication-grade presentation book featuring a custom hardcover design layout. You can interact with and explore the complete digital edition using the interactive viewer below.",
+                "sec4-title": "Multimedia Storytelling & Advertising Direction",
+                "sec4-p1": "As a capstone to the strategic product development process, I independently managed the full cycle of <strong>videomaking</strong> and commercial direction. I conceptualized, shot, and edited an emotional, high-impact advertising spot designed to communicate both the ergonomic convenience of the product and its circular environmental philosophy. Watch the official promotional campaign video below.",
+                "nav-prev-project": "&larr; Previous project",
+                "nav-next-project": "Next project &rarr;",
+                "footer-title": "I'm always open to meaningful opportunities.",
+                "footer-email": "Contact me via email &rarr;",
+                "footer-linkedin": "Connect on LinkedIn &rarr;"
+            },
+            it: {
+                "nav-home": "Homepage",
+                "nav-about": "Chi sono",
+                "nav-works": "Progetti scelti",
+                "nav-contacts": "Contatti",
+                "back-works": "&larr; Torna a tutti i progetti",
+                "proj-title": "Progettare per produrre",
+                "proj-subtitle": "Progettazione di prodotto strategica e innovazione di servizio circolare sviluppata in risposta a un brief Barilla, incentrata sulla terza età, prototipazione avanzata e storytelling multimediale.",
+                "proj-tags": "MODELLAZIONE 3D — STAMPA 3D — VIDEOMAKING — MARKET RESEARCH — GRAFICA 2D — PRODUCT DESIGN",
+                "sec1-title": "Ricerca Human-Centered e Strategia di Mercato",
+                "sec1-p1": "Commissionato nell'ambito di un prestigioso brief di design per conto di <strong>Barilla</strong>, questo progetto rappresenta un'esplorazione approfondita nello <strong>sviluppo di prodotti inclusivi</strong> e sistemi di packaging sostenibile dedicati all'utenza anziana. La sfida centrale ha richiesto una rigorosa sintesi tra vincoli di industrializzazione e sensibilità ergonomica, orientando la progettazione verso l'<strong>accessibilità, la chiarezza cognitiva e l'autonomia </strong> degli utenti della terza età.",
+                "sec1-p2": "Per fondare il concept su dati empirici ineccepibili, ho guidato una campagna intensiva e strutturata di market research. Questa attività ha compreso sessioni di shadowing e interviste qualitative contestuali condotte presso un circolo nella località di Mornese. Osservando da vicino le abitudini quotidiane, le limitazioni motorie e le dinamiche di consumo, e affiancando un'analisi comparativa dei formati esistenti nella grande distribuzione, ho potuto identificare bisogni inespressi e tradurli in <strong>driver progettuali concreti</strong>.",
+                "sec2-title": "Dall'Architettura di Concept alla Prototipazione 3D",
+                "sec2-p1": "La soluzione progettuale sviluppata consiste in una cup monoporzione innovativa per la prima colazione, pensata per ospitare una base liquida (latte o yogurt) abbinata a cereali. Il concept introduce un <strong>modello di servizio circolare</strong> all'avanguardia: una volta consumato il contenuto, il contenitore esterno si riconfigura strutturalmente per diventare un <strong>vaso riutilizzabile</strong>, grazie ai semi biologici integrati nel comparto posteriore. Tale approccio chiude il ciclo di vita del prodotto, trasformando il packaging in un'<strong>esperienza di giardinaggio sostenibile</strong> e gratificante.",
+                "sec2-p2": "La mia esecuzione metodologica ha abbracciato competenze multidisciplinari avanzate: partendo da una meticolosa ideazione di <strong>grafica 2D</strong> e codici visivi per la massima leggibilità, passando per la complessa <strong>modellazione 3D</strong> CAD finalizzata all'ottimizzazione degli spessori e dei meccanismi di incastro. La fase iterativa si è concretizzata in test funzionali tramite prototipazione con <strong>stampa 3D</strong>, valutati direttamente attraverso sessioni di usabilità con studenti dei programmi per la terza età di UniGe per calibrare le <strong>forze di apertura e il feedback aptico</strong>.",
+                "sec3-title": "Editorial Design e Architettura di Presentazione",
+                "sec3-p1": "Per documentare e valorizzare l'intero iter progettuale — dalle analisi etnografiche preliminari agli studi tecnici sui materiali, dagli assembly CAD ai render finali e ai sistemi di servizio — ho curato interamente l'impaginazione e la direzione editoriale di un volume di presentazione di livello professionale caratterizzato da una copertina personalizzata. È possibile sfogliare la versione digitale completa attraverso il visualizzatore interattivo 3D sottostante.",
+                "sec4-title": "Storytelling Multimediale e Regia Pubblicitaria",
+                "sec4-p1": "A completamento della strategia di lancio del prodotto, ho gestito in autonomia l'intero ciclo di <strong>videomaking</strong> e direzione artistica. Ho ideato, ripreso e montato uno spot pubblicitario d'impatto emotivo, studiato per comunicare efficacemente sia la praticità d'uso della confezione che la sua filosofia di sostenibilità circolare. Guarda qui sotto il video ufficiale della campagna promozionale.",
+                "nav-prev-project": "&larr; Progetto precedente",
+                "nav-next-project": "Progetto successivo &rarr;",
+                "footer-title": "Sono sempre aperta a nuove opportunità stimolanti.",
+                "footer-email": "Contattami via email &rarr;",
+                "footer-linkedin": "Collegati su LinkedIn &rarr;"
+            }
+        };
+
+    
+        // Inizializzazione PageFlip
+        document.addEventListener('DOMContentLoaded', () => {
+            const bookElement = document.getElementById('book');
+            const totalPages = 33;
+            
+            // Inserisce dinamicamente le immagini da 01 a 33
+            for (let i = 1; i <= totalPages; i++) {
+                let numStr = i < 10 ? "0" + i : "" + i;
+                let img = document.createElement('img');
+                img.src = `images/book-page-${numStr}.jpg`;
+                img.alt = `Page ${numStr}`;
+                bookElement.appendChild(img);
+            }
+
+            const pageFlip = new St.PageFlip(bookElement, {
+                width: 600,
+                height: 600,
+                size: "stretch",
+                minWidth: 300,
+                maxWidth: 1000,
+                minHeight: 300,
+                maxHeight: 1000,
+                maxShadowOpacity: 0.3,
+                showCover: true,
+                mobileScrollSupport: true
+            });
+
+            pageFlip.loadFromImages(Array.from(bookElement.querySelectorAll('img')).map(img => img.src));
+            
+            bookElement.style.display = 'block';
+
+            const pageCounterEl = document.getElementById('pageCounter');
+            
+            function updatePageCounter(pageIndex) {
+                let current = pageIndex + 1;
+                if (current === 1 || current === totalPages || pageFlip.getOrientation() === 'portrait') {
+                    pageCounterEl.textContent = `${current} / ${totalPages}`;
+                } else {
+                    let leftPage = current;
+                    let rightPage = current + 1;
+                    if (rightPage > totalPages) {
+                        pageCounterEl.textContent = `${leftPage} / ${totalPages}`;
+                    } else {
+                        pageCounterEl.textContent = `${leftPage} - ${rightPage} / ${totalPages}`;
+                    }
+                }
+            }
+
+            pageFlip.on('flip', (e) => {
+                updatePageCounter(e.data);
+            });
+
+            updatePageCounter(0);
+
+            // Pulsanti di navigazione con controllo dei limiti ed eventuale loop
+            document.getElementById('next-btn').addEventListener('click', () => {
+                if (pageFlip.getCurrentPageIndex() >= totalPages - 1) {
+                    pageFlip.turnTo(0);
+                } else {
+                    pageFlip.flipNext();
+                }
+            });
+
+            document.getElementById('prev-btn').addEventListener('click', () => {
+                const currentIndex = pageFlip.getCurrentPageIndex();
+                if (currentIndex <= 0) {
+                    pageFlip.turnTo(totalPages - 1);
+                } else {
+                    pageFlip.flipPrev();
+                }
+            });
+        });
+
+        // Gestione interazione copertina video e play
+        const videoContainer = document.getElementById('videoContainer');
+        const videoOverlay = document.getElementById('videoOverlay');
+        const spotVideo = document.getElementById('spotVideo');
+
+        videoOverlay.addEventListener('click', () => {
+            videoContainer.classList.add('playing');
+            spotVideo.play();
+        });
+
+        spotVideo.addEventListener('pause', () => {
+            if (spotVideo.currentTime === 0 || spotVideo.ended) {
+                videoContainer.classList.remove('playing');
+            }
+        });
+
+        // Gestione scroll top
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+<script src="translate.js"></script>
+</body>
+</html>

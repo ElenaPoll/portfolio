@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ========================================== -->
+    <!-- SEZIONE: META TAGS E CONFIGURAZIONE HEAD    -->
+    <!-- ========================================== -->
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Elena Polleri - Project 01 </title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <!-- ========================================== -->
+    <!-- SEZIONE: FONT GOOGLE (Fira Sans & Playfair)-->
+    <!-- ========================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- ========================================== -->
+    <!-- SEZIONE: LIBRERIE ESTERNE (Chart.js)        -->
+    <!-- ========================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- ========================================== -->
+    <!-- SEZIONE: FOGLI DI STILE CSS                -->
+    <!-- ========================================== -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="project-style.css">
+
+    <style>
+        .card-tags {
+            font-size: 0.75rem;
+            letter-spacing: 0.8px;
+            color: #A05236;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .iframe-scaler-wrapper {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .iframe-scaler-wrapper iframe {
+            width: 1280px;
+            height: 1050px;
+            border: none;
+            transform: scale(var(--iframe-scale, 1));
+            transform-origin: top left;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================== -->
+    <!-- CAPITOLO: BARRA DI NAVIGAZIONE (NAVBAR)    -->
+    <!-- ========================================== -->
+    <header class="navbar project-navbar">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#home" data-translate="nav-home">Homepage</a></li>
+                <li><a href="index.html#about" data-translate="nav-about">About me</a></li>
+                <li><a href="index.html#works" class="active" data-translate="nav-works">Selected works</a></li>
+                <li><a href="index.html#contacts" data-translate="nav-contacts">Contacts</a></li>
+            </ul>
+            <div class="lang-switch">
+                <a href="#" class="lang-option active" data-lang="en">ENG</a>
+                <span class="lang-divider">|</span>
+                <a href="#" class="lang-option" data-lang="it">ITA</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- CAPITOLO: CONTENUTO PRINCIPALE (MAIN)      -->
+    <!-- ========================================== -->
+    <main class="project-main">
+        <div class="project-container">
+
+            <div class="back-to-works-wrapper">
+                <a href="index.html#works" class="back-to-works-btn" data-translate="back-works">&larr; Back to all projects</a>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- SEZIONE: INTESTAZIONE DEL PROGETTO         -->
+            <!-- ========================================== -->
+            <header class="project-header">
+                <div class="section-title-wrapper">
+                    <div class="line"></div>
+                    <span class="project-number">01.</span>
+                </div>
+                <h1 class="project-title" data-translate="proj-title">Designing for compliance</h1>
+                <p class="project-subtitle"><em data-translate="proj-subtitle">PhD in Design for Digital Inclusion: transforming regulatory complexity into an operational design ecosystem.</em></p>
+                <div class="project-tags-container">
+                    <span class="card-tags" data-translate="proj-tags">USER RESEARCH — SEMANTIC ARCHITECTURE — WCAG COMPLIANCE & AUDITING — EMPIRICAL VALIDATION — SEMANTIC HTML & INCLUSIVE CSS — PROJECT COORDINATION</span>
+                </div>
+            </header>
+
+            <!-- ========================================== -->
+            <!-- SEZIONE 1: IL CONTESTO & LA SFIDA          -->
+            <!-- ========================================== -->
+            <section class="project-section">
+                <h2 data-translate="sec1-title">The Context & The Challenge</h2>
+                <p data-translate="sec1-p1">
+                    Official web accessibility guidelines (WCAG) are traditionally structured as dense, highly technical compendiums geared toward legal interpretation rather than digital product engineering. Consequently, organizations encounter severe operational friction, exposing themselves to risks of regulatory non-compliance and disproportionate remediation costs when compliance discrepancies emerge post-development.
+                </p>
+                <p data-translate="sec1-p2">
+                    <strong>EasyWCAG</strong> originates from this strategic gap, developed during my PhD in <strong>Design for Digital Inclusion</strong> in collaboration with a specialized software house. The initiative bridges academic rigor with enterprise requirements, transforming a rigid compliance obligation into an efficient operational framework that drives concrete organizational value across three core dimensions:
+                </p>
+                <ul class="project-list" data-translate="sec1-directions">
+                    <li><strong>Operational efficiency:</strong> reduction of interpretation times and direct integration into daily UI/UX and development pipelines.</li>
+                    <li><strong>Economic optimization:</strong> mitigation of regulatory non-compliance risks and prevention of expensive post-development remediation.</li>
+                    <li><strong>Cultural alignment:</strong> promotion of a shared, cross-functional language between designers, developers, and institutional stakeholders.</li>
+                </ul>
+                <p data-translate="sec1-p3">
+                    Through an integrated methodological framework, I directed the comprehensive synthesis and taxonomic restructuring of the regulatory corpus, converting complex standards into a streamlined operational design ecosystem.
+                </p>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SEZIONE 2: RICERCA & METODOLOGIA           -->
+            <!-- ========================================== -->
+            <section class="project-section">
+                <h2 data-translate="sec2-title">Research & Methodology</h2>
+                <p data-translate="sec2-p1">
+                    The research architecture originated from Card Sorting sessions and a <em>bottom-up</em> analysis focusing on the <strong>55 compliance criteria (levels A and AA), which are legally mandatory and binding</strong> for interface compliance. Although the traditional backbone of WCAG rests on four theoretical pillars (Perceivable, Operable, Understandable, Robust), I chose to move past this academic catalogation in favor of a <strong>user-centered perspective geared toward IT workflows</strong>, co-designed through targeted <em>participatory design</em> sessions with stakeholders and industry experts.
+                </p>
+                
+                <figure class="project-figure">
+                    <img src="images/easywcag-2.png" alt="Sessione di card sorting autonoma" class="project-image-full" style="width: 100%; height: auto;">
+                    <figcaption data-translate="fig-cap-2">Photographs taken during the autonomous card sorting session.</figcaption>
+                </figure>
+                <figure class="project-figure">
+                    <img src="images/easywcag-3.png" alt="Sessione di card sorting con UI/UX designer e ingegneri informatici" class="project-image-full" style="width: 100%; height: auto;">
+                    <figcaption data-translate="fig-cap-3">Card sorting session with UI/UX designers and software engineers.</figcaption>
+                </figure>
+
+                <p data-translate="sec2-p2">
+                    In parallel, I implemented a <em>top-down</em> structural analysis to map regulatory requirements onto the web's three core architectural dimensions: <strong>container, content, and interactions</strong> (integrated by related supplement modules). This framework defines a fluid taxonomy that seamlessly integrates into modern software development pipelines, cleanly decoupling design responsibilities from engineering ones.
+                </p>
+                <figure class="project-figure">
+                    <img src="images/easywcag-4.png" alt="Tabella di mappatura WCAG" class="project-image-full" style="max-width: 80%; margin: 0 auto; display: block;">
+                    <figcaption data-translate="fig-cap-4">WCAG mapping consolidated following card sorting and top-down analysis based on the 4 identified categories and subcategories.</figcaption>
+                </figure>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SEZIONE 3: DESIGN & SVILUPPO               -->
+            <!-- ========================================== -->
+            <section class="project-section">
+                <h2 data-translate="sec3-title">Design & Development</h2>
+                <p data-translate="sec3-p1">
+                    I personally governed the entire product lifecycle through a tailored, rigorous approach: from preliminary investigation and strategic setup through visual execution, technical development, and empirical fieldwork validation, engaging users strictly during participatory co-design sessions.
+                </p>
+                
+                <div class="image-intro-text" style="margin-top: 35px; margin-bottom: 15px;">
+                    <p data-translate="img-intro-1" style="font-weight: 600; color: #5a6e54; margin-bottom: 6px;">Visual Identity & Brand Architecture:</p>
+                    <p data-translate="img-desc-1" style="font-size: 0.95rem; line-height: 1.5; color: #555;">Logo conceptualization required defining a clean, striking visual aesthetic capable of instantly communicating the values of universal accessibility, transparency, and institutional authority inherent to EasyWCAG.</p>
+                </div>
+                <figure class="project-figure" style="margin-top: 15px;">
+                    <img src="images/easywcag-5.png" alt="Logo EasyWCAG" class="project-image-full" style="max-width: 400px; margin: 0 auto; display: block;">
+                    <figcaption data-translate="fig-cap-5">Official logo.</figcaption>
+                </figure>
+
+                <div class="image-intro-text" style="margin-top: 45px; margin-bottom: 15px;">
+                    <p data-translate="img-intro-2" style="font-weight: 600; color: #5a6e54; margin-bottom: 6px;">Information Architecture & User Flows:</p>
+                    <p data-translate="img-desc-2" style="font-size: 0.95rem; line-height: 1.5; color: #555;">Before writing the first line of code, I structured the platform's information architecture. The artifacts below show the logical sitemap and user flow mapping, designed to minimize cognitive friction and optimize criteria retrieval.</p>
+                </div>
+                
+                <div style="margin-top: 15px; display: flex; gap: 20px; flex-wrap: wrap; align-items: stretch;">
+                    <figure class="project-figure" style="flex: 1; min-width: 280px; margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+                        <img src="images/easywcag-6.png" alt="Sitemap applicazione" class="project-image-full" style="width: 100%; height: auto; object-fit: contain;">
+                        <figcaption data-translate="fig-cap-6" style="margin-top: 15px;">Sitemap.</figcaption>
+                    </figure>
+                    <figure class="project-figure" style="flex: 1; min-width: 280px; margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+                        <img src="images/easywcag-7.png" alt="User journey" class="project-image-full" style="width: 100%; height: auto; object-fit: contain;">
+                        <figcaption data-translate="fig-cap-7" style="margin-top: 15px;">User journey.</figcaption>
+                    </figure>
+                </div>
+
+                <div class="image-intro-text" style="margin-top: 45px; margin-bottom: 15px;">
+                    <p style="font-weight: 600; color: #5a6e54; margin-bottom: 6px;" data-translate="wireframe-intro-title">Wireframe & Interface Evolution:</p>
+                    <p style="font-size: 0.95rem; line-height: 1.5; color: #555;" data-translate="wireframe-intro-desc">The wireframing phase translated the core architecture into tangible interface layouts. Below is the wireframe illustrating the 3 levels of navigation of the EasyWCAG app, designed before moving on to prototyping.</p>
+                </div>
+
+                <figure class="project-figure" style="margin-top: 15px;">
+                    <img src="images/easywcag-8.png" alt="Wireframe dei 3 livelli di navigazione dell'app easywcag" class="project-image-full" style="width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <figcaption data-translate="fig-cap-wireframe" style="margin-top: 15px;">Wireframe illustrating the 3 navigation levels of the EasyWCAG app, drawn before moving to prototyping.</figcaption>
+                </figure>
+
+                <h2 data-translate="sec3-subtitle-proto" style="margin-top: 50px;">Functional Prototype and Implementation</h2>
+                <p data-translate="sec3-p2">
+                    I conceived, designed, and fully developed the web application independently, directly writing the HTML and CSS code to translate strategic concepts into a fully functioning, high-performing, and accessible digital artifact. In the box below, you can interact directly with the EasyWCAG web app exactly as I conceived, structured, and coded it:
+                </p>
+
+                <div class="browser-window-wrapper" style="margin: 30px 0 40px 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(139, 115, 85, 0.25); box-shadow: 0 10px 30px rgba(0,0,0,0.08); background: #fdfbf7;">
+                    <div class="browser-toolbar" style="background: #f4eee6; padding: 12px 16px; display: flex; align-items: center; border-bottom: 1px solid rgba(139, 115, 85, 0.15);">
+                        <div class="browser-dots" style="display: flex; gap: 8px; margin-right: 20px;">
+                            <span style="width: 12px; height: 12px; background: #ff5f56; border-radius: 50%; display: inline-block;"></span>
+                            <span style="width: 12px; height: 12px; background: #ffbd2e; border-radius: 50%; display: inline-block;"></span>
+                            <span style="width: 12px; height: 12px; background: #27c93f; border-radius: 50%; display: inline-block;"></span>
+                        </div>
+                        <div class="browser-address-bar" style="background: #ffffff; padding: 6px 16px; border-radius: 6px; flex-grow: 1; font-size: 13px; color: #666; border: 1px solid rgba(0,0,0,0.06); font-family: monospace;">
+                            <span>https://easywcag.com</span>
+                        </div>
+                    </div>
+                    <div class="iframe-scaler-wrapper">
+                        <iframe src="https://elenapoll.github.io/easywcag/" title="EasyWCAG Live Preview"></iframe>
+                    </div>
+                </div>
+
+                <p data-translate="sec3-p3">
+                    The execution demonstrates how attention to every single phase of the process—from theoretical research to front-end engineering—allows for the release of an excellence-driven digital product, capable of addressing the actual pain points of digital professionals with millimetric precision.
+                </p>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SEZIONE 4: VALIDAZIONE & RISULTATI         -->
+            <!-- ========================================== -->
+            <section class="project-section">
+                <h2 data-translate="sec4-title">Validation and Empirical Results</h2>
+                <p data-translate="sec4-p1">
+                    To validate the heuristic and ergonomic efficacy of the tool, I implemented a rigorous empirical testing protocol involving a panel of 10 UI/UX designers and 10 front-end developers, undergoing comparative sessions between consulting institutional repositories and using EasyWCAG. The recorded quantitative and qualitative data outline clear success metrics:
+                </p>
+                <ul class="project-list" data-translate="sec4-list">
+                    <li><strong>Operational efficiency:</strong> 95% of the sample experienced a drastic acceleration in search and decoding times for individual regulatory parameters.</li>
+                    <li><strong>Cognitive load mitigation:</strong> 80% of participants favorably validated role-based profiling filters (a sharp distinction between design and development needs).</li>
+                    <li><strong>Taxonomic efficacy:</strong> 95% judged the structure by architectural dimensions (container, content, interactions) to be perfectly mirroring the mental models of contemporary digital workflows.</li>
+                </ul>
+
+                <div class="charts-intro-wrapper" style="margin-top: 20px; margin-bottom: 30px; padding: 24px; background: rgba(143, 160, 137, 0.08); border-left: 3px solid #8fa089; border-radius: 0 8px 8px 0;">
+                    <h3 style="margin-bottom: 10px; font-size: 1.15rem; color: #5a6e54;" data-translate="charts-intro-title">Analysis and feedback from empirical tests</h3>
+                    <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: #444;" data-translate="charts-intro-desc">
+                        The evidence gathered during the validation phase offers an unambiguous reading of EasyWCAG's impact on daily professional practice. The charts below summarize the panel's evaluations in terms of usage preference, taxonomic clarity, terminological adherence, and the effectiveness of targeted support for different technical profiles.
+                    </p>
+                </div>
+
+                <figure class="project-figure" style="margin-top: 20px; background: #fff; padding: 24px; border-radius: 12px; border: 1px solid rgba(143, 160, 137, 0.2); box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                    <div style="max-width: 380px; margin: 0 auto;">
+                        <canvas id="pieChartTools"></canvas>
+                    </div>
+                    <figcaption data-translate="fig-cap-8" style="margin-top: 18px; text-align: center; font-size: 0.9rem; color: #666;">Preference of the tool to consult for accessibility.</figcaption>
+                </figure>
+
+                <div class="project-grid-images" style="margin-top: 20px;">
+                    <figure class="project-figure" style="background: #fff; padding: 24px; border-radius: 12px; border: 1px solid rgba(143, 160, 137, 0.2); box-shadow: 0 4px 20px rgba(0,0,0,0.02); margin: 0;">
+                        <div style="max-width: 100%;">
+                            <canvas id="barChartClarity"></canvas>
+                        </div>
+                        <figcaption data-translate="fig-cap-9" style="margin-top: 18px; text-align: center; font-size: 0.9rem; color: #666;">Clarity and comprehensibility of formulations.</figcaption>
+                    </figure>
+
+                    <figure class="project-figure" style="background: #fff; padding: 24px; border-radius: 12px; border: 1px solid rgba(143, 160, 137, 0.2); box-shadow: 0 4px 20px rgba(0,0,0,0.02); margin: 0;">
+                        <div style="max-width: 100%;">
+                            <canvas id="barChartTerminology"></canvas>
+                        </div>
+                        <figcaption data-translate="fig-cap-10" style="margin-top: 18px; text-align: center; font-size: 0.9rem; color: #666;">Alignment with industry terminology.</figcaption>
+                    </figure>
+                </div>
+
+                <figure class="project-figure" style="margin-top: 20px; background: #fff; padding: 24px; border-radius: 12px; border: 1px solid rgba(143, 160, 137, 0.2); box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                    <div style="max-width: 550px; margin: 0 auto;">
+                        <canvas id="barChartRoles"></canvas>
+                    </div>
+                    <figcaption data-translate="fig-cap-11" style="margin-top: 18px; text-align: center; font-size: 0.9rem; color: #666;">Understanding of criteria specific to one's role.</figcaption>
+                </figure>
+
+                <p data-translate="sec4-p2" style="margin-top: 40px;">
+                    Ultimately, EasyWCAG goes beyond the concept of a mere regulatory compendium to elevate itself to an <strong>interdisciplinary connecting framework</strong>. The project demonstrates how strategic design based on radical content curation can convert a bureaucratic requirement into a formidable accelerator of technical quality and creative value.
+                </p>
+
+                <p class="project-section p" style="margin-top: 40px;" data-translate="portfolio-synthesis-text">
+                    Within my journey, <strong>EasyWCAG</strong> stands as a manifesto of my design vision: the ability to oversee the entire lifecycle of a digital product—from academic research and information architecture to advanced prototyping and front-end engineering. This work reflects my deep dedication to digital inclusion and ethical accessibility, highlighting a solid mastery of complex methodologies and a natural aptitude for strategic, multidisciplinary coordination.
+                </p>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- CAPITOLO: NAVIGAZIONE TRA I PROGETTI       -->
+            <!-- ========================================== -->
+            <nav class="project-pagination" aria-label="Navigazione tra i progetti">
+                <a href="index.html#works" class="pagination-link back-to-grid" data-translate="nav-prev-project">&larr; All projects</a>
+                <a href="alterego.html" class="pagination-link next-project" data-translate="nav-next-project">Next project &rarr;</a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- CAPITOLO: PIÈ DI PAGINA (FOOTER)           -->
+    <!-- ========================================== -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <h2 class="footer-title" data-translate="footer-title">I'm always open to meaningful opportunities.</h2>
+            <div class="footer-actions">
+                <a href="mailto:elenapolleri@gmail.com" class="footer-btn" data-translate="footer-email">Contact me via email &rarr;</a>
+                <a href="https://www.linkedin.com/in/elenapolleri/" target="_blank" rel="noopener noreferrer" class="footer-btn" data-translate="footer-linkedin">Connect on LinkedIn &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- CAPITOLO: PULSANTE "TORNA SU" (TAP TO TOP) -->
+    <!-- ========================================== -->
+    <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Torna su">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </a>
+
+    <!-- ========================================== -->
+    <!-- CAPITOLO: SCRIPT JAVASCRIPT & GRAFICI      -->
+    <!-- ========================================== -->
+    <script>
+        // --- GESTIONE SCALA IFRAME DINAMICA ---
+        function resizeIframe() {
+            const wrapper = document.querySelector('.iframe-scaler-wrapper');
+            const iframe = wrapper ? wrapper.querySelector('iframe') : null;
+            if (!wrapper || !iframe) return;
+
+            const wrapperWidth = wrapper.offsetWidth;
+            const baseWidth = 1300; 
+            const scale = wrapperWidth / baseWidth;
+
+            iframe.style.setProperty('--iframe-scale', scale);
+            wrapper.style.height = (iframe.offsetHeight * scale) + 'px';
+        }
+
+        window.addEventListener('resize', resizeIframe);
+        window.addEventListener('DOMContentLoaded', resizeIframe);
+
+        // --- GESTIONE PULSANTE TORNA SU ---
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Configurazione della palette colori per Chart.js
+        const brandPalette = { sageGreen: '#8fa089', mintPastel: '#b4c4ae', beigeWarm: '#d9cdbe', ecruSoft: '#e8e2d5', mutedOlive: '#6b7a65' };
+        Chart.defaults.font.family = "'Fira Sans Condensed', sans-serif";
+        Chart.defaults.font.size = 12;
+        Chart.defaults.color = '#555555';
+        const minimalistScales = { x: { grid: { display: false }, ticks: { font: { size: 11 } }, border: { display: false } }, y: { grid: { color: 'rgba(0, 0, 0, 0.04)', drawBorder: false }, ticks: { stepSize: 3, font: { size: 11 } }, border: { display: false }, beginAtZero: true } };
+
+        // Dizionario Traduzioni (con chiavi dedicate per le legende del grafico a ciambella)
+        const translations = {
+            en: {
+                "nav-home": "Homepage",
+                "nav-about": "About me",
+                "nav-works": "Selected works",
+                "nav-contacts": "Contacts",
+                "back-works": "&larr; Back to all projects",
+                "proj-title": "Designing for compliance",
+                "proj-subtitle": "PhD in Design for Digital Inclusion: transforming regulatory complexity into an operational design ecosystem.",
+                "proj-tags": "USER RESEARCH — SEMANTIC ARCHITECTURE — WCAG COMPLIANCE & AUDITING — EMPIRICAL VALIDATION — SEMANTIC HTML & INCLUSIVE CSS — PROJECT COORDINATION",
+                
+                "sec1-title": "The Context & The Challenge",
+                "sec1-p1": "Official web accessibility guidelines (WCAG) are traditionally structured as dense, highly technical compendiums geared toward legal interpretation rather than digital product engineering. Consequently, organizations encounter severe operational friction, exposing themselves to risks of regulatory non-compliance and disproportionate remediation costs when compliance discrepancies emerge post-development.",
+                "sec1-p2": "<strong>EasyWCAG</strong> originates from this strategic gap, developed during my PhD in <strong>Design for Digital Inclusion</strong> in collaboration with a specialized software house. The initiative bridges academic rigor with enterprise requirements, transforming a rigid compliance obligation into an efficient operational framework that drives concrete organizational value across three core dimensions:",
+                "sec1-directions": "<li><strong>Operational efficiency:</strong> reduction of interpretation times and direct integration into daily UI/UX and development pipelines.</li><li><strong>Economic optimization:</strong> mitigation of regulatory non-compliance risks and prevention of expensive post-development remediation.</li><li><strong>Cultural alignment:</strong> promotion of a shared, cross-functional language between designers, developers, and institutional stakeholders.</li>",
+                "sec1-p3": "Through an integrated methodological framework, I directed the comprehensive synthesis and taxonomic restructuring of the regulatory corpus, converting complex standards into a streamlined operational design ecosystem.",
+                
+                "sec2-title": "Research & Methodology",
+                "sec2-p1": "The research architecture originated from Card Sorting sessions and a <em>bottom-up</em> analysis focusing on the <strong>55 compliance criteria (levels A and AA), which are legally mandatory and binding</strong> for interface compliance. Although the traditional backbone of WCAG rests on four theoretical pillars (Perceivable, Operable, Understandable, Robust), I chose to move past this academic catalogation in favor of a <strong>user-centered perspective geared toward IT workflows</strong>, co-designed through targeted <em>participatory design</em> sessions with stakeholders and industry experts.",
+                "fig-cap-2": "Photographs taken during the autonomous card sorting session.", 
+                "fig-cap-3": "Card sorting session with UI/UX designers and software engineers.",
+                "sec2-p2": "In parallel, I implemented a <em>top-down</em> structural analysis to map regulatory requirements onto the web's three core architectural dimensions: <strong>container, content, and interactions</strong> (integrated by related supplement modules). This framework defines a fluid taxonomy that seamlessly integrates into modern software development pipelines, cleanly decoupling design responsibilities from engineering ones.",
+                "fig-cap-4": "WCAG mapping consolidated following card sorting and top-down analysis based on the 4 identified categories and subcategories.",
+                
+                "sec3-title": "Design & Development",
+                "sec3-p1": "I personally governed the entire product lifecycle through a tailored, rigorous approach: from preliminary investigation and strategic setup through visual execution, technical development, and empirical fieldwork validation, engaging users strictly during participatory co-design sessions.",
+                "img-intro-1": "Visual Identity & Brand Architecture:", 
+                "img-desc-1": "Logo conceptualization required defining a clean, striking visual aesthetic capable of instantly communicating the values of universal accessibility, transparency, and institutional authority inherent to EasyWCAG.",
+                "fig-cap-5": "Official logo.",
+                
+                "img-intro-2": "Information Architecture & User Flows:", 
+                "img-desc-2": "Before writing the first line of code, I structured the platform's information architecture. The artifacts below show the logical sitemap and user flow mapping, designed to minimize cognitive friction and optimize criteria retrieval.",
+                "fig-cap-6": "Sitemap.",
+                "fig-cap-7": "User journey.",
+
+                "wireframe-intro-title": "Wireframe & Interface Evolution:",
+                "wireframe-intro-desc": "The wireframing phase translated the core architecture into tangible interface layouts. Below is the wireframe illustrating the 3 levels of navigation of the EasyWCAG app, designed before moving on to prototyping.",
+                "fig-cap-wireframe": "Wireframe illustrating the 3 navigation levels of the EasyWCAG app, drawn before moving to prototyping.",
+                
+                "sec3-subtitle-proto": "Functional Prototype and Implementation",
+                "sec3-p2": "I conceived, designed, and fully developed the web application independently, directly writing the HTML and CSS code to translate strategic concepts into a fully functioning, high-performing, and accessible digital artifact. In the box below, you can interact directly with the EasyWCAG web app exactly as I conceived, structured, and coded it:",
+                "sec3-p3": "The execution demonstrates how attention to every single phase of the process—from theoretical research to front-end engineering—allows for the release of an excellence-driven digital product, capable of addressing the actual pain points of digital professionals with millimetric precision.",
+                
+                "sec4-title": "Validation and Empirical Results",
+                "sec4-p1": "To validate the heuristic and ergonomic efficacy of the tool, I implemented a rigorous empirical testing protocol involving a panel of 10 UI/UX designers and 10 front-end developers, undergoing comparative sessions between consulting institutional repositories and using EasyWCAG. The recorded quantitative and qualitative data outline clear success metrics:",
+                "sec4-list": "<li><strong>Operational efficiency:</strong> 95% of the sample experienced a drastic acceleration in search and decoding times for individual regulatory parameters.</li><li><strong>Cognitive load mitigation:</strong> 80% of participants favorably validated role-based profiling filters (a sharp distinction between design and development needs).</li><li><strong>Taxonomic efficacy:</strong> 95% judged the structure by architectural dimensions (container, content, interactions) to be perfectly mirroring the mental models of contemporary digital workflows.</li>",
+                
+                "charts-intro-title": "Analysis and feedback from empirical tests",
+                "charts-intro-desc": "The evidence gathered during the validation phase offers an unambiguous reading of EasyWCAG's impact on daily professional practice. The charts below summarize the panel's evaluations in terms of usage preference, taxonomic clarity, terminological adherence, and the effectiveness of targeted support for different technical profiles.",
+                "fig-cap-8": "Preference of the tool to consult for accessibility.",
+                "fig-cap-9": "Clarity and comprehensibility of formulations.",
+                "fig-cap-10": "Alignment with industry terminology.",
+                "fig-cap-11": "Understanding of criteria specific to one's role.",
+                
+                "sec4-p2": "Ultimately, EasyWCAG goes beyond the concept of a mere regulatory compendium to elevate itself to an <strong>interdisciplinary connecting framework</strong>. The project demonstrates how strategic design based on radical content curation can convert a bureaucratic requirement into a formidable accelerator of technical quality and creative value.",
+                "portfolio-synthesis-text": "Within my journey, <strong>EasyWCAG</strong> stands as a manifesto of my design vision: the ability to oversee the entire lifecycle of a digital product—from academic research and information architecture to advanced prototyping and front-end engineering. This work reflects my deep dedication to digital inclusion and ethical accessibility, highlighting a solid mastery of complex methodologies and a natural aptitude for strategic, multidisciplinary coordination.",
+                
+                "nav-prev-project": "&larr; All projects",
+                "nav-next-project": "Next project &rarr;",
+                
+                "footer-title": "I'm always open to meaningful opportunities.",
+                "footer-email": "Contact me via email &rarr;",
+                "footer-linkedin": "Connect on LinkedIn &rarr;",
+
+                // Etichette dedicate per il grafico a ciambella in inglese
+                "pie-lbl-1": "EasyWCAG",
+                "pie-lbl-2": "Both",
+                "pie-lbl-3": "Official text",
+                "pie-lbl-4": "None"
+            },
+            it: {
+                "nav-home": "Homepage",
+                "nav-about": "Chi sono",
+                "nav-works": "Progetti scelti",
+                "nav-contacts": "Contatti",
+                "back-works": "&larr; Torna a tutti i progetti",
+                "proj-title": "Progettare per conformare",
+                "proj-subtitle": "Dottorato di ricerca in Design per l'Inclusione Digitale: trasformare la complessità normativa in un ecosistema di design operativo.",
+                "proj-tags": "RICERCA UTENTI — ARCHITETTURA SEMANTICA — CONFORMITÀ & AUDITING WCAG — VALIDAZIONE EMPIRICA — HTML SEMANTICO & CSS INCLUSIVO — COORDINAMENTO DI PROGETTO",
+                
+                "sec1-title": "Il Contesto e la Sfida",
+                "sec1-p1": "Le linee guida ufficiali per l'accessibilità web (WCAG) presentano tradizionalmente una struttura complessa e orientata all'interpretazione giuridica, piuttosto che all'ingegneria dei prodotti digitali. Di conseguenza, le organizzazioni affrontano notevoli attriti operativi, esponendosi a rischi di non-conformità normativa e a costi di correzione del codice sproporzionati quando le criticità emergono a sviluppo avanzato.",
+                "sec1-p2": "<strong>EasyWCAG</strong> nasce da questa esigenza strategica, sviluppato nel quadro del mio dottorato di ricerca in <strong>Design per l'Inclusione Digitale</strong> in collaborazione con una software house. Il progetto coniuga rigore accademico e operatività aziendale, convertendo un rigido obbligo normativo in un framework operativo efficiente, in grado di generare valore economico e organizzativo misurabile attraverso tre direttrici:",
+                "sec1-directions": "<li><strong>Efficienza operativa:</strong> riduzione dei tempi di interpretazione e integrazione diretta nei flussi di lavoro quotidiani di UI/UX e sviluppo.</li><li><strong>Ottimizzazione economica:</strong> mitigazione dei rischi di non conformità e prevenzione di costose correzioni post-sviluppo.</li><li><strong>Allineamento culturale:</strong> promozione di un linguaggio condiviso e cross-funzionale tra designer, sviluppatori e stakeholder istituzionali.</li>",
+                "sec1-p3": "Mediante un framework metodologico integrato, ho curato la sintesi e la ristrutturazione tassonomica del corpus normativo, traducendolo in un design system operativo volto a ottimizzare i processi di conformità.",
+                
+                "sec2-title": "Ricerca e Metodologia",
+                "sec2-p1": "L'architettura della ricerca ha preso le mosse da sessioni di <em>Card Sorting</em> e un'analisi <em>bottom-up</em> focalizzata sui <strong>55 criteri di conformità (livelli A e AA), tassativi e vincolanti per legge</strong> per la conformità delle interfacce. Sebbene l'ossatura tradizionale delle WCAG si fondi su quattro pilastri teorici (Percepibile, Operabile, Comprensibile, Robusto), ho scelto di superare questa catalogazione accademica a favore di una <strong>prospettiva user-centered orientata ai processi IT</strong>, co-progettata tramite sessioni mirate di <em>participatory design</em> con stakeholder ed esperti del settore.",
+                "fig-cap-2": "Fotografie scattate durante la sessione di card sorting autonoma.", 
+                "fig-cap-3": "Sessione di card sorting con UI/UX designer e ingegneri informatici.",
+                "sec2-p2": "In parallelo, ho implementato un'analisi strutturale <em>top-down</em> per mappare i requisiti normativi sulle tre dimensioni architetturali cardine del web moderno: <strong>contenitore, contenuto e interazioni</strong> (integrate dai relativi moduli supplementari). Questo impianto definisce una tassonomia fluida, perfettamente integrata nei moderni pipeline di sviluppo software e in grado di disaccoppiare in modo netto le responsabilità di design da quelle ingegneristiche.",
+                "fig-cap-4": "Mappatura delle WCAG consolidata in seguito alle attività di card sorting e di analisi top-down secondo le 4 categorie individuate e le sottocategorie.",
+                
+                "sec3-title": "Design e Sviluppo",
+                "sec3-p1": "Ho governato in prima persona l'intero ciclo di vita del prodotto attraverso un approccio sartoriale e rigoroso: dall'indagine preliminare e l'impostazione strategica fino all'execution visiva, allo sviluppo tecnico e alla validazione empirica sul campo, avvalendomi del confronto con gli utenti esclusivamente nelle sessioni di co-design partecipativo.",
+                "img-intro-1": "Visual Identity & Brand Architecture:", 
+                "img-desc-1": "La concettualizzazione del logo ha richiesto la definizione di un'estetica visiva pulita e incisiva, capace di comunicare istantaneamente i valori di accessibilità universale, trasparenza e autorevolezza istituzionale propri di EasyWCAG.",
+                "fig-cap-5": "Logo ufficiale.",
+                
+                "img-intro-2": "Information Architecture & User Flows:", 
+                "img-desc-2": "Prima di scrivere la prima riga di codice, ho strutturato l'architettura informativa della piattaforma. Gli artefatti sottostanti mostrano la sitemap logica e la mappatura dei flussi utente, concepite per minimizzare la frizione cognitiva e ottimizzare il reperimento dei criteri.",
+                "fig-cap-6": "Sitemap.",
+                "fig-cap-7": "User journey.",
+
+                "wireframe-intro-title": "Wireframe ed Evoluzione dell'Interfaccia:",
+                "wireframe-intro-desc": "La fase di wireframing ha tradotto l'architettura centrale in layout di interfaccia concreti. Di seguito è illustrato il wireframe dei 3 livelli di navigazione dell'app EasyWCAG, disegnato prima di passare alla prototipazione.",
+                "fig-cap-wireframe": "Wireframe dei 3 livelli di navigazione dell'app EasyWCAG, disegnato prima di passare alla prototipazione.",
+                
+                "sec3-subtitle-proto": "Prototipo Funzionale e Implementazione",
+                "sec3-p2": "Ho ideato, progettato e sviluppato interamente in autonomia l'applicazione web, scrivendo direttamente il codice HTML e CSS per traslare i concept strategici in un artefatto digitale pienamente funzionante, performante e accessibile. Nel box sottostante è possibile interagire direttamente con la web app EasyWCAG esattamente come l'ho concepita, strutturata e codificata:",
+                "sec3-p3": "L'execution dimostra come la cura per ogni singola fase del processo — dalla ricerca teorica all'ingegnerizzazione front-end — permetta di rilasciare un prodotto digitale d'eccellenza, capace di rispondere con precisione millimetrica ai reali pain point dei professionisti digitali.",
+                
+                "sec4-title": "Validazione e Risultati Empirici",
+                "sec4-p1": "Per validare l'efficacia euristica ed ergonomica del tool, ho implementato un rigoroso protocollo di testing empirico coinvolgendo un panel di 10 UI/UX designer e 10 front-end developer, sottoposti a sessioni comparative tra la consultazione dei repository istituzionali e l'utilizzo di EasyWCAG. I dati quantitativi e qualitativi registrati delineano metriche di successo evidenti:",
+                "sec4-list": "<li><strong>Efficienza operativa:</strong> Il 95% del campione ha riscontrato un'accelerazione drastica nei tempi di ricerca e decodifica dei singoli parametri normativi.</li><li><strong>Mitigazione del carico cognitivo:</strong> L'80% dei partecipanti ha validato con favore i filtri di profilazione basati sui ruoli (distinzione netta tra fabbisogni di design e sviluppo).</li><li><strong>Efficacia tassonomica:</strong> Il 95% ha giudicato la struttura per dimensioni architetturali (contenitore, contenuto, interazioni) perfettamente speculare ai modelli mentali del workflow digitale contemporaneo.</li>",
+                
+                "charts-intro-title": "Analisi e riscontro dei test empirici",
+                "charts-intro-desc": "Le evidenze raccolte in fase di validazione offrono una lettura inequivocabile dell'impatto di EasyWCAG nella pratica professionale quotidiana. I grafici sottostanti sintetizzano le valutazioni del panel in termini di preferenza d'uso, chiarezza tassonomica, aderenza terminologica ed efficacia del supporto mirato per i differenti profili tecnici.",
+                "fig-cap-8": "Preferenza dello strumento da consultare per l'accessibilità.",
+                "fig-cap-9": "Chiarezza e comprensibilità delle formulazioni.",
+                "fig-cap-10": "Allineamento alla terminologia di settore.",
+                "fig-cap-11": "Comprensione dei criteri specifici per il proprio ruolo.",
+                
+                "sec4-p2": "In ultima analisi, EasyWCAG supera il concetto di mero compendio normativo per elevarsi a <strong>framework di raccordo interdisciplinare</strong>. Il progetto dimostra come un design strategico basato sulla cura radicale dei contenuti possa riconvertire un adempimento burocratico in un formidabile acceleratore di qualità tecnica e valore creativo.",
+                "portfolio-synthesis-text": "All'interno del mio percorso, <strong>EasyWCAG</strong> si pone come manifesto della mia visione progettuale: la capacità di presidere l'intero ciclo di vita di un prodotto digitale — dalla ricerca accademica e l'architettura dell'informazione fino al prototyping avanzato e all'ingegnerizzazione front-end. Questo lavoro riflette la mia dedizione profonda per l'inclusione digitale e l'accessibilità etica, evidenziando una solida padronanza delle metodologie complesse e un'attitudine naturale al coordinamento strategico e multidisciplinare.",
+                
+                "nav-prev-project": "&larr; Tutti i progetti",
+                "nav-next-project": "Progetto successivo &rarr;",
+                
+                "footer-title": "Sono sempre aperta a nuove opportunità stimolanti.",
+                "footer-email": "Contattami via email &rarr;",
+                "footer-linkedin": "Collegati su LinkedIn &rarr;",
+
+                // Etichette dedicate per il grafico a ciambella in italiano
+                "pie-lbl-1": "EasyWCAG",
+                "pie-lbl-2": "Entrambi",
+                "pie-lbl-3": "Testo ufficiale",
+                "pie-lbl-4": "Nessuno"
+            }
+        };
+
+        // --- INIZIALIZZAZIONE E AGGIORNAMENTO DINAMICO DEL PIE CHART ---
+        let pieChartTools;
+
+        function initPieChart() {
+            const currentLang = document.querySelector('.lang-option.active').getAttribute('data-lang') || 'en';
+            const t = translations[currentLang];
+
+            const ctxPie = document.getElementById('pieChartTools').getContext('2d');
+            
+            if (pieChartTools) {
+                pieChartTools.destroy();
+            }
+
+            pieChartTools = new Chart(ctxPie, {
+                type: 'doughnut',
+                data: {
+                    labels: [t["pie-lbl-1"], t["pie-lbl-2"], t["pie-lbl-3"], t["pie-lbl-4"]],
+                    datasets: [{ 
+                        data: [65, 25, 5, 5], 
+                        backgroundColor: [brandPalette.sageGreen, brandPalette.mintPastel, brandPalette.beigeWarm, brandPalette.ecruSoft], 
+                        borderWidth: 0, 
+                        hoverOffset: 4 
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    cutout: '65%', 
+                    plugins: { 
+                        legend: { 
+                            position: 'bottom', 
+                            labels: { padding: 16, boxWidth: 12, usePointStyle: true, pointStyle: 'circle' } 
+                        } 
+                    } 
+                }
+            });
+        }
+
+        // Inizializzazione degli altri grafici a barre
+        const ctxBar1 = document.getElementById('barChartClarity').getContext('2d');
+        new Chart(ctxBar1, { type: 'bar', data: { labels: ['1 (Min)', '2', '3', '4', '5 (Max)'], datasets: [{ data: [0, 0, 0, 6, 14], backgroundColor: brandPalette.sageGreen, borderRadius: 4, barThickness: 24 }] }, options: { responsive: true, plugins: { legend: { display: false } }, scales: minimalistScales } });
+
+        const ctxBar2 = document.getElementById('barChartTerminology').getContext('2d');
+        new Chart(ctxBar2, { type: 'bar', data: { labels: ['1 (Min)', '2', '3', '4', '5 (Max)'], datasets: [{ data: [0, 0, 1, 6, 13], backgroundColor: brandPalette.mintPastel, borderRadius: 4, barThickness: 24 }] }, options: { responsive: true, plugins: { legend: { display: false } }, scales: minimalistScales } });
+
+        const ctxBar3 = document.getElementById('barChartRoles').getContext('2d');
+        new Chart(ctxBar3, { type: 'bar', data: { labels: ['1 (Min)', '2', '3', '4', '5 (Max)'], datasets: [{ data: [0, 0, 0, 3, 16], backgroundColor: brandPalette.mutedOlive, borderRadius: 4, barThickness: 28 }] }, options: { responsive: true, plugins: { legend: { display: false } }, scales: minimalistScales } });
+
+        // Avvio del grafico a ciambella al caricamento
+        window.addEventListener('DOMContentLoaded', () => {
+            initPieChart();
+        });
+
+        // Intercetta il click sui pulsanti di cambio lingua per aggiornare anche le etichette del grafico a ciambella
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', () => {
+                setTimeout(initPieChart, 50); // Piccolo timeout per assicurarsi che la classe 'active' sia già aggiornata
+            });
+        });
+    </script>
+
+    <!-- Script esterno che gestisce la lingua in automatico -->
+    <script src="translate.js"></script>
+</body>
+</html>

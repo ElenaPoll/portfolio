@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Elena Polleri - Project 08 </title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="project-style.css">
+    <style>
+        .project-table { width: 100%; border-collapse: collapse; margin: 25px 0 10px 0; font-size: 0.95em; text-align: center; }
+        .project-table th, .project-table td { border: 1px solid #ddd; padding: 12px; vertical-align: middle; }
+        .project-table th { background-color: #f8f9fa; font-weight: 600; color: #333; }
+        .project-table td.category-header { background-color: #fcfcfc; font-weight: 600; color: #444; width: 30%; }
+        .project-table td.row-header { background-color: #fcfcfc; font-weight: 600; text-align: left; }
+        .project-table tr.footer-row { background-color: #f8f9fa; font-weight: 600; }
+        
+        .table-caption { font-size: 0.88em; color: #666; font-style: italic; margin-bottom: 25px; text-align: center; }
+        
+        .carousel-wrapper { position: relative; width: 100%; max-width: 100%; margin: 15px 0 5px 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background-color: #111; }
+        .carousel-container { display: flex; width: 100%; transition: transform 0.6s ease-in-out; }
+        .carousel-container img { width: 100%; flex-shrink: 0; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+        
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; border: none; padding: 12px 16px; cursor: pointer; z-index: 10; border-radius: 4px; transition: background-color 0.3s; font-size: 16px; }
+        .carousel-btn:hover { background-color: rgba(0, 0, 0, 0.8); }
+        .carousel-prev { left: 10px; }
+        .carousel-next { right: 10px; }
+
+        .carousel-dots { display: flex; justify-content: center; gap: 8px; margin: 15px 0 25px 0; }
+        .carousel-dot { width: 10px; height: 10px; border-radius: 50%; background-color: #ccc; border: none; cursor: pointer; transition: background-color 0.3s, transform 0.3s; padding: 0; }
+        .carousel-dot.active { background-color: #111; transform: scale(1.2); }
+
+        .result-image { width: 100%; max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        .scatter-container { width: 100%; max-width: 100%; background: #fff; border-radius: 8px; padding: 20px; margin: 25px 0 10px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1); box-sizing: border-box; }
+        .scatter-container svg { width: 100%; height: auto; display: block; }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar project-navbar">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#home" data-translate="nav-home">Homepage</a></li>
+                <li><a href="index.html#about" data-translate="nav-about">About me</a></li>
+                <li><a href="index.html#works" class="active" data-translate="nav-works">Selected works</a></li>
+                <li><a href="index.html#contacts" data-translate="nav-contacts">Contacts</a></li>
+            </ul>
+
+            <div class="lang-switch">
+                <a href="#" class="lang-option active" data-lang="en">ENG</a>
+                <span class="lang-divider">|</span>
+                <a href="#" class="lang-option" data-lang="it">ITA</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="project-main">
+        <div class="project-container">
+
+            <div class="back-to-works-wrapper">
+                <a href="index.html#works" class="back-to-works-btn" data-translate="back-works">
+                    &larr; Back to all projects
+                </a>
+            </div>
+
+            <header class="project-header">
+                <div class="section-title-wrapper">
+                    <div class="line"></div>
+                    <span class="project-number">08.</span>
+                </div>
+                <h1 class="project-title" data-translate="proj-title">Designing for optimization</h1>
+                <p class="project-subtitle">
+                    <em data-translate="proj-subtitle">Valutazione approfondita dell'esperienza utente attraverso test di usabilità inclusivi su un portale chiave della Pubblica Amministrazione.</em>
+                </p>
+
+                <div class="project-tags-container">
+                    <span class="card-tags" data-translate="proj-tags">
+                        USABILITY TESTING — PUBLIC SECTOR DESIGN — QUANTITATIVE DATA ANALYSIS — INCLUSIVE DESIGN PRINCIPLES — ACCESSIBILITY AUDITING — PROTOTYPING
+                    </span>
+                </div>
+            </header>
+
+            <!-- 1. Spiegazione obiettivi, sfida e contesto -->
+            <section class="project-section">
+                <h2 data-translate="sec1-title">The Context, Objectives & Strategic Challenge</h2>
+                <p data-translate="sec1-p1">
+                    Il progetto ha visto la mia cura diretta in qualità di UX consultant e specialista in ricerca e accessibilità. L'obiettivo centrale è stato condurre un'analisi approfondita del <strong>Fascicolo del Cittadino</strong>, un servizio digitale chiave della Pubblica Amministrazione, focalizzandomi sull'<strong>individuazione delle criticità di usabilità e delle barriere d'accesso</strong> per delineare un piano d'intervento strategico mirato all'ottimizzazione complessiva della piattaforma.
+                </p>
+                <p data-translate="sec1-p2">
+                    Attraverso la mia metodologia di analisi e consulenza strategica, ho voluto dimostrare come la conformità formale e tecnica alle linee guida WCAG (Web Content Accessibility Guidelines, standard internazionali definiti per rendere i contenuti web più accessibili alle persone con disabilità) — pur rappresentando un requisito fondamentale e imprescindibile — <strong>non sia da sola sufficiente</strong> a garantire un'esperienza d'uso realmente fluida ed efficace. Per colmare il divario tra la norma tecnica e l'effettiva fruibilità da parte degli utenti, ho condotto un'indagine approfondita volta a intercettare gli attriti nascosti nei flussi di interazione.
+                </p>
+            </section>
+
+            <!-- 2. Research e methodology + tabella composizione team -->
+            <section class="project-section">
+                <h2 data-translate="sec2-title">Research & Methodology</h2>
+                <p data-translate="sec2-p1">
+                    Per andare oltre i dati teorici, ho ideato e coordinato un'<strong>indagine empirica rigorosa</strong>, applicando sul campo le mie competenze di UX research e coinvolgendo un panel eterogeneo composto da <strong>16 utenti reali</strong>. Il campione è stato meticolosamente selezionato per includere sia persone con disabilità permanenti, sia profili differenziati per fasce d'età, livello di alfabetizzazione digitale e padronanza della lingua.
+                </p>
+                <p data-translate="sec2-p2">
+                    Nel rispetto dei protocolli metodologici di riferimento (come le linee guida eGLU per le PA), ho strutturato le sessioni di test basandole sull'esecuzione di <strong>task realistici</strong>, avvalendomi della tecnica del <em>think aloud</em> per raccogliere in tempo reale percezioni, barriere cognitive e criticità d'uso.
+                </p>
+
+                <table class="project-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th data-translate="th-smartphone">TEST DA SMARTPHONE</th>
+                            <th data-translate="th-desktop">TEST DA DESKTOP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="category-header" rowspan="3" data-translate="td-perm-disab">CON DISABILITÀ PERMANENTI</td>
+                            <td data-translate="td-blind-mob">2 UTENTI CIECHI</td>
+                            <td data-translate="td-blind-desk">2 UTENTI CIECHI</td>
+                        </tr>
+                        <tr>
+                            <td data-translate="td-lowv-mob">1 UTENTE IPOVEDENTE</td>
+                            <td data-translate="td-lowv-desk">1 UTENTE IPOVEDENTE</td>
+                        </tr>
+                        <tr>
+                            <td data-translate="td-deaf-mob">1 UTENTE SORDO</td>
+                            <td data-translate="td-deaf-desk">1 UTENTE SORDO</td>
+                        </tr>
+                        <tr>
+                            <td class="category-header" rowspan="4" data-translate="td-no-disab">SENZA DISABILITÀ PERMANENTI</td>
+                            <td data-translate="td-chin-mob">1 UTENTE CINESE</td>
+                            <td data-translate="td-chin-desk">1 UTENTE CINESE</td>
+                        </tr>
+                        <tr>
+                            <td data-translate="td-baby-mob">1 UTENTE GENERAZIONE BABY BOOMERS</td>
+                            <td data-translate="td-baby-desk">1 UTENTE GENERAZIONE BABY BOOMERS</td>
+                        </tr>
+                        <tr>
+                            <td data-translate="td-genx-mob">1 UTENTE GENERAZIONE X</td>
+                            <td data-translate="td-genx-desk">1 UTENTE GENERAZIONE X</td>
+                        </tr>
+                        <tr>
+                            <td data-translate="td-u35-mob">1 UTENTE UNDER 35</td>
+                            <td data-translate="td-u35-desk">1 UTENTE UNDER 35</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="table-caption" data-translate="cap-table1">Dettaglio della distribuzione del panel di 16 utenti suddiviso per tipologia di test (smartphone e desktop) e caratteristiche dei partecipanti.</div>
+            </section>
+
+            <!-- 3. Documentazione visiva del processo di testing + carosello ottimizzato con pallini -->
+            <section class="project-section">
+                <h3 class="subsection-title" style="font-weight: normal;" data-translate="carousel-title">Documentazione visiva del processo di testing</h3>
+                <p data-translate="carousel-intro">
+                    Le fotografie seguenti documentano le diverse fasi dell'attività di ricerca sul campo da me condotta. Gli scatti testimoniano l'interazione degli utenti con il portale e l'impiego di tecnologie assistive mirate a supportare non solo persone con disabilità permanenti, ma anche utenti con una limitata padronanza della lingua italiana o che affrontano differenti tipologie di ostacoli cognitivi e di comprensione durante la navigazione.
+                </p>
+                <div class="carousel-wrapper">
+                    <button class="carousel-btn carousel-prev" id="prev-btn">&#10094;</button>
+                    <div class="carousel-container" id="test-carousel">
+                        <img src="images/fascicolo-4.jpg" alt="Fase test 1">
+                        <img src="images/fascicolo-5.jpg" alt="Fase test 2">
+                        <img src="images/fascicolo-6.jpg" alt="Fase test 3">
+                        <img src="images/fascicolo-7.jpg" alt="Fase test 4">
+                        <img src="images/fascicolo-8.jpg" alt="Fase test 5">
+                        <img src="images/fascicolo-9.jpg" alt="Fase test 6">
+                        <img src="images/fascicolo-10.jpg" alt="Fase test 7">
+                        <img src="images/fascicolo-11.jpg" alt="Fase test 8">
+                        <img src="images/fascicolo-12.jpg" alt="Fase test 9">
+                        <img src="images/fascicolo-13.jpg" alt="Fase test 10">
+                        <img src="images/fascicolo-14.jpg" alt="Fase test 11">
+                        <img src="images/fascicolo-15.jpg" alt="Fase test 12">
+                        <img src="images/fascicolo-16.jpg" alt="Fase test 13">
+                        <img src="images/fascicolo-17.jpg" alt="Fase test 14">
+                        <img src="images/fascicolo-18.jpg" alt="Fase test 15">
+                        <img src="images/fascicolo-19.jpg" alt="Fase test 16">
+                        <img src="images/fascicolo-20.jpg" alt="Fase test 17">
+                    </div>
+                    <button class="carousel-btn carousel-next" id="next-btn">&#10095;</button>
+                </div>
+                <!-- Pallini indicatori del carosello -->
+                <div class="carousel-dots" id="carouselDots"></div>
+            </section>
+
+            <!-- 4. Data analisi e insight + tabelle e diagramma a dispersione SVG -->
+            <section class="project-section">
+                <h2 data-translate="sec3-title">Data Analysis & Insights</h2>
+                <p data-translate="sec3-p1">
+                    Attraverso la sintesi e la correlazione dei <strong>dati quantitativi e qualitativi</strong> raccolti durante la ricerca, ho delineato un quadro analitico dettagliato, evidenziando un livello di usabilità complessivo marcatamente critico (con un punteggio SUS — System Usability Scale, la scala standardizzata per la misurazione della percezione soggettiva dell'usabilità — attestato su una media di <strong>37,5</strong> su 100) e marcate disparità nell'efficienza di completamento dei compiti.
+                </p>
+                
+                <p style="margin-top: 20px;" data-translate="sec3-p2">
+                    L'esame puntuale dei dati mi ha permesso di mappare con precisione le <strong>barriere architetturali</strong> e i principali punti di frizione nei flussi di interazione, mostrando come i tassi di successo varino significativamente in base alla complessità dei task e alle specificità demografiche o funzionali del campione.
+                </p>
+
+                <p style="margin-top: 30px;" data-translate="sec3-p3">
+                    Per approfondire l'incidenza di tali fattori, ho elaborato il diagramma a dispersione sottostante, progettato per mettere in relazione l'età dei partecipanti e la presenza di disabilità specifiche con il numero effettivo di task portati a termine con successo:
+                </p>
+
+                <!-- GRAFICO A DISPERSIONE SVG INTERATTIVO/RESPONSIVE -->
+                <div class="scatter-container">
+                    <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg">
+                        <style>
+                            .axis-label { font-family: 'Fira Sans Condensed', sans-serif; font-size: 14px; fill: #666; font-weight: 600; }
+                            .tick-label { font-family: 'Fira Sans Condensed', sans-serif; font-size: 13px; fill: #888; }
+                            .grid-line { stroke: #e0e0e0; stroke-dasharray: 4,4; stroke-width: 1; }
+                            .axis-line { stroke: #999; stroke-width: 1.5; }
+                            .legend-text { font-family: 'Fira Sans Condensed', sans-serif; font-size: 13px; fill: #555; }
+                        </style>
+
+                        <!-- Legenda -->
+                        <g transform="translate(40, 25)">
+                            <circle cx="8" cy="8" r="7" fill="#b85d10"/>
+                            <text x="22" y="12" class="legend-text" font-style="italic" data-translate="leg-perm">Con disabilità permanente</text>
+                            
+                            <circle cx="210" cy="8" r="7" fill="#a3b18b"/>
+                            <text x="224" y="12" class="legend-text" font-style="italic" data-translate="leg-noperm">Senza disabilità permanente</text>
+                        </g>
+
+                        <!-- Griglia e Assi -->
+                        <g transform="translate(80, 0)">
+                            <line x1="0" y1="80" x2="680" y2="80" class="grid-line" />
+                            <text x="-25" y="85" class="tick-label" text-anchor="end">3</text>
+
+                            <line x1="0" y1="180" x2="680" y2="180" class="grid-line" />
+                            <text x="-25" y="185" class="tick-label" text-anchor="end">2</text>
+
+                            <line x1="0" y1="280" x2="680" y2="280" class="grid-line" />
+                            <text x="-25" y="285" class="tick-label" text-anchor="end">1</text>
+
+                            <line x1="0" y1="380" x2="680" y2="380" class="axis-line" />
+                            <text x="-25" y="385" class="tick-label" text-anchor="end">0</text>
+
+                            <line x1="0" y1="80" x2="0" y2="380" class="grid-line" />
+                            <text x="0" y="405" class="tick-label" text-anchor="middle">20</text>
+
+                            <line x1="113.33" y1="80" x2="113.33" y2="380" class="grid-line" />
+                            <text x="113.33" y="405" class="tick-label" text-anchor="middle">30</text>
+
+                            <line x1="226.66" y1="80" x2="226.66" y2="380" class="grid-line" />
+                            <text x="226.66" y="405" class="tick-label" text-anchor="middle">40</text>
+
+                            <line x1="340" y1="80" x2="340" y2="380" class="grid-line" />
+                            <text x="340" y="405" class="tick-label" text-anchor="middle">50</text>
+
+                            <line x1="453.33" y1="80" x2="453.33" y2="380" class="grid-line" />
+                            <text x="453.33" y="405" class="tick-label" text-anchor="middle">60</text>
+
+                            <line x1="566.66" y1="80" x2="566.66" y2="380" class="grid-line" />
+                            <text x="566.66" y="405" class="tick-label" text-anchor="middle">70</text>
+
+                            <line x1="680" y1="80" x2="680" y2="380" class="grid-line" />
+                            <text x="680" y="405" class="tick-label" text-anchor="middle">80</text>
+
+                            <line x1="0" y1="80" x2="0" y2="380" class="axis-line" />
+
+                            <text x="340" y="445" class="axis-label" text-anchor="middle" data-translate="axis-age">ETÀ</text>
+                            <text x="-230" y="-50" class="axis-label" text-anchor="middle" transform="rotate(-90)" data-translate="axis-tasks">TASK COMPLETATI CON SUCCESSO</text>
+
+                            <!-- Punti del grafico -->
+                            <circle cx="0" cy="80" r="8" fill="#b85d10" />
+                            <circle cx="45.33" cy="280" r="8" fill="#b85d10" />
+                            <circle cx="56.66" cy="280" r="8" fill="#b85d10" />
+                            <circle cx="136" cy="280" r="8" fill="#b85d10" />
+                            <circle cx="158.66" cy="180" r="8" fill="#a3b18b" />
+                            <circle cx="158.66" cy="280" r="8" fill="#b85d10" />
+                            <circle cx="272" cy="280" r="8" fill="#a3b18b" />
+                            <circle cx="408" cy="280" r="8" fill="#b85d10" />
+                            <circle cx="453.33" cy="180" r="8" fill="#b85d10" />
+                            <circle cx="453.33" cy="380" r="8" fill="#a3b18b" />
+                            <circle cx="464.66" cy="280" r="8" fill="#a3b18b" />
+                            <circle cx="521.33" cy="280" r="8" fill="#a3b18b" />
+                            <circle cx="544" cy="280" r="8" fill="#b85d10" />
+                            <circle cx="589.33" cy="380" r="8" fill="#b85d10" />
+                            <circle cx="612" cy="380" r="8" fill="#a3b18b" />
+                            <circle cx="634.66" cy="280" r="8" fill="#a3b18b" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="table-caption" data-translate="cap-fig1">Diagramma a dispersione indicante la correlazione tra età, disabilità e tasso di successo dei task.</div>
+
+                <p style="margin-top: 20px;" data-translate="sec3-scatter-desc">
+                    Pur considerando i limiti dimensionali del campione, l'analisi evidenzia come l'età dei partecipanti incida in modo più marcato rispetto alla disabilità sull'efficacia operativa: gli utenti più giovani hanno infatti registrato performance complessivamente superiori rispetto alla fascia d'età avanzata.
+                </p>
+            </section>
+
+            <!-- 5. Solution e riflessioni finali con focus sulle competenze (AMPIAMENTE ARRICCHITE) -->
+            <section class="project-section">
+                <h2 data-translate="sec4-title">Solution & Final Reflections</h2>
+                <p data-translate="sec4-p1">
+                    Dall'analisi qualitativa condotta è emerso chiaramente come l'esperienza sul portale abbia generato negli utenti vissuti emotivi prevalentemente negativi, tra cui <strong>stanchezza, frustrazione, insoddisfazione, senso di inadeguatezza digitale, irritazione e disorientamento</strong>.
+                </p>
+                <p style="margin-top: 15px;" data-translate="sec4-p1b">
+                    Coerentemente con gli obiettivi strategici dell'indagine, ho focalizzato l'attenzione sull'individuazione di quelle <strong>criticità non intercettate dalle linee guida WCAG</strong>, dimostrando come il rispetto formale dei parametri di accessibilità tecnica non sia sufficiente a garantire un'esperienza d'uso realmente inclusiva e soddisfacente.
+                </p>
+                <p style="margin-top: 15px;" data-translate="sec4-p1c">
+                    Le principali criticità riscontrate, classificate per frequenza e convergenza di riscontro, riguardano:
+                </p>
+                <ul style="margin: 15px 0 20px 20px; line-height: 1.6; color: #444;" data-translate="sec4-list">
+                    <li>Un'<strong>architettura dell'informazione</strong> poco intuitiva e dispersiva;</li>
+                    <li>Una <strong>scrittura web</strong> penalizzata da registri eccessivamente tecnici e distanti dalle reali esigenze comunicative dell'utente;</li>
+                    <li>Una forte <strong>ridondanza e sovrapposizione di contenuti</strong>, fonte di confusione cognitiva;</li>
+                    <li>Un <strong>flusso d'interazione non lineare</strong> (in particolare nel task 3, caratterizzato da un tasso di fallimento del 100% a causa dell'assenza di sequenzialità e di istruzioni chiare);</li>
+                    <li>La <strong>mancanza di visibilità dello stato del sistema</strong> e l'assenza di feedback di orientamento;</li>
+                    <li>Significativi <strong>problemi di accessibilità tecnica</strong>, inclusa la piena compatibilità con i screen reader;</li>
+                    <li>Criticità di visualizzazione e una <strong>gestione responsive inadeguata</strong> sui dispositivi mobili.</li>
+                </ul>
+                <p data-translate="sec4-p1d">
+                    Se alcune di queste problematiche afferiscono direttamente all'accessibilità (etichette carenti, ottimizzazione mobile, screen reader), molte altre violano palesemente le <strong>euristiche di usabilità di Jakob Nielsen</strong> (carenza di gerarchia visiva e lessico non orientato all'utente). Tale riscontro convalida la mia tesi consulenziale: <strong>l'accessibilità rappresenta una condizione necessaria ma non sufficiente per assicurare un'esperienza utente eccellente</strong>.
+                </p>
+                
+                <p style="margin-top: 25px;" data-translate="sec4-p2">
+                    Forte di un approccio metodologico rigoroso orientato alla consulenza strategica, ho tradotto le evidenze della ricerca in un piano d'intervento strutturato: nella seconda fase ho elaborato un catalogo di <strong>trentaquattro proposte di ottimizzazione</strong>, discusse e valutate in sinergia con il software engineer responsabile della manutenzione del portale. Il team ha così selezionato <strong>venticinque soluzioni effettivamente cantierabili</strong>, classificate in base a criteri di urgenza (bassa, media, alta) e facilità d'applicazione (distinguendo tra interventi rapidi, stimati in meno di un'ora, e interventi complessi superiori all'ora). Le restanti proposte sono state mappate come aree di competenza istituzionale della pubblica amministrazione.
+                </p>
+                
+                <!-- Tabella di Resoconto Implementata (Fig 55) -->
+                <table class="project-table" style="margin-top: 30px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;"></th>
+                            <th style="width: 25%;" data-translate="th-low-rel">RILEVANZA BASSA</th>
+                            <th style="width: 25%;" data-translate="th-med-rel">RILEVANZA MEDIA</th>
+                            <th style="width: 25%;" data-translate="th-high-rel">RILEVANZA ALTA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="category-header" data-translate="td-easy-app">FACILE APPLICAZIONE</td>
+                            <td data-translate="el-6-low">6 elementi</td>
+                            <td data-translate="el-6-med">6 elementi</td>
+                            <td data-translate="el-3-high">3 elementi</td>
+                        </tr>
+                        <tr>
+                            <td class="category-header" data-translate="td-hard-app">DIFFICILE APPLICAZIONE</td>
+                            <td data-translate="el-1-low">1 elemento</td>
+                            <td data-translate="el-3-med">3 elementi</td>
+                            <td data-translate="el-6-high">6 elementi</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="table-caption" data-translate="cap-table2">Matrice di prioritizzazione degli interventi correttivi in base a rilevanza e facilità di applicazione tecnica.</div>
+
+                <p style="margin-top: 20px;" data-translate="sec4-p3">
+                    I dati confermano che <strong>circa il 60% delle criticità riscontrate può essere risolto attraverso azioni mirate e agili</strong>, ribadendo l'efficacia di un <strong>approccio human-centered</strong> per il miglioramento continuo dei servizi pubblici digitali. Il report si configura così come un framework operativo solido per promuovere la sintesi tra usabilità e accessibilità, valorizzando una visione multidisciplinare e partecipativa che vede la collaborazione sinergica di content designer, developer, specialisti SEO, project manager, social media manager e, al centro, gli utenti finali quali garanti di equità ed efficacia nella trasformazione digitale.
+                </p>
+            </section>
+
+            <!-- NAVIGAZIONE AGGIORNATA A barilla.html -->
+            <nav class="project-pagination" aria-label="Navigazione tra i progetti">
+                <a href="adagio.html" class="pagination-link back-to-grid" data-translate="nav-prev-project">
+                    &larr; Progetto precedente
+                </a>
+                <a href="barilla.html" class="pagination-link next-project" data-translate="nav-next-project">
+                    Progetto successivo &rarr;
+                </a>
+            </nav>
+
+        </div>
+    </main>
+
+    <footer class="footer-section">
+        <div class="footer-container">
+            <h2 class="footer-title" data-translate="footer-title">
+                I'm always open to meaningful opportunities.
+            </h2>
+            <div class="footer-actions">
+                <a href="mailto:elenapolleri@gmail.com" class="footer-btn" data-translate="footer-email">
+                    Contact me via email &rarr;
+                </a>
+                <a href="https://www.linkedin.com/in/elenapolleri/" target="_blank" rel="noopener noreferrer" class="footer-btn" data-translate="footer-linkedin">
+                    Connect on LinkedIn &rarr;
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTTONE BACK TO TOP -->
+    <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Torna su">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </a>
+
+
+    <script>
+        const carousel = document.getElementById('test-carousel');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const dotsContainer = document.getElementById('carouselDots');
+
+        if (carousel && prevBtn && nextBtn && dotsContainer) {
+            const images = carousel.querySelectorAll('img');
+            let currentIndex = 0;
+            const totalImages = images.length;
+            let slideInterval;
+
+            images.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.setAttribute('aria-label', `Vai all'immagine ${index + 1}`);
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                    resetTimer();
+                });
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                updateCarousel();
+            }
+
+            function startAutoPlay() {
+                slideInterval = setInterval(nextSlide, 4000);
+            }
+
+            function resetTimer() {
+                clearInterval(slideInterval);
+                startAutoPlay();
+            }
+
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetTimer();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetTimer();
+            });
+
+            startAutoPlay();
+        }
+
+        const translations = {
+            it: {
+                "nav-home": "Homepage",
+                "nav-about": "About me",
+                "nav-works": "Selected works",
+                "nav-contacts": "Contacts",
+                "back-works": "&larr; Torna a tutti i progetti",
+                "proj-title": "Progettare per ottimizzare",
+                "proj-subtitle": "Valutazione approfondita dell'esperienza utente attraverso test di usabilità inclusivi su un portale chiave della Pubblica Amministrazione.",
+                "proj-tags": "USABILITY TESTING — DESIGN PER LA PUBBLICA AMMINISTRAZIONE — ANALISI DEI DATI QUANTITATIVI — PRINCIPI DI DESIGN INCLUSIVO — AUDITING DI ACCESSIBILITÀ — PROTOTIPAZIONE",
+                "sec1-title": "Il Contesto, gli Obiettivi e la Sfida Strategica",
+                "sec1-p1": "Il progetto ha visto la mia cura diretta in qualità di UX consultant e specialista in ricerca e accessibilità. L'obiettivo centrale è stato condurre un'analisi approfondita del <strong>Fascicolo del Cittadino</strong>, un servizio digitale chiave della Pubblica Amministrazione, focalizzandomi sull'<strong>individuazione delle criticità di usabilità e delle barriere d'accesso</strong> per delineare un piano d'intervento strategico mirato all'ottimizzazione complessiva della piattaforma.",
+                "sec1-p2": "Attraverso la mia metodologia di analisi e consulenza strategica, ho voluto dimostrare come la conformità formale e tecnica alle linee guida WCAG (Web Content Accessibility Guidelines, standard internazionali definiti per rendere i contenuti web più accessibili alle persone con disabilità) — pur rappresentando un requisito fondamentale e imprescindibile — <strong>non sia da sola sufficiente</strong> a garantire un'esperienza d'uso realmente fluida ed efficace. Per colmare il divario tra la norma tecnica e l'effettiva fruibilità da parte degli utenti, ho condotto un'indagine approfondita volta a intercettare gli attriti nascosti nei flussi di interazione.",
+                "sec2-title": "Ricerca e Metodologia",
+                "sec2-p1": "Per andare oltre i dati teorici, ho ideato e coordinato un'<strong>indagine empirica rigorosa</strong>, applicando sul campo le mie competenze di UX research e coinvolgendo un panel eterogeneo composto da <strong>16 utenti reali</strong>. Il campione è stato meticolosamente selezionato per includere sia persone con disabilità permanenti, sia profili differenziati per fasce d'età, livello di alfabetizzazione digitale e padronanza della lingua.",
+                "sec2-p2": "Nel rispetto dei protocolli metodologici di riferimento (come le linee guida eGLU per le PA), ho strutturato le sessioni di test basandole sull'esecuzione di <strong>task realistici</strong>, avvalendomi della tecnica del <em>think aloud</em> per raccogliere in tempo reale percezioni, barriere cognitive e criticità d'uso.",
+                "th-smartphone": "TEST DA SMARTPHONE",
+                "th-desktop": "TEST DA DESKTOP",
+                "td-perm-disab": "CON DISABILITÀ PERMANENTI",
+                "td-blind-mob": "2 UTENTI CIECHI",
+                "td-blind-desk": "2 UTENTI CIECHI",
+                "td-lowv-mob": "1 UTENTE IPOVEDENTE",
+                "td-lowv-desk": "1 UTENTE IPOVEDENTE",
+                "td-deaf-mob": "1 UTENTE SORDO",
+                "td-deaf-desk": "1 UTENTE SORDO",
+                "td-no-disab": "SENZA DISABILITÀ PERMANENTI",
+                "td-chin-mob": "1 UTENTE CINESE",
+                "td-chin-desk": "1 UTENTE CINESE",
+                "td-baby-mob": "1 UTENTE GENERAZIONE BABY BOOMERS",
+                "td-baby-desk": "1 UTENTE GENERAZIONE BABY BOOMERS",
+                "td-genx-mob": "1 UTENTE GENERAZIONE X",
+                "td-genx-desk": "1 UTENTE GENERAZIONE X",
+                "td-u35-mob": "1 UTENTE UNDER 35",
+                "td-u35-desk": "1 UTENTE UNDER 35",
+                "cap-table1": "Dettaglio della distribuzione del panel di 16 utenti suddiviso per tipologia di test (smartphone e desktop) e caratteristiche dei partecipanti.",
+                "carousel-title": "<span style='font-weight: 600; color: #5a6e54;'>Documentazione visiva del processo di testing</span>",
+                "carousel-intro": "Le fotografie seguenti documentano le diverse fasi dell'attività di ricerca sul campo da me condotta. Gli scatti testimoniano l'interazione degli utenti con il portale e l'impiego di tecnologie assistive mirate a supportare non solo persone con disabilità permanenti, ma anche utenti con una limitata padronanza della lingua italiana o che affrontano differenti tipologie di ostacoli cognitivi e di comprensione durante la navigazione.",
+                "sec3-title": "Analisi dei Dati e Insights",
+                "sec3-p1": "Attraverso la sintesi e la correlazione dei <strong>dati quantitativi e qualitativi</strong> raccolti durante la ricerca, ho delineato un quadro analitico dettagliato, evidenziando un livello di usabilità complessivo marcatamente critico (con un punteggio SUS — System Usability Scale, la scala standardizzata per la misurazione della percezione soggettiva dell'usabilità — attestato su una media di <strong>37,5</strong> su 100) e marcate disparità nell'efficienza di completamento dei compiti.",
+                "sec3-p2": "L'esame puntuale dei dati mi ha permesso di mappare con precisione le <strong>barriere architetturali</strong> e i principali punti di frizione nei flussi di interazione, mostrando come i tassi di successo varino significativamente in base alla complessità dei task e alle specificità demografiche o funzionali del campione.",
+                "sec3-p3": "Per approfondire l'incidenza di tali fattori, ho elaborato il diagramma a dispersione sottostante, progettato per mettere in relazione l'età dei partecipanti e la presenza di disabilità specifiche con il numero effettivo di task portati a termine con successo:",
+                "leg-perm": "Con disabilità permanente",
+                "leg-noperm": "Senza disabilità permanente",
+                "axis-age": "ETÀ",
+                "axis-tasks": "TASK COMPLETATI CON SUCCESSO",
+                "cap-fig1": "Diagramma a dispersione indicante la correlazione tra età, disabilità e tasso di successo dei task.",
+                "sec3-scatter-desc": "Pur considerando i limiti dimensionali del campione, l'analisi evidenzia come l'età dei partecipanti incida in modo più marcato rispetto alla disabilità sull'efficacia operativa: gli utenti più giovani hanno infatti registrato performance complessivamente superiori rispetto alla fascia d'età avanzata.",
+                "sec4-title": "Soluzione e Riflessioni Finali",
+                "sec4-p1": "Dall'analisi qualitativa condotta è emerso chiaramente come l'esperienza sul portale abbia generato negli utenti vissuti emotivi prevalentemente negativi, tra cui <strong>stanchezza, frustrazione, insoddisfazione, senso di inadeguatezza digitale, irritazione e disorientamento</strong>.",
+                "sec4-p1b": "Coerentemente con gli obiettivi strategici dell'indagine, ho focalizzato l'attenzione sull'individuazione di quelle <strong>criticità non intercettate dalle linee guida WCAG</strong>, dimostrando come il rispetto formale dei parametri di accessibilità tecnica non sia sufficiente a garantire un'esperienza d'uso realmente inclusiva e soddisfacente.",
+                "sec4-p1c": "Le principali criticità riscontrate, classificate per frequenza e convergenza di riscontro, riguardano:",
+                "sec4-list": "<li>Un'<strong>architettura dell'informazione</strong> poco intuitiva e dispersiva;</li><li>Una <strong>scrittura web</strong> penalizzata da registri eccessivamente tecnici e distanti dalle reali esigenze comunicative dell'utente;</li><li>Una forte <strong>ridondanza e sovrapposizione di contenuti</strong>, fonte di confusione cognitiva;</li><li>Un <strong>flusso d'interazione non lineare</strong> (in particolare nel task 3, caratterizzato da un tasso di fallimento del 100% a causa dell'assenza di sequenzialità e di istruzioni chiare);</li><li>La <strong>mancanza di visibilità dello stato del sistema</strong> e l'assenza di feedback di orientamento;</li><li>Significativi <strong>problemi di accessibilità tecnica</strong>, inclusa la piena compatibilità con i screen reader;</li><li>Criticità di visualizzazione e una <strong>gestione responsive inadeguata</strong> sui dispositivi mobili.</li>",
+                "sec4-p1d": "Se alcune di queste problematiche afferiscono direttamente all'accessibilità (etichette carenti, ottimizzazione mobile, screen reader), molte altre violano palesemente le <strong>euristiche di usabilità di Jakob Nielsen</strong> (carenza di gerarchia visiva e lessico non orientato all'utente). Tale riscontro convalida la mia tesi consulenziale: <strong>l'accessibilità rappresenta una condizione necessaria ma non sufficiente per assicurare un'esperienza utente eccellente</strong>.",
+                "th-low-rel": "RILEVANZA BASSA",
+                "th-med-rel": "RILEVANZA MEDIA",
+                "th-high-rel": "RILEVANZA ALTA",
+                "td-easy-app": "FACILE APPLICAZIONE",
+                "td-hard-app": "DIFFICILE APPLICAZIONE",
+                "el-6-low": "6 elementi",
+                "el-6-med": "6 elementi",
+                "el-3-high": "3 elementi",
+                "el-1-low": "1 elemento",
+                "el-3-med": "3 elementi",
+                "el-6-high": "6 elementi",
+                "cap-table2": "Matrice di prioritizzazione degli interventi correttivi in base a rilevanza e facilità di applicazione tecnica.",
+                "sec4-p2": "Forte di un approccio metodologico rigoroso orientato alla consulenza strategica, ho tradotto le evidenze della ricerca in un piano d'intervento strutturato: nella seconda fase ho elaborato un catalogo di <strong>trentaquattro proposte di ottimizzazione</strong>, discusse e valutate in sinergia con il software engineer responsabile della manutenzione del portale. Il team ha così selezionato <strong>venticinque soluzioni effettivamente cantierabili</strong>, classificate in base a criteri di urgenza (bassa, media, alta) e facilità d'applicazione (distinguendo tra interventi rapidi, stimati in meno di un'ora, e interventi complessi superiori all'ora). Le restanti proposte sono state mappate come aree di competenza istituzionale della pubblica amministrazione.",
+                "sec4-p3": "I dati confermano che <strong>circa il 60% delle criticità riscontrate può essere risolto attraverso azioni mirate e agili</strong>, ribadendo l'efficacia di un <strong>approccio human-centered</strong> per il miglioramento continuo dei servizi pubblici digitali. Il report si configura così come un framework operativo solido per promuovere la sintesi tra usabilità e accessibilità, valorizzando una visione multidisciplinare e partecipativa che vede la collaborazione sinergica di content designer, developer, specialisti SEO, project manager, social media manager e, al centro, gli utenti finali quali garanti di equità ed efficacia nella trasformazione digitale.",
+                "nav-prev-project": "&larr; Progetto precedente",
+                "nav-next-project": "Progetto successivo &rarr;",
+                "footer-title": "Sono sempre aperta a opportunità significative.",
+                "footer-email": "Contattami via email &rarr;",
+                "footer-linkedin": "Collegati su LinkedIn &rarr;"
+            },
+            en: {
+                "nav-home": "Homepage",
+                "nav-about": "About me",
+                "nav-works": "Selected works",
+                "nav-contacts": "Contacts",
+                "back-works": "&larr; Back to all projects",
+                "proj-title": "Designing for optimization",
+                "proj-subtitle": "In-depth user experience evaluation through inclusive usability testing on a key Public Administration portal.",
+                "proj-tags": "USABILITY TESTING — PUBLIC SECTOR DESIGN — QUANTITATIVE DATA ANALYSIS — INCLUSIVE DESIGN PRINCIPLES — ACCESSIBILITY AUDITING — PROTOTYPING",
+                "sec1-title": "The Context, Objectives & Strategic Challenge",
+                "sec1-p1": "The project involved my direct engagement as a user experience consultant and research & accessibility specialist. The primary objective was to conduct an in-depth analysis of the <strong>Fascicolo del Cittadino</strong>, a key Public Administration digital service, to <strong>identify usability issues and access barriers</strong>, thereby structuring a targeted intervention plan for overall platform optimization.",
+                "sec1-p2": "Through my user experience analysis and strategic consulting skills, I wanted to demonstrate that formal and technical compliance with WCAG (Web Content Accessibility Guidelines, international standards defined to make web content more accessible to people with disabilities) guidelines — although fundamental and essential — <strong>is not alone sufficient</strong> to guarantee a truly smooth and effective user experience. To bridge the gap between technical standards and real user needs, a careful user experience study was necessary to intercept hidden obstacles in interaction flows.",
+                "sec2-title": "Research & Methodology",
+                "sec2-p1": "To go beyond theoretical data, I designed and coordinated rigorous <strong>empirical research</strong>, applying my field user experience research skills and involving a diverse panel of <strong>16 real users</strong>. The sample was selected to include both people with permanent disabilities and profiles differentiated by age groups and level of digital literacy or language proficiency.",
+                "sec2-p2": "Following reference methodological protocols (such as eGLU guidelines for PAs), test sessions were based on executing <strong>realistic tasks</strong>, leveraging the <em>think aloud</em> technique to gather real-time perceptions, cognitive obstacles, and usage frustrations.",
+                "th-smartphone": "SMARTPHONE TESTING",
+                "th-desktop": "DESKTOP TESTING",
+                "td-perm-disab": "WITH PERMANENT DISABILITIES",
+                "td-blind-mob": "2 BLIND USERS",
+                "td-blind-desk": "2 BLIND USERS",
+                "td-lowv-mob": "1 LOW VISION USER",
+                "td-lowv-desk": "1 LOW VISION USER",
+                "td-deaf-mob": "1 DEAF USER",
+                "td-deaf-desk": "1 DEAF USER",
+                "td-no-disab": "WITHOUT PERMANENT DISABILITIES",
+                "td-chin-mob": "1 CHINESE USER",
+                "td-chin-desk": "1 CHINESE USER",
+                "td-baby-mob": "1 BABY BOOMERS USER",
+                "td-baby-desk": "1 BABY BOOMERS USER",
+                "td-genx-mob": "1 GENERATION X USER",
+                "td-genx-desk": "1 GENERATION X USER",
+                "td-u35-mob": "1 UNDER 35 USER",
+                "td-u35-desk": "1 UNDER 35 USER",
+                "cap-table1": "Detailed breakdown of the 16-user panel distributed by testing type (smartphone and desktop) and participant characteristics.",
+                "carousel-title": "<span style='font-weight: 600; color: #5a6e54;'>Visual Documentation of the Testing Process</span>",
+                "carousel-intro": "The following photographs document the different phases of the field user experience research activity. The shots show users interacting with the portal and using assistive technologies aimed at supporting not only people with permanent disabilities, but also users with limited proficiency in the Italian language and those facing different types of cognitive and comprehension obstacles during navigation.",
+                "sec3-title": "Data Analysis & Insights",
+                "sec3-p1": "The cross-referencing of <strong>quantitative and qualitative data</strong> collected during the user experience analysis yielded a critical picture, highlighting a markedly low overall usability level (with an average SUS — System Usability Scale, a standardized questionnaire used to measure subjective perceptions of system usability — score of <strong>37,5</strong> on a scale from 0 to 100) and strong disparities in task completion efficiency.",
+                "sec3-p2": "The detailed analysis allowed for the precise identification of <strong>architectural barriers</strong> and friction points in interaction flows, highlighting how success rates vary significantly according to the complexity of assigned tasks and the demographic or functional characteristics of the sample.",
+                "sec3-p3": "To further investigate the impact of these factors, the scatter plot below — which I made myself to cross-reference the collected data and extract meaningful insights — correlates participants' age and specific disabilities with the actual number of successfully completed tasks during the test sessions:",
+                "leg-perm": "With permanent disability",
+                "leg-noperm": "Without permanent disability",
+                "axis-age": "AGE",
+                "axis-tasks": "TASKS COMPLETED SUCCESSFULLY",
+                "cap-fig1": "Scatter plot illustrating the correlation between age, disability, and task success rates.",
+                "sec3-scatter-desc": "While generalizable conclusions cannot be drawn due to the limited sample size, the data suggests that user age represents a more impactful variable than disability in terms of operational effectiveness: younger participants achieved significantly better results compared to older ones.",
+                "sec4-title": "Solution & Final Reflections",
+                "sec4-p1": "At the end of the test session. through careful qualitative analysis conducted as a user experience researcher, it emerged that users tended to express predominantly negative emotional states: <strong>fatigue, frustration, dissatisfaction, uncertainty regarding digital skills, irritation, awkwardness, anger, and a sense of inadequacy</strong>.",
+                "sec4-p1b": "In line with the strategic objectives of the activity, I placed special emphasis on identifying <strong>critical issues not addressed by WCAG (Web Content Accessibility Guidelines) guidelines</strong>, professionally demonstrating how simple formal compliance with technical accessibility guidelines is not enough to ensure a truly inclusive and satisfying user experience.",
+                "sec4-p1c": "The main critical issues detected, classified by recurrence and convergence of observations, concerned:",
+                "sec4-list": "<li><strong>Information architecture</strong>, often unintuitive and scattered;</li><li>Inadequate <strong>web writing</strong>, bogged down by overly technical language not oriented toward the end user;</li><li><strong>Redundancy and overlapping of content</strong>, generating cognitive confusion and disorientation;</li><div>A <strong>non-linear interaction flow</strong> (especially in task 3, where lack of sequentiality and clear instructions caused a 100% failure rate among participants);</div><li><strong>Lack of system status visibility</strong> and absence of orientation feedback;</li><li>Severe <strong>technical accessibility issues</strong>, including screen reader incompatibility;</li><li>Visualization issues and <strong>inadequate responsive management</strong> on mobile devices.</li>",
+                "sec4-p1d": "Part of these problems directly impacts accessibility (deficient labels, mobile optimization, screen readers), while many others clearly violate <strong>Jakob Nielsen's usability heuristics</strong> (lack of visual hierarchy and non-user-centric lexicon). Consequently, this validates my consulting thesis: <strong>accessibility is a necessary, but not sufficient, condition for an excellent user experience</strong>.",
+                "th-low-rel": "LOW RELEVANCE",
+                "th-med-rel": "MEDIUM RELEVANCE",
+                "th-high-rel": "HIGH RELEVANCE",
+                "td-easy-app": "EASY IMPLEMENTATION",
+                "td-hard-app": "DIFFICULT IMPLEMENTATION",
+                "el-6-low": "6 elements",
+                "el-6-med": "6 elements",
+                "el-3-high": "3 elements",
+                "el-1-low": "1 element",
+                "el-3-med": "3 elements",
+                "el-6-high": "6 elements",
+                "cap-table2": "Prioritization matrix of corrective interventions based on relevance and technical implementation ease.",
+                "sec4-p2": "Thanks to my solid competence in <strong>strategic consulting</strong> and structured planning, I translated the research findings into a rigorous intervention plan: in the second phase, I developed a list of <strong>thirty-four optimization proposals</strong>, examined in synergy with the software engineer responsible for portal maintenance. The team thus selected <strong>twenty-five actually implementable proposals</strong>, classified according to urgency criteria (low, medium, high) and ease of application: easy interventions were defined as implementable in under an hour, while difficult ones require more than an hour for implementation. Excluded interventions were mapped as institutional responsibilities of the public administration.",
+                "sec4-p3": "Data shows that <strong>about 60% of critical issues can be resolved through targeted and agile actions</strong>, confirming the value of a <strong>user-centered approach</strong> for the continuous improvement of public digital services. The final report acts as an operational framework to promote the integration between usability and accessibility, valuing a multidisciplinary and participatory method that actively involves content designers, developers, search engine optimization specialists, project manager, social media managers, and, primarily, end users as guarantors of equity and effectiveness in digital transformation.",
+                "nav-prev-project": "&larr; Previous project",
+                "nav-next-project": "Next project &rarr;",
+                "footer-title": "I'm always open to meaningful opportunities.",
+                "footer-email": "Contact me via email &rarr;",
+                "footer-linkedin": "Connect on LinkedIn &rarr;"
+            }
+        };
+
+    </script>
+<script>
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('show');
+        } else {
+            scrollTopBtn.classList.remove('show');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
+<script src="translate.js"></script>
+</body>
+</html>

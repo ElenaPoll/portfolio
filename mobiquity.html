@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Elena Polleri - Project 04 </title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Collega il tuo file CSS principale -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Stili specifici per la pagina progetto -->
+    <link rel="stylesheet" href="project-style.css">
+    <style>
+        /* Stili per il carosello ottimizzato */
+        .carousel-wrapper { position: relative; width: 100%; max-width: 100%; margin: 15px 0 5px 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background-color: #111; }
+        .carousel-container { display: flex; width: 100%; transition: transform 0.6s ease-in-out; }
+        .carousel-container img { width: 100%; flex-shrink: 0; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+        
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; border: none; padding: 12px 16px; cursor: pointer; z-index: 10; border-radius: 4px; transition: background-color 0.3s; font-size: 16px; }
+        .carousel-btn:hover { background-color: rgba(0, 0, 0, 0.8); }
+        .carousel-prev { left: 10px; }
+        .carousel-next { right: 10px; }
+
+        /* Stili per i pallini (indicatori) del carosello */
+        .carousel-dots { display: flex; justify-content: center; gap: 8px; margin: 15px 0 25px 0; }
+        .carousel-dot { width: 10px; height: 10px; border-radius: 50%; background-color: #ccc; border: none; cursor: pointer; transition: background-color 0.3s, transform 0.3s; padding: 0; }
+        .carousel-dot.active { background-color: #111; transform: scale(1.2); }
+
+        /* Correzione larghezza immagini user flow allineate ai margini del testo */
+        .project-img-content {
+            width: 70%;
+            max-width: 70%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        /* Stile del bottone Scroll to Top modificato in bianco */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #ffffff;
+            color: #111111;
+            padding: 10px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
+            z-index: 999;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e0e0e0;
+        }
+        .scroll-top-btn:hover {
+            background-color: #f5f5f5;
+        }
+        .scroll-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR CON SFONDO BIANCO/CHIARO -->
+    <header class="navbar project-navbar">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#home" data-translate="nav-home">Homepage</a></li>
+                <li><a href="index.html#about" data-translate="nav-about">Chi sono</a></li>
+                <li><a href="index.html#works" class="active" data-translate="nav-works">Progetti scelti</a></li>
+                <li><a href="index.html#contacts" data-translate="nav-contacts">Contatti</a></li>
+            </ul>
+
+            <div class="lang-switch">
+                <a href="#" class="lang-option" data-lang="en">ENG</a>
+                <span class="lang-divider">|</span>
+                <a href="#" class="lang-option active" data-lang="it">ITA</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- MAIN CONTENT - CASE STUDY -->
+    <main class="project-main">
+        <div class="project-container">
+
+            <!-- TORNA AI PROGETTI -->
+            <div class="back-to-works-wrapper">
+                <a href="index.html#works" class="back-to-works-btn" data-translate="back-works">
+                    &larr; Torna a tutti i progetti
+                </a>
+            </div>
+
+            <!-- HEADER DEL PROGETTO -->
+            <header class="project-header">
+                <div class="section-title-wrapper">
+                    <div class="line"></div>
+                    <span class="project-number">04.</span>
+                </div>
+                <h1 class="project-title" data-translate="proj-title">Designing for facilitation</h1>
+                <p class="project-subtitle">
+                    <em data-translate="proj-subtitle">Progettazione di interfacce mobili adattive e user journey di accessibilità personalizzata per il trasporto pubblico inclusivo.</em>
+                </p>
+
+                <div class="project-tags-container">
+                    <span class="card-tags" data-translate="proj-tags">
+                        R&amp;D PROJECT COORDINATION — LIVING LAB FACILITATION — ETHNOGRAPHIC RESEARCH &amp; SHADOWING — MOBILE UX &amp; USER JOURNEY MAPPING — INFORMATION ARCHITECTURE &amp; WEBSITE DESIGN — MULTI-STAKEHOLDER COORDINATION
+                    </span>
+                </div>
+            </header>
+
+            <!-- SEZIONE 1: CONTESTO E SFIDA -->
+            <section class="project-section">
+                <h2 data-translate="sec1-title">Il Contesto e La Sfida</h2>
+                <p data-translate="sec1-p1">
+                    Il progetto <strong>Mobiquity</strong> nasce per abbattere le <strong>barriere di accessibilità</strong> che caratterizzano il trasporto pubblico locale nella città metropolitana di Genova, rispondendo alle esigenze concrete delle <strong>persone con disabilità</strong> e delle <strong>Persone a Mobilità Ridotta (PMR)</strong>. Muoversi in un contesto urbano complesso e usufruire dei mezzi di trasporto rappresenta ancora oggi una sfida quotidiana per un'ampia fetta di cittadini.
+                </p>
+                <p data-translate="sec1-p2">
+                    In risposta a tali criticità, il progetto definisce una <strong>piattaforma digitale inclusiva</strong>, concepita per semplificare l'accesso ai servizi di trasporto e <strong>personalizzare l'esperienza di viaggio</strong> in base alle specifiche necessità dell'utente.
+                </p>
+                <p data-translate="sec1-p3">
+                    L'iniziativa si fonda sulla stretta sinergia di un partenariato multisettoriale genovese composto da <strong>TBridge BV.Tech S.p.A.</strong>, <strong>Nextage S.r.l.</strong>, <strong>LogOil S.r.l.</strong>, <strong>Aitek S.p.A.</strong>, <strong>GGallery S.r.l.</strong>, <strong>AMT S.p.A.</strong> e l'<strong>Università di Genova</strong>. A supporto delle attività di ricerca e co-design sono stati coinvolti stakeholder istituzionali chiave — tra cui il Consiglio Regionale per la Disabilità e l'Ufficio del Disability Manager del Comune di Genova — e numerose associazioni del territorio: l'Associazione Ligure Ipovedenti (ALI), la Fondazione CEPIM, la Fondazione Chiossone, l'Unione Italiana Ciechi (UIC, sezioni di Genova e Chiavari), l'AISM, il corso UniGe Senior e l'ANGLAT.
+                </p>
+            </section>
+
+            <!-- SEZIONE 2: METODOLOGIA E RICERCA -->
+            <section class="project-section">
+                <h2 data-translate="sec2-title">Ricerca e Metodologia: User Research e Co-Design</h2>
+                <p data-translate="sec2-p1">
+                    Il percorso progettuale ha adottato un approccio metodologico rigorosamente partecipativo, ispirato ai principi del <strong>Design for All</strong> e del <strong>Participatory Design</strong>, integrando il punto di vista degli utenti finali fin dalle prime fasi di ideazione.
+                </p>
+                <p data-translate="sec2-p2">
+                    Dal punto di vista della ricerca, ho curato l'analisi e la sintesi dei fabbisogni emersi dai <strong>focus group</strong> e dalle sessioni di osservazione condotte con le associazioni. Traducendo queste evidenze qualitative in requisiti di progetto, ho strutturato l'architettura informativa e i flussi logici della piattaforma.
+                </p>
+            </section>
+
+            <!-- SEZIONE 3: PROFILAZIONE E DESIGN ADATTIVO (ANTICIPATA) -->
+            <section class="project-section">
+                <h2 data-translate="sec3-title">Design Adattivo e Profilazione Duplice</h2>
+                <p data-translate="sec3-p1">
+                    Per superare i limiti dei modelli standardizzati e offrire un'<strong>accessibilità realmente su misura</strong>, ho ideato e strutturato il sistema di profilazione dell'applicazione. Questa interazione è prevista e strutturata <strong>al primo accesso all'applicazione</strong>, ed è pensata appositamente per personalizzare la modalità di fruizione dei contenuti e dei servizi in base al profilo dell'utente. Partendo dalla consapevolezza che ogni persona, specialmente con disabilità temporanee o permanenti, possiede esigenze uniche nell'interazione tecnologica, l'obiettivo primario è garantire un'<strong>esperienza esaustiva ma priva di sovraccarico</strong> cognitivo e informativo. Il flusso si articola in due direttrici complementari:
+                </p>
+                <ul>
+                    <li data-translate="sec3-li1"><strong>Profilazione indiretta:</strong> Rileva in modo discreto le preferenze sensoriali dell'utente (tramite stimoli visivi, tattili o acustici), configurando automaticamente parametri chiave quali la dimensione dei font, i contrasti cromatici o l'intensità dei feedback senza richiedere di esplicitare forzatamente le proprie limitazioni.</li>
+                    <li data-translate="sec3-li2"><strong>Profilazione diretta:</strong> Consente una configurazione rapida e mirata delle specifiche necessità di mobilità (come il filtraggio dei mezzi in base alla presenza di postazioni per carrozzine o la gestione del collegamento con i caregiver), prevenendo efficacemente il <strong>sovraccarico informativo</strong>.</li>
+                </ul>
+            </section>
+
+            <!-- SPAZIO IMMAGINE: USER FLOW DELLA PROFILAZIONE -->
+            <figure class="project-figure">
+                <img src="images/mobiquity-profiling-flow.png" alt="User flow della fase di profilazione nell’applicazione Mobiquity" class="project-img-content">
+                <div class="image-placeholder" style="display:none;">
+                    <span data-translate="img-placeholder-profiling">[ Placeholder: User flow della fase di profilazione nell’applicazione Mobiquity ]</span>
+                </div>
+                <figcaption data-translate="fig-profiling">User flow della fase di profilazione nell’applicazione Mobiquity.</figcaption>
+            </figure>
+
+            <!-- SEZIONE 4: USER FLOW E FUNZIONALITÀ DELL'APP (DOPO LA PROFILAZIONE) -->
+            <section class="project-section">
+                <h2 data-translate="sec4-title">User Flow e Architettura dell'Applicazione</h2>
+                <p data-translate="sec4-p1">
+                    Superata la fase iniziale di profilazione, lo <strong>user flow</strong> dell'applicazione mobile <strong>Mobiquity</strong> accompagna l'utente attraverso un percorso fluido e personalizzato, orientato alla fruizione autonoma del trasporto pubblico genovese.
+                </p>
+                <p data-translate="sec4-p2">
+                    Grazie all'interazione tra i mezzi AMT dotati di <strong>tecnologia beacon</strong> e l'applicazione, il sistema segnala l'arrivo dei mezzi, ne evidenzia le dotazioni di bordo e facilita la comunicazione tempestiva con il conducente. Completano l'architettura le sezioni dedicate alla <strong>gestione in tempo reale del viaggio</strong>, alla segnalazione di barriere architettoniche e alla compilazione dei questionari di gradimento.
+                </p>
+            </section>
+
+            <!-- SPAZIO IMMAGINE 1: USER FLOW DELL'APPLICAZIONE -->
+            <figure class="project-figure">
+                <img src="images/mobiquity-userflow.png" alt="User flow dell'applicazione Mobiquity" class="project-img-content">
+                <div class="image-placeholder" style="display:none;">
+                    <span data-translate="img-placeholder-flow">[ Placeholder: User flow dell'applicazione Mobiquity ]</span>
+                </div>
+                <figcaption data-translate="fig-flow">User flow dell'applicazione Mobiquity.</figcaption>
+            </figure>
+
+            <!-- SEZIONE 5: SPERIMENTAZIONE E LIVING LAB -->
+            <section class="project-section">
+                <h2 data-translate="sec5-title">Sperimentazione e Sessioni di Living Lab</h2>
+                <p data-translate="sec5-p1">
+                    L'efficacia dell'applicazione è stata validata sul campo attraverso sessioni di <strong>Living Lab</strong> condotte con <strong>utenti reali</strong>, coordinate dal team di progetto e dalla Disability Manager del Comune di Genova, con la mia partecipazione attiva nel ruolo di ricercatrice e <strong>moderatrice dei test</strong> per la raccolta strutturata dei dati qualitativi.
+                </p>
+                <p data-translate="sec5-p2">
+                    La prima sessione (17 giugno 2025) ha testato la versione alfa nel foyer del Teatro Carlo Felice, mentre la seconda (28 ottobre 2025) ha validato la versione beta evoluta presso la rimessa AMT di via Bobbio, alternando simulazioni indoor a <strong>test dinamici su strada</strong> a bordo di autobus attrezzati con beacon Bluetooth Low Energy (BLE).
+                </p>
+                <p data-translate="sec5-p3">
+                    Dal punto di vista del personale di bordo, i test hanno evidenziato la necessità di <strong>strumenti di notifica integrati</strong> e di percorsi di formazione mirati, confermando quanto una comunicazione multimodale tempestiva ed efficiente sia cruciale per ridurre il disorientamento e migliorare la qualità del servizio offerto.
+                </p>
+                <p data-translate="sec5-p4">
+                    I partecipanti hanno espresso un <strong>giudizio complessivamente favorevole</strong> sugli aggiornamenti della versione beta, riscontrando una maggiore fluidità nei flussi di navigazione. Rimangono tuttavia margini di miglioramento legati all'interazione con i lettori di schermo (screen reader), un ambito complesso a causa dell'elevata frammentazione delle impostazioni e delle piattaforme mobili.
+                </p>
+            </section>
+
+            <!-- NUOVO CAROSELLO OTTIMIZZATO CON TESTO INTRODUTTIVO E PALLINI -->
+            <section class="project-section">
+                <h3 class="subsection-title" data-translate="carousel-title">Galleria delle Sessioni di Living Lab</h3>
+                <p data-translate="carousel-intro">
+                    Una panoramica visiva delle sessioni di test e co-design sul campo, dai test preliminari in ambienti protetti fino alla sperimentazione pratica sui mezzi di trasporto pubblici.
+                </p>
+                <div class="carousel-wrapper">
+                    <button class="carousel-btn carousel-prev" id="prev-btn">&#10094;</button>
+                    <div class="carousel-container" id="livingLabCarousel">
+                        <img src="images/mobiquity-1.jpeg" alt="Living Lab Session 1">
+                        <img src="images/mobiquity-2.jpeg" alt="Living Lab Session 2">
+                        <img src="images/mobiquity-3.jpeg" alt="Living Lab Session 3">
+                        <img src="images/mobiquity-4.jpeg" alt="Living Lab Session 4">
+                        <img src="images/mobiquity-6.jpeg" alt="Living Lab Session 6">
+                        <img src="images/mobiquity-7.jpeg" alt="Living Lab Session 7">
+                        <img src="images/mobiquity-8.jpg" alt="Living Lab Session 8">
+                    </div>
+                    <button class="carousel-btn carousel-next" id="next-btn">&#10095;</button>
+                </div>
+                <!-- Pallini indicatori del carosello -->
+                <div class="carousel-dots" id="carouselDots"></div>
+            </section>
+
+            <!-- SEZIONE 6: CONCLUSIONE, RISULTATI E COMPETENZE ACQUISITE -->
+            <section class="project-section conclusion-section">
+                <h2 data-translate="sec6-title">Conclusioni e Competenze Acquisite</h2>
+                <p data-translate="sec6-p1">
+                    I risultati confermano la bontà di un <strong>approccio iterativo e partecipativo</strong>, capace di recepire tempestivamente i feedback degli utenti per correggere criticità percettive, cognitive e operative.
+                </p>
+                <p data-translate="sec6-p2">
+                    Le direttrici di sviluppo future comprendono il potenziamento dei comandi vocali, la semplificazione delle gerarchie informative, l'integrazione di sistemi di comunicazione sincrona con i conducenti e la creazione di tutorial interattivi dedicati a chi possiede una minore alfabetizzazione digitale.
+                </p>
+                <p data-translate="sec6-p3">
+                    La forte presenza di utenti anziani nel campione ha evidenziato quanto l'analfabetizzazione digitale incida sull'efficacia dell'interazione, sottolineando l'importanza di progettare secondo i principi dell'<strong>active ageing</strong> e di considerare l'accessibilità non solo come conformità tecnica, ma come autentico <strong>strumento di inclusione sociale</strong>.
+                </p>
+                <p data-translate="sec6-p4">
+                    Nonostante le inevitabili limitazioni legate a vincoli di tempo e risorse, il progetto ha rappresentato un'occasione straordinaria di <strong>crescita professionale</strong>, consolidando competenze chiave nella ricerca partecipativa e nella gestione di processi complessi.
+                </p>
+                <p data-translate="sec6-p5">
+                    Mobiquity si è rivelato un esercizio formativo di alto profilo nel campo del <strong>lavoro in team</strong>, del <strong>co-design</strong> e della <strong>facilitazione multi-stakeholder</strong>. Dialogare quotidianamente con sviluppatori, designer, enti di trasporto e amministrazioni locali ha richiesto un costante problem solving e l'applicazione di principi di <strong>UX design inclusivo</strong> basati su una <strong>profilazione duplice</strong>. Ogni fase ha affinato la mia sensibilità verso il <strong>Design Universale</strong>, trasformando le sfide operative in un solido traguardo di crescita professionale.
+                </p>
+            </section>
+
+            <!-- NAVIGAZIONE TRA I PROGETTI -->
+            <nav class="project-pagination" aria-label="Navigazione tra i progetti">
+                <a href="citizen-inclusion.html" class="pagination-link back-to-grid" data-translate="nav-prev-project">
+                    &larr; Previous project
+                </a>
+                <a href="nassa.html" class="pagination-link next-project" data-translate="nav-next-project">
+                    Next project &rarr;
+                </a>
+            </nav>
+
+        </div>
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <h2 class="footer-title" data-translate="footer-title">
+                I'm always open to meaningful opportunities.
+            </h2>
+
+            <div class="footer-actions">
+                <a href="mailto:elenapolleri@gmail.com" class="footer-btn" data-translate="footer-email">
+                    Contact me via email &rarr;
+                </a>
+                <a href="https://www.linkedin.com/in/elenapolleri/" target="_blank" rel="noopener noreferrer" class="footer-btn" data-translate="footer-linkedin">
+                    Connect on LinkedIn &rarr;
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- BOTTONE BACK TO TOP BIANCO -->
+    <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Torna su">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </a>
+
+
+    <!-- SCRIPT CAROSELLO, LINGUA E SCROLL -->
+    <script>
+        // Script per il carosello ottimizzato con frecce, autoplay e pallini indicatori
+        const carousel = document.getElementById('livingLabCarousel');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const dotsContainer = document.getElementById('carouselDots');
+
+        if (carousel && prevBtn && nextBtn && dotsContainer) {
+            const images = carousel.querySelectorAll('img');
+            let currentIndex = 0;
+            const totalImages = images.length;
+            let slideInterval;
+
+            // Generazione dinamica dei pallini
+            images.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.setAttribute('aria-label', `Vai all'immagine ${index + 1}`);
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                    resetTimer();
+                });
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                updateCarousel();
+            }
+
+            function startAutoPlay() {
+                slideInterval = setInterval(nextSlide, 4000);
+            }
+
+            function resetTimer() {
+                clearInterval(slideInterval);
+                startAutoPlay();
+            }
+
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetTimer();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetTimer();
+            });
+
+            startAutoPlay();
+        }
+
+        // Script per il pulsante Scroll to Top
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Dizionario traduzioni ITA/ENG completo
+        const translations = {
+            en: {
+                "nav-home": "Homepage",
+                "nav-about": "About me",
+                "nav-works": "Selected works",
+                "nav-contacts": "Contacts",
+                "back-works": "&larr; Back to all projects",
+                "proj-title": "Designing for facilitation",
+                "proj-subtitle": "Designing adaptive mobile interfaces and personalized accessibility user journeys for inclusive public transport.",
+                "proj-tags": "R&amp;D PROJECT COORDINATION — LIVING LAB FACILITATION — ETHNOGRAPHIC RESEARCH &amp; SHADOWING — MOBILE UX &amp; USER JOURNEY MAPPING — INFORMATION ARCHITECTURE &amp; WEBSITE DESIGN — MULTI-STAKEHOLDER COORDINATION",
+                "sec1-title": "The Context & The Challenge",
+                "sec1-p1": "The <strong>Mobiquity </strong>project aims to break down <strong>accessibility barriers</strong> in local public transport within the metropolitan area of Genoa, addressing the concrete needs of <strong>people with disabilities</strong> and Persons with Reduced Mobility (PRM). Navigating complex urban spaces and using public transit remains a daily challenge for a large portion of citizens.",
+                "sec1-p2": "In response to these critical issues, the project defines an <strong>inclusive digital platform</strong> designed to simplify access to transport services and <strong>personalize the travel experience</strong> based on specific user needs.",
+                "sec1-p3": "The initiative relies on close synergy among a multi-sector Genoese partnership composed of <strong>TBridge BV.Tech S.p.A.</strong>, <strong>Nextage S.r.l.</strong>, <strong>LogOil S.r.l.</strong>, <strong>Aitek S.p.A.</strong>, <strong>GGallery S.r.l.</strong>, <strong>AMT S.p.A.</strong>, and the <strong>University of Genoa</strong>. To support research and co-design activities, key institutional stakeholders were involved — including the Regional Disability Council and the Disability Manager Office of the Municipality of Genoa — alongside several local associations: ALI, Fondazione CEPIM, Fondazione Chiossone, UIC (Genova and Chiavari sections), AISM, UniGe Senior, and ANGLAT.",
+                "sec2-title": "Research & Methodology: User Research & Co-Design",
+                "sec2-p1": "The design process adopted a rigorously participatory methodology, inspired by the principles of <strong>Design for All</strong> and <strong>Participatory Design</strong>, integrating the end-user perspective from the earliest ideation stages.",
+                "sec2-p2": "From a research standpoint, I managed the analysis and synthesis of needs emerging from <strong>focus groups</strong> and observation sessions conducted with associations. Translating these qualitative insights into project requirements, I structured the platform's information architecture and logical flows.",
+                "sec3-title": "Adaptive Design & Dual Profiling",
+                "sec3-p1": "To overcome the limitations of standardized models and offer <strong>truly tailored accessibility</strong>, I conceived and structured the application's profiling system. This interaction is scheduled and structured <strong>upon first access to the application</strong>, specifically designed to customize content and service consumption according to the user's profile. Starting from the awareness that each person, especially with temporary or permanent disabilities, has unique technological interaction needs, the primary goal is to guarantee a <strong>comprehensive experience without cognitive and informational overload</strong>. The flow breaks down into two complementary directions:",
+                "sec3-li1": "<strong>Indirect Profiling:</strong> Discretely detects user sensory preferences (via visual, tactile, or acoustic stimuli), automatically configuring key parameters such as font sizes, color contrast, or feedback intensity without forcing users to explicitly state their limitations.",
+                "sec3-li2": "<strong>Direct Profiling:</strong> Enables quick and targeted configuration of specific mobility needs (such as filtering vehicles based on wheelchair space availability or managing caregiver links), effectively preventing <strong>information overload</strong>.",
+                "img-placeholder-profiling": "[ Placeholder: Mobiquity Profiling User Flow ]",
+                "fig-profiling": "User flow of the profiling phase within Mobiquity.",
+                "sec4-title": "User Flow and Application Architecture",
+                "sec4-p1": "Following the initial profiling phase, the <strong>user flow</strong> of the <strong>Mobiquity</strong> mobile application guides the user through a fluid, personalized journey aimed at the independent use of Genoa's public transport.",
+                "sec4-p2": "Through the interaction between AMT vehicles equipped with <strong>beacon technology</strong> and the application, the system signals vehicle arrivals, highlights onboard equipment, and facilitates timely communication with the driver. The architecture is completed by sections dedicated to <strong>real-time travel management</strong>, reporting architectural barriers, and completing satisfaction surveys.",
+                "img-placeholder-flow": "[ Placeholder: Mobiquity App User Flow ]",
+                "fig-flow": "User flow of the Mobiquity mobile application.",
+                "sec5-title": "Experimentation & Living Lab Sessions",
+                "sec5-p1": "The application's effectiveness was validated in the field through <strong>Living Lab</strong> sessions conducted with <strong>real users</strong>, coordinated by the project team and the Disability Manager of the Municipality of Genoa, with my active participation as a researcher and <strong>test moderator</strong> for structured qualitative data collection.",
+                "sec5-p2": "The first session (June 17, 2025) tested the alpha version in the foyer of the Teatro Carlo Felice, while the second (October 28, 2025) validated the evolved beta version at the AMT Via Bobbio depot, alternating indoor simulations with <strong>dynamic on-road tests</strong> aboard buses equipped with Bluetooth Low Energy (BLE) beacons.",
+                "sec5-p3": "From the perspective of onboard personnel, testing highlighted the need for <strong>integrated notification tools</strong> and targeted training pathways, confirming how timely and efficient multimodal communication is crucial to reducing disorientation and improving service quality.",
+                "sec5-p4": "Participants expressed an <strong>overall favorable judgment</strong> on the beta updates, noting greater fluidity in navigation flows. However, room for improvement remains regarding screen reader interactions—a complex area due to the high fragmentation of settings and mobile platforms.",
+                "carousel-title": "<span style='font-weight: 600; color: #5a6e54;'>Living Lab Sessions Gallery</span>",
+                "carousel-intro": "A visual overview of field testing and co-design sessions, from preliminary tests in protected environments to practical experimentation on public transport.",
+                "sec6-title": "Conclusion & Acquired Skills",
+                "sec6-p1": "The results confirm the value of an <strong>iterative and participatory approach</strong> capable of promptly incorporating user feedback to correct perceptual, cognitive, and operational pain points.",
+                "sec6-p2": "Future development directions include enhancing voice commands, simplifying information hierarchies, integrating synchronous communication systems with drivers, and creating interactive tutorials dedicated to users with lower digital literacy.",
+                "sec6-p3": "The strong presence of elderly users in the sample highlighted how digital illiteracy impacts interaction effectiveness, emphasizing the importance of designing according to <strong>active ageing</strong> principles and viewing accessibility not merely as technical compliance, but as a genuine <strong>tool for social inclusion</strong>.",
+                "sec6-p4": "Despite inevitable limitations related to time and resource constraints, the project represented an extraordinary opportunity for <strong>professional growth</strong>, consolidating core skills in participatory research and complex process management.",
+                "sec6-p5": "Mobiquity proved to be a highly formative exercise in <strong>teamwork</strong>, <strong>co-design</strong>, and <strong>multi-stakeholder facilitation</strong>. Daily dialogue with developers, designers, transport operators, and local administrations required constant problem-solving and the application of <strong>inclusive UX design</strong> principles based on <strong>dual profiling</strong>. Each phase sharpened my sensitivity toward <strong>Universal Design</strong>, turning operational challenges into a solid professional milestone.",
+                "nav-prev-project": "&larr; Previous project",
+                "nav-next-project": "Next project &rarr;",
+                "footer-title": "I'm always open to meaningful opportunities.",
+                "footer-email": "Contact me via email &rarr;",
+                "footer-linkedin": "Connect on LinkedIn &rarr;"
+            },
+            it: {
+                "nav-home": "Homepage",
+                "nav-about": "Chi sono",
+                "nav-works": "Progetti scelti",
+                "nav-contacts": "Contatti",
+                "back-works": "&larr; Torna a tutti i progetti",
+                "proj-title": "Progettare per facilitare",
+                "proj-subtitle": "Progettazione di interfacce mobili adattive e user journey di accessibilità personalizzata per il trasporto pubblico inclusivo.",
+                "proj-tags": "COORDINAMENTO PROGETTI R&amp;D — FACILITAZIONE LIVING LAB — RICERCA ETNOGRAFICA E SHADOWING — MOBILE UX E MAPPATURA USER JOURNEY — ARCHITETTURA DELL'INFORMAZIONE E WEB DESIGN — COORDINAMENTO MULTI-STAKEHOLDER",
+                "sec1-title": "Il Contesto e La Sfida",
+                "sec1-p1": "Il progetto <strong>Mobiquity</strong> nasce per abbattere le <strong>barriere di accessibilità</strong> che caratterizzano il trasporto pubblico locale nella città metropolitana di Genova, rispondendo alle esigenze concrete delle <strong>persone con disabilità</strong> e delle <strong>Persone a Mobilità Ridotta (PMR)</strong>. Muoversi in un contesto urbano complesso e usufruire dei mezzi di trasporto rappresenta ancora oggi una sfida quotidiana per un'ampia fetta di cittadini.",
+                "sec1-p2": "In risposta a tali criticità, il progetto definisce una <strong>piattaforma digitale inclusiva</strong>, concepita per semplificare l'accesso ai servizi di trasporto e <strong>personalizzare l'esperienza di viaggio</strong> in base alle specifiche necessità dell'utente.",
+                "sec1-p3": "L'iniziativa si fonda sulla stretta sinergia di un partenariato multisettoriale genovese composto da <strong>TBridge BV.Tech S.p.A.</strong>, <strong>Nextage S.r.l.</strong>, <strong>LogOil S.r.l.</strong>, <strong>Aitek S.p.A.</strong>, <strong>GGallery S.r.l.</strong>, <strong>AMT S.p.A.</strong> e l'<strong>Università di Genova</strong>. A supporto delle attività di ricerca e co-design sono stati coinvolti stakeholder istituzionali chiave — tra cui il Consiglio Regionale per la Disabilità e l'Ufficio del Disability Manager del Comune di Genova — e numerose associazioni del territorio: l'Associazione Ligure Ipovedenti (ALI), la Fondazione CEPIM, la Fondazione Chiossone, l'Unione Italiana Ciechi (UIC, sezioni di Genova e Chiavari), l'AISM, il corso UniGe Senior e l'ANGLAT.",
+                "sec2-title": "Ricerca e Metodologia: User Research e Co-Design",
+                "sec2-p1": "Il percorso progettuale ha adottato un approccio metodologico rigorosamente partecipativo, ispirato ai principi del <strong>Design for All</strong> e del <strong>Participatory Design</strong>, integrando il punto di vista degli utenti finali fin dalle prime fasi di ideazione.",
+                "sec2-p2": "Dal punto di vista della ricerca, ho curato l'analisi e la sintesi dei fabbisogni emersi dai <strong>focus group</strong> e dalle sessioni di osservazione condotte con le associazioni. Traducendo queste evidenze qualitative in requisiti di progetto, ho strutturato l'architettura informativa e i flussi logici della piattaforma.",
+                "sec3-title": "Design Adattivo e Profilazione Duplice",
+                "sec3-p1": "Per superare i limiti dei modelli standardizzati e offrire un'<strong>accessibilità realmente su misura</strong>, ho ideato e strutturato il sistema di profilazione dell'applicazione. Questa interazione è prevista e strutturata <strong>al primo accesso all'applicazione</strong>, ed è pensata appositamente per personalizzare la modalità di fruizione dei contenuti e dei servizi in base al profilo dell'utente. Partendo dalla consapevolezza che ogni persona, specialmente con disabilità temporanee o permanenti, possiede esigenze uniche nell'interazione tecnologica, l'obiettivo primario è garantire un'<strong>esperienza esaustiva ma priva di sovraccarico</strong> cognitivo e informativo. Il flusso si articola in due direttrici complementari:",
+                "sec3-li1": "<strong>Profilazione indiretta:</strong> Rileva in modo discreto le preferenze sensoriali dell'utente (tramite stimoli visivi, tattili o acustici), configurando automaticamente parametri chiave quali la dimensione dei font, i contrasti cromatici o l'intensità dei feedback senza richiedere di esplicitare forzatamente le proprie limitazioni.",
+                "sec3-li2": "<strong>Profilazione diretta:</strong> Consente una configurazione rapida e mirata delle specifiche necessità di mobilità (come il filtraggio dei mezzi in base alla presenza di postazioni per carrozzine o la gestione del collegamento con i caregiver), prevenendo efficacemente il <strong>sovraccarico informativo</strong>.",
+                "img-placeholder-profiling": "[ Placeholder: User flow della fase di profilazione nell’applicazione Mobiquity ]",
+                "fig-profiling": "User flow della fase di profilazione nell’applicazione Mobiquity.",
+                "sec4-title": "User Flow e Architettura dell'Applicazione",
+                "sec4-p1": "Superata la fase iniziale di profilazione, lo <strong>user flow</strong> dell'applicazione mobile <strong>Mobiquity</strong> accompagna l'utente attraverso un percorso fluido e personalizzato, orientato alla fruizione autonoma del trasporto pubblico genovese.",
+                "sec4-p2": "Grazie all'interazione tra i mezzi AMT dotati di <strong>tecnologia beacon</strong> e l'applicazione, il sistema segnala l'arrivo dei mezzi, ne evidenzia le dotazioni di bordo e facilita la comunicazione tempestiva con il conducente. Completano l'architettura le sezioni dedicate alla <strong>gestione in tempo reale del viaggio</strong>, alla segnalazione di barriere architettoniche e alla compilazione dei questionari di gradimento.",
+                "img-placeholder-flow": "[ Placeholder: User flow dell'applicazione Mobiquity ]",
+                "fig-flow": "User flow dell'applicazione Mobiquity.",
+                "sec5-title": "Sperimentazione e Sessioni di Living Lab",
+                "sec5-p1": "L'efficacia dell'applicazione è stata validata sul campo attraverso sessioni di <strong>Living Lab</strong> condotte con <strong>utenti reali</strong>, coordinate dal team di progetto e dalla Disability Manager del Comune di Genova, con la mia partecipazione attiva nel ruolo di ricercatrice e <strong>moderatrice dei test</strong> per la raccolta strutturata dei dati qualitativi.",
+                "sec5-p2": "La prima sessione (17 giugno 2025) ha testato la versione alfa nel foyer del Teatro Carlo Felice, mentre la seconda (28 ottobre 2025) ha validato la versione beta evoluta presso la rimessa AMT di via Bobbio, alternando simulazioni indoor a <strong>test dinamici su strada</strong> a bordo di autobus attrezzati con beacon Bluetooth Low Energy (BLE).",
+                "sec5-p3": "Dal punto di vista del personale di bordo, i test hanno evidenziato la necessità di <strong>strumenti di notifica integrati</strong> e di percorsi di formazione mirati, confermando quanto una comunicazione multimodale tempestiva ed efficiente sia cruciale per ridurre il disorientamento e migliorare la qualità del servizio offerto.",
+                "sec5-p4": "I partecipanti hanno espresso un <strong>giudizio complessivamente favorevole</strong> sugli aggiornamenti della versione beta, riscontrando una maggiore fluidità nei flussi di navigazione. Rimangono tuttavia margini di miglioramento legati all'interazione con i lettori di schermo (screen reader), un ambito complesso a causa dell'elevata frammentazione delle impostazioni e delle piattaforme mobili.",
+                "carousel-title": "<span style='font-weight: 600; color: #5a6e54;'>Galleria delle Sessioni di Living Lab</span>",
+                "carousel-intro": "Una panoramica visiva delle sessioni di test e co-design sul campo, dai test preliminari in ambienti protetti fino alla sperimentazione pratica sui mezzi di trasporto pubblici.",
+                "sec6-title": "Conclusioni e Competenze Acquisite",
+                "sec6-p1": "I risultati confermano la bontà di un <strong>approccio iterativo e partecipativo</strong>, capace di recepire tempestivamente i feedback degli utenti per correggere criticità percettive, cognitive e operative.",
+                "sec6-p2": "Le direttrici di sviluppo future comprendono il potenziamento dei comandi vocali, la semplificazione delle gerarchie informative, l'integrazione di sistemi di comunicazione sincrona con i conducenti e la creazione di tutorial interattivi dedicati a chi possiede una minore alfabetizzazione digitale.",
+                "sec6-p3": "La forte presenza di utenti anziani nel campione ha evidenziato quanto l'analfabetizzazione digitale incida sull'efficacia dell'interazione, sottolineando l'importanza di progettare secondo i principi dell'<strong>active ageing</strong> e di considerare l'accessibilità non solo come conformità tecnica, ma come autentico <strong>strumento di inclusione sociale</strong>.",
+                "sec6-p4": "Nonostante le inevitabili limitazioni legate a vincoli di tempo e risorse, il progetto ha rappresentato un'occasione straordinaria di <strong>crescita professionale</strong>, consolidando competenze chiave nella ricerca partecipativa e nella gestione di processi complessi.",
+                "sec6-p5": "Mobiquity si è rivelato un esercizio formativo di alto profilo nel campo del <strong>lavoro in team</strong>, del <strong>co-design</strong> e della <strong>facilitazione multi-stakeholder</strong>. Dialogare quotidianamente con sviluppatori, designer, enti di trasporto e amministrazioni locali ha richiesto un costante problem solving e l'applicazione di principi di <strong>UX design inclusivo</strong> basati su una <strong>profilazione duplice</strong>. Ogni fase ha affinato la mia sensibilità verso il <strong>Design Universale</strong>, trasformando le sfide operative in un solido traguardo di crescita professionale.",
+                "nav-prev-project": "&larr; Progetto precedente",
+                "nav-next-project": "Progetto successivo &rarr;",
+                "footer-title": "Sono sempre aperta a nuove opportunità professionali.",
+                "footer-email": "Contattami via email &rarr;",
+                "footer-linkedin": "Collegati su LinkedIn &rarr;"
+            }
+        };
+
+    </script>
+<script src="translate.js"></script>
+</body>
+</html>

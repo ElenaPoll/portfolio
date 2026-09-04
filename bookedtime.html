@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elena Polleri - Project 10</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Collega il tuo file CSS principale -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Stili specifici per la pagina progetto -->
+    <link rel="stylesheet" href="project-style.css">
+
+    <!-- STILI SPECIFICI PER I CAROSELLI, TABELLA SWOT E INTERFACCIA -->
+    <style>
+        .project-single-img {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            margin: 20px auto 10px auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+
+        .project-single-img:hover {
+            opacity: 0.95;
+        }
+
+        .image-caption {
+            font-family: 'Fira Sans Condensed', sans-serif;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 35px;
+            font-style: italic;
+        }
+
+        /* Stili Tabella SWOT richiesti */
+        .project-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0 10px 0;
+            font-size: 0.95em;
+            text-align: center;
+            font-family: 'Fira Sans Condensed', sans-serif;
+        }
+        .project-table th, .project-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            vertical-align: middle;
+        }
+        .project-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+            text-transform: uppercase;
+        }
+        .project-table td.category-header {
+            background-color: #fcfcfc;
+            font-weight: 600;
+            color: #444;
+            width: 30%;
+            text-transform: uppercase;
+        }
+        .project-table td.row-header {
+            background-color: #fcfcfc;
+            text-align: left;
+        }
+        .project-table td.row-header p {
+            margin: 0 0 6px 0;
+            line-height: 1.4;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .project-table td.row-header p:last-child {
+            margin-bottom: 0;
+        }
+        .project-table td.row-header ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .project-table td.row-header li {
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+        .project-table td.row-header li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Stili Carosello con bottoni richiesti */
+        .carousel-section-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin: 30px auto 10px auto;
+        }
+
+        .carousel-wrapper-overlay {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            gap: 0;
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: #f9f9f9;
+            scrollbar-width: none;
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .istat-slide-container {
+            flex: 0 0 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .istat-img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            display: block;
+            border-radius: 4px;
+            cursor: zoom-in;
+        }
+
+        /* Bottoni carosello richiesti */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        /* Bottone Fullscreen solo con icona sopra le immagini/slide */
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 15;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fullscreen-btn:hover {
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        /* Carosello Questionario ottimizzato con immagine centrale molto grande (80%) */
+        .carousel-container.double-view-clean {
+            background: transparent !important;
+            box-shadow: none !important;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 20px calc(50% - 40%);
+            scroll-behavior: smooth;
+        }
+
+        .carousel-container.double-view-clean::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-container.double-view-clean .survey-img-wrapper {
+            flex: 0 0 80%;
+            width: 80%;
+            max-width: 800px;
+            position: relative;
+            scroll-snap-align: center;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0.4;
+            transform: scale(0.92);
+        }
+
+        .carousel-container.double-view-clean .survey-img-wrapper.is-center {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @media (min-width: 768px) {
+            .carousel-container.double-view-clean {
+                padding: 20px calc(50% - 40%);
+            }
+            .carousel-container.double-view-clean .survey-img-wrapper {
+                flex: 0 0 80%;
+                width: 80%;
+            }
+        }
+
+        .carousel-container.double-view-clean img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            display: block;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ccc;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: #111;
+        }
+
+        /* Modale Lightbox Fullscreen con frecce di navigazione */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 85%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 10001;
+        }
+
+        .lightbox-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            cursor: pointer;
+            z-index: 10001;
+            border-radius: 4px;
+            font-size: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .lightbox-btn:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        /* Bottone Scroll Top */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ffffff;
+            color: #111111;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, background 0.2s ease, transform 0.2s ease;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border: 1px solid #ddd;
+        }
+        .scroll-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scroll-top-btn:hover {
+            background: #f5f5f5;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar project-navbar">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#home" data-translate="nav-home">Homepage</a></li>
+                <li><a href="index.html#about" data-translate="nav-about">About me</a></li>
+                <li><a href="index.html#works" class="active" data-translate="nav-works">Selected works</a></li>
+                <li><a href="index.html#contacts" data-translate="nav-contacts">Contacts</a></li>
+            </ul>
+
+            <div class="lang-switch">
+                <a href="#" class="lang-option active" data-lang="en">ENG</a>
+                <span class="lang-divider">|</span>
+                <a href="#" class="lang-option" data-lang="it">ITA</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- MAIN CONTENT - CASE STUDY -->
+    <main class="project-main">
+        <div class="project-container">
+
+            <!-- TORNA AI PROGETTI CON FRECCIA A SINISTRA -->
+            <div class="back-to-works-wrapper">
+                <a href="index.html#works" class="back-to-works-btn" data-translate="back-works">
+                    &larr; back to all projects
+                </a>
+            </div>
+
+            <!-- HEADER DEL PROGETTO -->
+            <header class="project-header">
+                <div class="section-title-wrapper">
+                    <div class="line"></div>
+                    <span class="project-number">10.</span>
+                </div>
+                <h1 class="project-title" data-translate="proj-title">Designing for web</h1>
+                <p class="project-subtitle">
+                    <em data-translate="proj-subtitle">Un progetto di UX/UI design nato nel periodo della quarantena per esplorare le forme della lettura, analizzare i bisogni reali degli utenti e ideare una soluzione digitale ad alto valore sociale.</em>
+                </p>
+
+                <div class="project-tags-container">
+                    <span class="card-tags" data-translate="proj-tags">
+                        LOGO DESIGN — DATA VISUALIZATION — DATA ANALYSIS — SWOT ANALYSIS — USER RESEARCH — PROBLEM SOLVING
+                    </span>
+                </div>
+            </header>
+
+            <!-- SEZIONE 1: IL CONTESTO E LE ORIGINI -->
+            <section class="project-section">
+                <h2 data-translate="sec1-title">Un tempo sospeso: il mio approccio metodologico</h2>
+                <p data-translate="sec1-p1">
+                    Ho ideato e sviluppato questo progetto durante il periodo della quarantena COVID-19, un <strong>momento di trasformazione</strong> in cui la frenesia quotidiana ha lasciato spazio a ritmi differenti. In questo contesto ho scelto di concentrarmi sull'analisi e sulla pratica della lettura.
+                </p>
+                <p data-translate="sec1-p2">
+                    Lavorando in autonomia e con le biblioteche chiuse, ho impostato una <strong>ricerca primaria e secondaria</strong>, coinvolgendo soggetti di indagine per mappare abitudini, gusti e preferenze di un target ampio e universale.
+                </p>
+                <p data-translate="sec1-p3">
+                    Il design si configura come un <strong>metodo strutturato di pensiero</strong>. Attraverso questo progetto ho applicato competenze di osservazione della realtà per progettare un servizio digitale in grado di rispondere a bisogni concreti.
+                </p>
+            </section>
+
+            <!-- SEZIONE 2: L'EVOLUZIONE DELLA LETTURA -->
+            <section class="project-section">
+                <h2 data-translate="sec2-title">Dalla carta al digitale: Analisi strategica</h2>
+                <p data-translate="sec2-p1">
+                    Nel percorso di ricerca l'indagine si è focalizzata sull'evoluzione della lettura nell'era tecnologica: le modalità digitali hanno migliorato l'esperienza del lettore o permane un legame con la carta? E perché si assiste a un <strong>calo complessivo dei lettori</strong> a fronte dell'aumento dei formati digitali?
+                </p>
+                <p data-translate="sec2-p2">
+                    Per rispondere a questi interrogativi, è stata condotta un'indagine approfondita analizzando l'evoluzione storica del libro e <strong>confrontando le tecnologie digitali</strong> con la tradizione cartacea.
+                </p>
+            </section>
+
+            <!-- SEZIONE 3: I DATI ISTAT -->
+            <section class="project-section">
+                <h2 data-translate="sec3-title">L'analisi dei dati statistici ISTAT</h2>
+                <p data-translate="sec3-p1">
+                    I <strong>dati quantitativi</strong> rappresentano il punto di partenza per strutturare le scelte di design. Sono stati analizzati i dati statistici ISTAT a livello nazionale, integrandoli con una ricerca mirata a carattere regionale sulla Liguria per definire il perimetro del problema.
+                </p>
+
+                <!-- CAROSELLO ISTAT CON FULLSCREEN -->
+                <div class="carousel-section-container">
+                    <div class="carousel-wrapper-overlay">
+                        <button class="carousel-btn carousel-prev" id="prev-btn">&#10094;</button>
+                        <div class="carousel-container" id="istatCarousel">
+                            <div class="istat-slide-container">
+                                <img src="images/bookedtime-02.jpg" alt="ISTAT Data 1" class="istat-img" onclick="openLightbox(0)" loading="lazy">
+                                <button class="fullscreen-btn" onclick="openLightbox(0)" title="Fullscreen">&#x26F6;</button>
+                            </div>
+                            <div class="istat-slide-container">
+                                <img src="images/bookedtime-03.jpg" alt="ISTAT Data 2" class="istat-img" onclick="openLightbox(1)" loading="lazy">
+                                <button class="fullscreen-btn" onclick="openLightbox(1)" title="Fullscreen">&#x26F6;</button>
+                            </div>
+                            <div class="istat-slide-container">
+                                <img src="images/bookedtime-04.jpg" alt="ISTAT Data 3" class="istat-img" onclick="openLightbox(2)" loading="lazy">
+                                <button class="fullscreen-btn" onclick="openLightbox(2)" title="Fullscreen">&#x26F6;</button>
+                            </div>
+                        </div>
+                        <button class="carousel-btn carousel-next" id="next-btn">&#10095;</button>
+                    </div>
+                    <div class="carousel-dots" id="istatDots"></div>
+                </div>
+                <div class="image-caption" data-translate="cap-istat">
+                    Elaborazione visiva dei dati statistici ISTAT di riferimento sulle abitudini di lettura in Italia.
+                </div>
+            </section>
+
+            <!-- SEZIONE 4: RISULTATI DEL QUESTIONARIO -->
+            <section class="project-section">
+                <h2 data-translate="sec4-title">User Research: Indagine sul campo e questionario</h2>
+                <p data-translate="sec4-p1">
+                    Per validare le ipotesi di progetto, è stato somministrato un questionario online a un <strong>campione di 100 utenti</strong>. L'indagine ha approfondito comportamenti d'acquisto, percezioni e pratiche di lettura, integrando un focus sul book crossing (fenomeno di condivisione spontanea in cui i libri vengono lasciati in luoghi pubblici o apposite stazioni affinché altri lettori possano prenderli, leggerli e rimetterli a loro volta in circolazione).
+                </p>
+                <p data-translate="sec4-p2">
+                    Sono state esaminate <strong>variabili chiave</strong> quali l'impatto dell'età e del titolo di studio, la propensione alla conservazione o allo scambio dei libri e le preferenze funzionali tra eBook e carta stampata.
+                </p>
+                <p data-translate="sec4-p3">
+                    L'analisi dettagliata dei dati raccolti, utile a guidare le scelte di UX design, è illustrata nei grafici sottostanti.
+                </p>
+
+                <!-- CAROSELLO QUESTIONARIO OTTIMIZZATO CON IMMAGINE CENTRALE GRANDE (80%) -->
+                <div class="carousel-section-container">
+                    <div class="carousel-wrapper-overlay">
+                        <button class="carousel-btn carousel-prev" id="surveyPrevBtn">&#10094;</button>
+                        <div class="carousel-container double-view-clean" id="surveyCarousel">
+                            <div class="survey-img-wrapper is-center">
+                                <img src="images/bookedtime-05.jpg" alt="Risultati Questionario 1" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-06.jpg" alt="Risultati Questionario 2" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-07.jpg" alt="Risultati Questionario 3" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-08.jpg" alt="Risultati Questionario 4" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-09.jpg" alt="Risultati Questionario 5" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-10.jpg" alt="Risultati Questionario 6" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-11.jpg" alt="Risultati Questionario 7" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-12.jpg" alt="Risultati Questionario 8" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-13.jpg" alt="Risultati Questionario 9" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-14.jpg" alt="Risultati Questionario 10" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-15.jpg" alt="Risultati Questionario 11" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-16.jpg" alt="Risultati Questionario 12" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-17.jpg" alt="Risultati Questionario 13" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-18.jpg" alt="Risultati Questionario 14" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-19.jpg" alt="Risultati Questionario 15" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-20.jpg" alt="Risultati Questionario 16" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-21.jpg" alt="Risultati Questionario 17" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-22.jpg" alt="Risultati Questionario 18" loading="lazy">
+                            </div>
+                            <div class="survey-img-wrapper">
+                                <img src="images/bookedtime-23.jpg" alt="Risultati Questionario 19" loading="lazy">
+                            </div>
+                        </div>
+                        <button class="carousel-btn carousel-next" id="surveyNextBtn">&#10095;</button>
+                    </div>
+                    <div class="carousel-dots" id="surveyDots"></div>
+                </div>
+                <div class="image-caption" data-translate="cap-survey">
+                    Risultati dell'indagine quantitativa condotta su un campione di utenti
+                </div>
+            </section>
+
+            <!-- SEZIONE 5: BOOKED TIME (LOGO, MOCKUP) -->
+            <section class="project-section">
+                <h2 data-translate="sec5-title">Booked Time: La soluzione di Design</h2>
+                <p data-translate="sec5-p1">
+                    Dall'analisi è emerso che la lettura necessita di <strong>stimoli contemporanei</strong>. Per colmare questa lacuna, integrando le dinamiche del book crossing, è stato ideato<strong> Booked Time</strong>.
+                </p>
+                <p data-translate="sec5-p2">
+                    L'applicazione è progettata per <strong>avvicinare le nuove generazioni</strong> alla lettura attraverso la condivisione, lo scambio di consigli e l'organizzazione di momenti di incontro comunitari.
+                </p>
+                <p data-translate="sec5-p3">
+                    La fase di ideazione e produzione grafica del logo e dei mockup è stata interamente realizzata avvalendosi della <strong>Suite Adobe e di Figma</strong>. Di seguito ne vengono mostrate le immagini.
+                </p>
+
+                <!-- LOGO -->
+                <div style="position: relative; display: inline-block; width: 100%; text-align: center;">
+                    <img src="images/bookedtime-24.jpg" alt="Booked Time Logo" class="project-single-img" style="max-width: 400px; display: inline-block;" onclick="openLightbox(3)" loading="lazy">
+                </div>
+                <div class="image-caption" data-translate="cap-logo">
+                    Proposta di brand identity e logo per Booked Time.
+                </div>
+
+                <!-- MOCKUP CON FULLSCREEN -->
+                <div style="position: relative; display: inline-block; width: 100%;">
+                    <img src="images/bookedtime-25.jpg" alt="Booked Time Mockups" class="project-single-img" onclick="openLightbox(4)" loading="lazy">
+                    <button class="fullscreen-btn" style="bottom: 25px; right: 10px;" onclick="openLightbox(4)" title="Fullscreen">&#x26F6;</button>
+                </div>
+                <div class="image-caption" data-translate="cap-mockup">
+                    Mockup di interfaccia dell'applicazione Booked Time.
+                </div>
+            </section>
+
+            <!-- SEZIONE 6: ANALISI SWOT (POSTICIPATA DOPO I MOCKUP) -->
+            <section class="project-section">
+                <h2 data-translate="sec2-title">Analisi strategica e SWOT</h2>
+                <p data-translate="sec2-p3">
+                    Per definire la fattibilità e la visione strategica del concept, sono stati sintetizzati i <strong>fattori critici</strong> attraverso un'attenta analisi SWOT.
+                </p>
+
+                <!-- TABELLA ANALISI SWOT -->
+                <table class="project-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;" data-translate="swot-th-cat">Categoria / Fattore</th>
+                            <th data-translate="swot-th-analysis">Analisi SWOT - Booked Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="category-header" data-translate="swot-s-title">Strengths</td>
+                            <td class="row-header">
+                                <div data-translate="swot-s-list">
+                                    <p>• <strong>L’unione fa la forza</strong>: avere una community con cui condividere la propria passione incentiva la costanza e il piacere della lettura.</p>
+                                    <p>• Algoritmi di suggerimento personalizzati basati sui gusti specifici dell'utente.</p>
+                                    <p>• Valorizzazione della lettura come esperienza sociale e collettiva, superando la dimensione puramente isolata.</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="category-header" data-translate="swot-w-title">Weaknesses</td>
+                            <td class="row-header">
+                                <div data-translate="swot-w-list">
+                                    <p>• Necessità di raggiungere una massa critica iniziale di utenti affinché il servizio esprima appieno il suo potenziale di condivisione.</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="category-header" data-translate="swot-o-title">Opportunities</td>
+                            <td class="row-header">
+                                <div data-translate="swot-o-list">
+                                    <p>• Opportunità di abilitare incontri di lettura virtuali globali, superando ogni barriera geografica e temporale.</p>
+                                    <p>• Integrazione di eventi digitali ed esperienze dirette con gli autori.</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="category-header" data-translate="swot-t-title">Threats</td>
+                            <td class="row-header">
+                                <div data-translate="swot-t-list">
+                                    <p>• La percezione culturale radicata che la lettura debba essere un'attività strettamente individuale.</p>
+                                    <p>• Il rischio di perdita di valore costruttivo nei gruppi in caso di moderazione inadeguata.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- PARAGRAFI FINALI -->
+                <div class="project-conclusion" style="margin-top: 40px;">
+                    <p data-translate="conclusion-p1">
+                        Lo sviluppo del progetto ha permesso di consolidare competenze avanzate nell'ambito dell'<strong>UX/UI design</strong> e della <strong>progettazione responsive</strong>, focalizzata sullo sviluppo di interfacce ottimizzate per garantire un'esperienza utente fluida e coerente sia su dispositivi <strong>mobile</strong> che <strong>desktop</strong>. L'integrazione strutturata tra ricerca strategica e analisi quantitativa ha consentito di tradurre insight complessi in specifiche tecniche rigorose e scalabili.
+                    </p>
+                    <p data-translate="conclusion-p2">
+                        Booked Time rappresenta la sintesi metodologica di un percorso rigoroso, evidenziando una capacità progettuale solida nel trasformare i bisogni reali degli utenti in un ecosistema digitale <strong>cross-device</strong> ad alto valore funzionale e sociale.
+                    </p>
+                </div>
+            </section>
+
+            <!-- NAVIGAZIONE TRA I PROGETTI -->
+            <nav class="project-pagination" aria-label="Project Navigation">
+                <a href="barilla.html" class="pagination-link back-to-grid" data-translate="nav-prev-project">
+                    &larr; Previous project
+                </a>
+                <a href="index.html#works" class="pagination-link next-project" data-translate="bottom-next-works">
+                    all project &rarr;
+                </a>
+            </nav>
+
+        </div>
+    </main>
+
+
+    <!-- MODALE LIGHTBOX PER FULLSCREEN CON FRECCE -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-btn lightbox-prev" onclick="changeLightboxSlide(-1)">&#10094;</button>
+        <img class="lightbox-content" id="lightboxImg" alt="Fullscreen view">
+        <button class="lightbox-btn lightbox-next" onclick="changeLightboxSlide(1)">&#10095;</button>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <h2 class="footer-title" data-translate="footer-title">
+                I'm always open to meaningful opportunities.
+            </h2>
+
+            <div class="footer-actions">
+                <a href="mailto:elenapolleri@gmail.com" class="footer-btn" data-translate="footer-email">
+                    Contact me via email &rarr;
+                </a>
+                <a href="https://www.linkedin.com/in/elenapolleri/" target="_blank" rel="noopener noreferrer" class="footer-btn" data-translate="footer-linkedin">
+                    Connect on LinkedIn &rarr;
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- BOTTONE BACK TO TOP -->
+    <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </a>
+
+    <!-- SCRIPT GESTIONE TRADUZIONI, CAROSELLI E LIGHTBOX -->
+    <script>
+        const translations = {
+            en: {
+                "nav-home": "Homepage",
+                "nav-about": "About me",
+                "nav-works": "Selected works",
+                "nav-contacts": "Contacts",
+                "back-works": "&larr; back to all projects",
+                "bottom-next-works": "all project &rarr;",
+                "proj-title": "Designing for web",
+                "proj-subtitle": "A UX/UI design case study conceived during quarantine to explore new forms of reading, analyze real user needs, and design a high-social-value digital solution.",
+                "proj-tags": "LOGO DESIGN — DATA VISUALIZATION — DATA ANALYSIS — SWOT ANALYSIS — USER RESEARCH — PROBLEM SOLVING",
+                "sec1-title": "A Suspended Time: My Methodological Approach",
+                "sec1-p1": "I conceptualized and developed this project during the COVID-19 quarantine, a <strong>period of transformation</strong> where daily frenzy gave way to different rhythms. In this context, I chose to focus on the analysis and practice of reading.",
+                "sec1-p2": "Working independently with libraries closed, I set up rigorous <strong>primary and secondary research</strong>, involving inquiry subjects to map habits, tastes, and preferences of a broad and universal target audience.",
+                "sec1-p3": "Design is configured as a <strong>structured method of thinking</strong>. Through this project, I applied reality-observation skills to design a digital service capable of addressing concrete needs.",
+                "sec2-title": "From Print to Digital: Strategic Analysis",
+                "sec2-p1": "Throughout the research path, the investigation focused on the evolution of reading in the technological era: have digital modes improved the reader's experience or does a bond with print remain? And why is there an overall <strong>decline in readers</strong> despite the increase in digital formats?",
+                "sec2-p2": "To answer these questions, in-depth research was conducted analyzing the historical evolution of the book and <strong>comparing digital technologies</strong> with paper tradition.",
+                "sec2-p3": "To define the feasibility and strategic vision of the concept, critical factors were synthesized through a careful SWOT analysis.",
+                "swot-th-cat": "Category / Factor",
+                "swot-th-analysis": "SWOT Analysis - Booked Time",
+                "swot-s-title": "Strengths",
+                "swot-s-list": "<p>• <strong>Strength in numbers</strong>: having a community to share your passion with encourages consistency and the pleasure of reading.</p><p>• Personalized recommendation algorithms based on specific user tastes.</p><p>• Valuing reading as a social and collective experience, moving beyond purely isolated dimensions.</p>",
+                "swot-w-title": "Weaknesses",
+                "swot-w-list": "<p>• The need to reach an initial critical mass of users for the service to fully express its sharing potential.</p>",
+                "swot-o-title": "Opportunities",
+                "swot-o-list": "<p>• Opportunities to enable global virtual reading gatherings, overcoming any geographic and temporal barriers.</p><p>• Integration of digital events and direct experiences with authors.</p>",
+                "swot-t-title": "Threats",
+                "swot-t-list": "<p>• The deeply rooted cultural perception that reading must be a strictly individual activity.</p><p>• The risk of losing constructive value in groups if moderation is inadequate.</p>",
+                "sec3-title": "Analysis of ISTAT Statistical Data",
+                "sec3-p1": "<strong>Quantitative data</strong> represents the starting point for structuring design choices. National ISTAT statistical data was analyzed and integrated with targeted regional research on Liguria to define the problem perimeter.",
+                "cap-istat": "Visual processing of reference ISTAT statistical data regarding reading habits in Italy.",
+                "sec4-title": "User Research: Field Investigation and Questionnaire",
+                "sec4-p1": "To validate project hypotheses, an online questionnaire was administered to a <strong>sample of 100 users</strong>. The research investigated purchasing behaviors, perceptions, and reading practices, integrating a focus on book crossing (a spontaneous sharing phenomenon where books are left in public places or stations so other readers can take them, read them, and circulate them again).",
+                "sec4-p2": "Were examined <strong>key variables</strong> such as the impact of age and education level, propensity to keep or exchange books, and functional preferences between eBook and print.",
+                "sec4-p3": "Detailed analysis of the collected data, useful for guiding UX design choices, is illustrated in the charts below.",
+                "cap-survey": "Results of the quantitative survey conducted on a sample of users",
+                "sec5-title": "Booked Time: The Design Solution",
+                "sec5-p1": "The analysis revealed that reading requires <strong>contemporary stimuli</strong>. To bridge this gap, integrating book crossing dynamics, <strong>Booked Time </strong>was conceived.",
+                "sec5-p2": "The application is designed to <strong>bring younger generations closer</strong> to reading through sharing, advice exchange, and community meetup organization.",
+                "sec5-p3": "The ideation and graphic production phase of the logo and mockups was entirely carried out using the <strong>Adobe Suite and Figma</strong>. Images are shown below.",
+                "cap-logo": "Brand identity and logo proposal for Booked Time.",
+                "cap-mockup": "Interface mockups of the Booked Time application.",
+                "conclusion-p1": "The project's development consolidated advanced skills in <strong>UX/UI design</strong> and <strong>responsive interface design</strong>, optimized for a seamless user experience across both <strong>mobile</strong> and <strong>desktop</strong> devices. The structured integration of strategic research and quantitative analysis enabled the translation of complex insights into rigorous, scalable project specifications.",
+                "conclusion-p2": "Booked Time represents the methodological synthesis of a rigorous path, highlighting a solid design capability in transforming real user needs into a high-functional-value, <strong>cross-device</strong> digital ecosystem.",
+                "nav-prev-project": "&larr; Previous project",
+                "bottom-next-works": "all project &rarr;",
+                "footer-title": "I'm always open to meaningful opportunities.",
+                "footer-email": "Contact me via email &rarr;",
+                "footer-linkedin": "Connect on LinkedIn &rarr;"
+            },
+            it: {
+                "nav-home": "Homepage",
+                "nav-about": "Chi sono",
+                "nav-works": "Progetti",
+                "nav-contacts": "Contatti",
+                "back-works": "&larr; torna a tutti i progetti",
+                "bottom-next-works": "tutti i progetti &rarr;",
+                "proj-title": "Progettare per il web",
+                "proj-subtitle": "Un progetto di UX/UI design nato nel periodo della quarantena per esplorare le forme della lettura, analizzare i bisogni reali degli utenti e ideare una soluzione digitale ad alto valore sociale.",
+                "proj-tags": "PROGETTAZIONE LOGO — VISUALIZZAZIONE DATI — ANALISI DEI DATI — ANALISI SWOT — RICERCA UTENTI — PROBLEM SOLVING",
+                "sec1-title": "Un tempo sospeso: il mio approccio metodologico",
+                "sec1-p1": "Ho ideato e sviluppato questo progetto durante il periodo della quarantena COVID-19, un <strong>momento di trasformazione</strong> in cui la frenesia quotidiana ha lasciato spazio a ritmi differenti. In questo contesto ho scelto di concentrarmi sull'analisi e sulla pratica della lettura.",
+                "sec1-p2": "Lavorando in autonomia e con le biblioteche chiuse, ho impostato una <strong>ricerca primaria e secondaria</strong>, coinvolgendo soggetti di indagine per mappare abitudini, gusti e preferenze di un target ampio e universale.",
+                "sec1-p3": "Il design si configura come un <strong>metodo strutturato di pensiero</strong>. Attraverso questo progetto ho applicato competenze di osservazione della realtà per progettare un servizio digitale in grado di rispondere a bisogni concreti.",
+                "sec2-title": "Dalla carta al digitale: Analisi strategica",
+                "sec2-p1": "Nel percorso di ricerca l'indagine si è focalizzata sull'evoluzione della lettura nell'era tecnologica: le modalità digitali hanno migliorato l'esperienza del lettore o permane un legame con la carta? E perché si assiste a un <strong>calo complessivo dei lettori</strong> a fronte dell'aumento dei formati digitali?",
+                "sec2-p2": "Per rispondere a questi interrogativi, è stata condotta un'indagine approfondita analizzando l'evoluzione storica del libro e <strong>confrontando le tecnologie digitali</strong> con la tradizione cartacea.",
+                "sec2-p3": "Per definire la fattibilità e la visione strategica del concept, sono stati sintetizzati i fattori critici attraverso un'attenta analisi SWOT.",
+                "swot-th-cat": "Categoria / Fattore",
+                "swot-th-analysis": "Analisi SWOT - Booked Time",
+                "swot-s-title": "Strengths",
+                "swot-s-list": "<p>• <strong>L’unione fa la forza</strong>: avere una community con cui condividere la propria passione incentiva la costanza e il piacere della lettura.</p><p>• Algoritmi di suggerimento personalizzati basati sui gusti specifici dell'utente.</p><p>• Valorizzazione della lettura come esperienza sociale e collettiva, superando la dimensione puramente isolata.</p>",
+                "swot-w-title": "Weaknesses",
+                "swot-w-list": "<p>• Necessità di raggiungere una massa critica iniziale di utenti affinché il servizio esprima appieno il suo potenziale di condivisione.</p>",
+                "swot-o-title": "Opportunities",
+                "swot-o-list": "<p>• Opportunità di abilitare incontri di lettura virtuali globali, superando ogni barriera geografica e temporale.</p><p>• Integrazione di eventi digitali ed esperienze dirette con gli autori.</p>",
+                "swot-t-title": "Threats",
+                "swot-t-list": "<p>• La percezione culturale radicata che la lettura debba essere un'attività strettamente individuale.</p><p>• Il rischio di perdita di valore costruttivo nei gruppi in caso di moderazione inadeguata.</p>",
+                "sec3-title": "L'analisi dei dati statistici ISTAT",
+                "sec3-p1": "I <strong>dati quantitativi</strong> rappresentano il punto di partenza per strutturare le scelte di design. Sono stati analizzati i dati statistici ISTAT a livello nazionale, integrandoli con una ricerca mirata a carattere regionale sulla Liguria per definire il perimetro del problema.",
+                "cap-istat": "Elaborazione visiva dei dati statistici ISTAT di riferimento sulle abitudini di lettura in Italia.",
+                "sec4-title": "User Research: Indagine sul campo e questionario",
+                "sec4-p1": "Per validare le ipotesi di progetto, è stato somministrato un questionario online a un <strong>campione di 100 utenti</strong>. L'indagine ha approfondito comportamenti d'acquisto, percezioni e pratiche di lettura, integrando un focus sul book crossing (fenomeno di condivisione spontanea in cui i libri vengono lasciati in luoghi pubblici o apposite stazioni affinché altri lettori possano prenderli, leggerli e rimetterli a loro volta in circolazione).",
+                "sec4-p2": "Sono state esaminate <strong>variabili chiave</strong> quali l'impatto dell'età e del titolo di studio, la propensione alla conservazione o allo scambio dei libri e le preferenze funzionali tra eBook e carta stampata.",
+                "sec4-p3": "L'analisi dettagliata dei dati raccolti, utile a guidare le scelte di UX design, è illustrata nei grafici sottostanti.",
+                "cap-survey": "Risultati dell'indagine quantitativa condotta su un campione di utenti",
+                "sec5-title": "Booked Time: La soluzione di Design",
+                "sec5-p1": "Dall'analisi è emerso che la lettura necessita di <strong>stimoli contemporanei</strong>. Per colmare questa lacuna, integrando le dinamiche del book crossing, è stato ideato <strong>Booked Time</strong>.",
+                "sec5-p2": "L'applicazione è progettata per <strong>avvicinare le nuove generazioni</strong> alla lettura attraverso la condivisione, lo scambio di consigli e l'organizzazione di momenti di incontro comunitari.",
+                "sec5-p3": "La fase di ideazione e produzione grafica del logo e dei mockup è stata interamente realizzata avvalendosi della <strong>Suite Adobe e di Figma</strong>. Di seguito ne vengono mostrate le immagini.",
+                "cap-logo": "Proposta di brand identity e logo per Booked Time.",
+                "cap-mockup": "Mockup di interfaccia dell'applicazione Booked Time.",
+                "conclusion-p1": "Lo sviluppo del progetto ha permesso di consolidare competenze avanzate nell'ambito dell'<strong>UX/UI design</strong> e della <strong>progettazione responsive</strong>, ottimizzate per garantire un'esperienza utente fluida e coerente sia su dispositivi <strong>mobile</strong> che <strong>desktop</strong>. L'integrazione strutturata tra ricerca strategica e analisi quantitativa ha consentito di tradurre insight complessi in specifiche tecniche rigorose e scalabili.",
+                "conclusion-p2": "Booked Time rappresenta la sintesi metodologica di un percorso rigoroso, evidenziando una capacità progettuale solida nel trasformare i bisogni reali degli utenti in un ecosistema digitale <strong>cross-device</strong> ad alto valore funzionale e sociale.",
+                "nav-prev-project": "&larr; Progetto precedente",
+                "bottom-next-works": "tutti i progetti &rarr;",
+                "footer-title": "Sono sempre aperta a opportunità significative.",
+                "footer-email": "Contattami via email &rarr;",
+                "footer-linkedin": "Connettiti su LinkedIn &rarr;"
+            }
+        };
+
+
+        // Gestione Carosello ISTAT
+        const istatCarousel = document.getElementById('istatCarousel');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const istatDots = document.getElementById('istatDots');
+        const slides = istatCarousel.querySelectorAll('.istat-slide-container');
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if(i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                istatCarousel.scrollTo({ left: slides[i].offsetLeft, behavior: 'smooth' });
+                updateDots(i);
+            });
+            istatDots.appendChild(dot);
+        });
+
+        function updateDots(activeIndex) {
+            istatDots.querySelectorAll('.carousel-dot').forEach((d, idx) => {
+                d.classList.toggle('active', idx === activeIndex);
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            istatCarousel.scrollBy({ left: -istatCarousel.clientWidth, behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', () => {
+            istatCarousel.scrollBy({ left: istatCarousel.clientWidth, behavior: 'smooth' });
+        });
+
+        istatCarousel.addEventListener('scroll', () => {
+            const index = Math.round(istatCarousel.scrollLeft / istatCarousel.clientWidth);
+            updateDots(index);
+        });
+
+        // Gestione Carosello Questionario (Centrato con peek effect all'80%)
+        const surveyCarousel = document.getElementById('surveyCarousel');
+        const surveyPrevBtn = document.getElementById('surveyPrevBtn');
+        const surveyNextBtn = document.getElementById('surveyNextBtn');
+        const surveyDots = document.getElementById('surveyDots');
+        const surveyWrappers = surveyCarousel.querySelectorAll('.survey-img-wrapper');
+        
+        surveyWrappers.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if(i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                surveyWrappers[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                updateActiveSurveySlide(i);
+            });
+            surveyDots.appendChild(dot);
+        });
+
+        function updateActiveSurveySlide(activeIndex) {
+            surveyDots.querySelectorAll('.carousel-dot').forEach((d, idx) => {
+                d.classList.toggle('active', idx === activeIndex);
+            });
+            surveyWrappers.forEach((wrapper, idx) => {
+                wrapper.classList.toggle('is-center', idx === activeIndex);
+            });
+        }
+
+        surveyPrevBtn.addEventListener('click', () => {
+            surveyCarousel.scrollBy({ left: -surveyCarousel.clientWidth * 0.7, behavior: 'smooth' });
+        });
+        surveyNextBtn.addEventListener('click', () => {
+            surveyCarousel.scrollBy({ left: surveyCarousel.clientWidth * 0.7, behavior: 'smooth' });
+        });
+
+        surveyCarousel.addEventListener('scroll', () => {
+            const containerCenter = surveyCarousel.getBoundingClientRect().left + surveyCarousel.clientWidth / 2;
+            let closestIndex = 0;
+            let minDistance = Infinity;
+
+            surveyWrappers.forEach((wrapper, idx) => {
+                const rect = wrapper.getBoundingClientRect();
+                const wrapperCenter = rect.left + rect.width / 2;
+                const distance = Math.abs(containerCenter - wrapperCenter);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestIndex = idx;
+                }
+            });
+            updateActiveSurveySlide(closestIndex);
+        });
+
+        // Lightbox Fullscreen
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxImages = [
+            "images/bookedtime-02.jpg",
+            "images/bookedtime-03.jpg",
+            "images/bookedtime-04.jpg",
+            "images/bookedtime-24.jpg",
+            "images/bookedtime-25.jpg"
+        ];
+        let currentLightboxIndex = 0;
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            lightboxImg.src = lightboxImages[currentLightboxIndex];
+            lightboxModal.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightboxModal.classList.remove('active');
+        }
+
+        function changeLightboxSlide(direction) {
+            currentLightboxIndex += direction;
+            if(currentLightboxIndex < 0) currentLightboxIndex = lightboxImages.length - 1;
+            if(currentLightboxIndex >= lightboxImages.length) currentLightboxIndex = 0;
+            lightboxImg.src = lightboxImages[currentLightboxIndex];
+        }
+
+        lightboxModal.addEventListener('click', (e) => {
+            if(e.target === lightboxModal) closeLightbox();
+        });
+
+        // Scroll to Top
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+<script src="translate.js"></script>
+</body>
+</html>

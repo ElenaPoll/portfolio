@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Elena Polleri - Project 05 </title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Collega il tuo file CSS principale -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Stili specifici per la pagina progetto -->
+    <link rel="stylesheet" href="project-style.css">
+
+    <style>
+        .instagram-integration-wrapper { margin: 40px 0; }
+        .instagram-card {
+            background: #fbf9f6;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .instagram-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(139, 115, 85, 0.15);
+            padding-bottom: 15px;
+        }
+        .ig-user-info { display: flex; align-items: center; gap: 12px; }
+        .ig-avatar-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(139, 115, 85, 0.3); }
+        .ig-handle { font-size: 18px; font-weight: 700; margin: 0; color: #2c2c2c; }
+        .ig-subtitle { font-size: 14px; color: #666; margin: 0; }
+        .ig-follow-btn {
+            background: #2c2c2c;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        .ig-follow-btn:hover { background: #555; }
+        
+        /* Griglia 3x3 Formato Quadrato */
+        .instagram-grid-3x3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        @media (max-width: 768px) { .instagram-grid-3x3 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .instagram-grid-3x3 { grid-template-columns: 1fr; } }
+        
+        .ig-post-thumb {
+            background: #f2ece4;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1; /* FORZA QUADRATO */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+        }
+        .ig-post-thumb img, .ig-post-thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar project-navbar">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#home" data-translate="nav-home">Homepage</a></li>
+                <li><a href="index.html#about" data-translate="nav-about">About me</a></li>
+                <li><a href="index.html#works" class="active" data-translate="nav-works">Selected works</a></li>
+                <li><a href="index.html#contacts" data-translate="nav-contacts">Contacts</a></li>
+            </ul>
+            <div class="lang-switch">
+                <a href="#" class="lang-option active" data-lang="en">ENG</a>
+                <span class="lang-divider">|</span>
+                <a href="#" class="lang-option" data-lang="it">ITA</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="project-main">
+        <div class="project-container">
+
+            <div class="back-to-works-wrapper">
+                <a href="index.html#works" class="back-to-works-btn" data-translate="back-works">&larr; Back to all projects</a>
+            </div>
+
+            <header class="project-header">
+                <div class="section-title-wrapper">
+                    <div class="line"></div>
+                    <span class="project-number">05.</span>
+                </div>
+                <h1 class="project-title" data-translate="proj-title">Designing for engagement</h1>
+                <p class="project-subtitle"><em data-translate="proj-subtitle">A grassroots community project driven by volunteering, social innovation, and local cultural impact.</em></p>
+                <div class="project-tags-container">
+                    <span class="card-tags" data-translate="proj-tags">
+                     COMMUNITY ENGAGEMENT — SOCIAL PROJECT MANAGEMENT — GRANT WRITING & FUNDRAISING — VOLUNTEER & EVENT COORDINATION — SOCIAL MEDIA MANAGER — SOCIAL INNOVATION
+                    </span>
+                </div>
+            </header>
+
+            <section class="project-section">
+                <h2 data-translate="sec1-title">The Initiative & My Role</h2>
+                <p data-translate="sec1-p1">
+                   <strong> Nassa  </strong>è un progetto di comunità vibrante nato a Sestri Levante con l'obiettivo di promuovere l'<strong>innovazione sociale</strong>, la partecipazione attiva e la rigenerazione culturale del territorio. Seguo questa iniziativa in veste di <strong>volontaria</strong>, offrendo un contributo fortemente trasversale che spazia dalla scrittura dei bandi e il fundraising alla gestione organizzativa (supportata dall'uso di strumenti come <strong>Notion</strong>), dal coordinamento dei volontari alla comunicazione social e al community engagement.
+                </p>
+                <p data-translate="sec1-p2">
+                    Nel corso del tempo, l'impegno profuso ha permesso di dare vita a numerosi momenti di aggregazione e animazione culturale per la cittadinanza. Tra le iniziative di maggior rilievo spiccano il <strong>torneo annuale di bocce</strong> organizzato presso la storica Bocciofila Rivana, i coinvolgenti <strong>swap party</strong>, il vivace <strong>Periferiko market</strong>, uno spazio d'incontro che unisce <strong>autoproduzioni locali, talk tematici, laboratori creativi, concerti dal vivo</strong> e <strong>proiezioni cinematografiche</strong>.
+                </p>
+                <p data-translate="sec1-p3">
+                    A ciò si aggiunge la costante collaborazione con l'associazione teatrale <strong>Quarta Parete Art-Lab</strong>, di cui faccio orgogliosamente parte, co-producendo workshop formativi, attività ricreative ed eventi teatrali e musicali che arricchiscono in modo significativo l'offerta culturale locale.
+                </p>
+            </section>
+
+            <section class="instagram-integration-wrapper">
+                <div class="instagram-card">
+                    <div class="instagram-header">
+                        <div class="ig-user-info">
+                            <img src="images/nassa-profile.png" alt="Nassa Logo" class="ig-avatar-img">
+                            <div>
+                                <h3 class="ig-handle">@nassa_sestrilevante</h3>
+                                <p class="ig-subtitle" data-translate="ig-sub">Community & Social Innovation Hub</p>
+                            </div>
+                        </div>
+                        <a href="https://www.instagram.com/nassa_sestri/" target="_blank" rel="noopener noreferrer" class="ig-follow-btn" data-translate="ig-btn">Follow on Instagram &rarr;</a>
+                    </div>
+                    <div class="instagram-grid-3x3">
+                        <div class="ig-post-thumb"><img src="images/nassa-1.png" alt="Post 1"></div>
+                        <div class="ig-post-thumb"><img src="images/nassa-2.png" alt="Post 2"></div>
+                        <div class="ig-post-thumb"><img src="images/nassa-3.png" alt="Post 3"></div>
+                        <div class="ig-post-thumb"><img src="images/nassa-4.png" alt="Post 4"></div>
+                        <div class="ig-post-thumb"><img src="images/nassa-5.png" alt="Post 5"></div>
+                        <div class="ig-post-thumb"><img src="images/nassa-6.png" alt="Post 6"></div>
+                        <div class="ig-post-thumb"><img src="images/nassa-7.png" alt="Post 7"></div>
+                        <div class="ig-post-thumb"><img src="images/nassa-8.png" alt="Post 8"></div>
+                        <div class="ig-post-thumb"><img src="images/nassa-9.png" alt="Post 9"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="project-section">
+                <h2 data-translate="sec3-title">Teamwork & Professional Growth</h2>
+                <p data-translate="sec3-p1">
+                    Sebbene Nassa sia prima di tutto un'esperienza di <strong>lavoro di squadra</strong> corale e condivisa, l'intero percorso ha allenato e consolidato profondamente le mie competenze relazionali e organizzative. Gestire progetti complessi dal forte impatto sul territorio ha messo alla prova e affinato le mie <strong>soft skills</strong>, migliorando la capacità di collaborazione all'interno di un team, l'efficacia comunicativa, la rapidità nel <strong>problem solving</strong> e la gestione completa degli eventi e degli ospiti.
+                </p>
+                <p data-translate="sec3-p2">
+                    Si tratta di un bagaglio di competenze strategiche che rispecchia pienamente le esigenze di un ruolo di <strong>Project Management</strong>, dove la capacità di coordinare risorse, facilitare i processi e mediare tra le diverse esigenze rappresenta la chiave per il raggiungimento degli obiettivi.
+                </p>
+            </section>
+
+            <!-- NAVIGAZIONE PROGETTI -->
+            <nav class="project-pagination" aria-label="Navigazione tra i progetti">
+                <a href="mobiquity.html" class="pagination-link back-to-grid" data-translate="nav-prev-project">&larr; Previous project</a>
+                <a href="self-accettazione.html" class="pagination-link next-project" data-translate="nav-next-project">Next project &rarr;</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="footer-section">
+        <div class="footer-container">
+            <h2 class="footer-title" data-translate="footer-title">I'm always open to meaningful opportunities.</h2>
+            <div class="footer-actions">
+                <a href="mailto:elenapolleri@gmail.com" class="footer-btn" data-translate="footer-email">Contact me via email &rarr;</a>
+                <a href="https://www.linkedin.com/in/elenapolleri/" target="_blank" rel="noopener noreferrer" class="footer-btn" data-translate="footer-linkedin">Connect on LinkedIn &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Torna su">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </a>
+
+    <!-- Script per la gestione dello scroll to top -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollBtn = document.getElementById('scrollTopBtn');
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+
+        document.getElementById('scrollTopBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <!-- 1. Dizionario dei testi specifici di questa pagina -->
+    <script>
+        const translations = {
+            en: {
+                "nav-home": "Homepage", "nav-about": "About me", "nav-works": "Selected works", "nav-contacts": "Contacts",
+                "back-works": "&larr; Back to all projects",
+                "proj-title": "Designing for engagement",
+                "proj-subtitle": "A grassroots community project driven by volunteering, social innovation, and local cultural impact.",
+                "proj-tags": "COMMUNITY ENGAGEMENT — SOCIAL PROJECT MANAGEMENT — GRANT WRITING & FUNDRAISING — VOLUNTEER & EVENT COORDINATION — SOCIAL MEDIA MANAGER — SOCIAL INNOVATION",
+                "sec1-title": "The Initiative & My Role",
+                "sec1-p1": " <strong>Nassa  </strong>is a vibrant community project based in Sestri Levante, aimed at promoting <strong>social innovation</strong>, active participation, and local cultural regeneration. I follow this initiative as a <strong>volunteer</strong>, offering a highly transversal contribution ranging from grant writing and fundraising to organizational management (supported by tools like <strong>Notion</strong>), volunteer coordination, social media communication, and community engagement.",
+                "sec1-p2": "Over time, this commitment has brought to life numerous social gatherings and cultural initiatives for the community. Key highlights include the <strong>annual bocce tournament</strong> at the historical Bocciofila Rivana, engaging <strong>swap parties</strong>, the lively <strong>Periferiko market</strong>, a hub combining <strong>local self-productions, thematic talks, creative workshops, live concerts,</strong> and <strong>film screenings</strong>.",
+                "sec1-p3": "Additionally, Nassa actively collaborates with the theatrical association <strong>Quarta Parete Art-Lab</strong> (of which I am a proud member), co-producing educational workshops, recreational activities, and theatrical and musical events that greatly enrich the local cultural landscape.",
+                "ig-sub": "Community & Social Innovation Hub", "ig-btn": "Follow on Instagram &rarr;",
+                "sec3-title": "Teamwork & Professional Growth",
+                "sec3-p1": "Although Nassa is fundamentally a shared <strong>teamwork</strong> effort, this entire journey has deeply trained and consolidated my relational and organizational skills. Managing complex projects with a strong territorial impact has tested and refined my <strong>soft skills</strong>, enhancing teamwork, communication effectiveness, rapid <strong>problem-solving</strong>, and comprehensive event and guest management.",
+                "sec3-p2": "This background of strategic competencies fully mirrors the requirements of a <strong>Project Management</strong> role, where coordinating resources, facilitating processes, and mediating diverse needs are the keys to achieving success.",
+                "nav-prev-project": "&larr; Previous project", "nav-next-project": "Next project &rarr;",
+                "footer-title": "I'm always open to meaningful opportunities.", "footer-email": "Contact me via email &rarr;", "footer-linkedin": "Connect on LinkedIn &rarr;"
+            },
+            it: {
+                "nav-home": "Homepage", "nav-about": "Chi sono", "nav-works": "Progetti scelti", "nav-contacts": "Contatti",
+                "back-works": "&larr; Torna a tutti i progetti",
+                "proj-title": "Progettare per coinvolgere",
+                "proj-subtitle": "Un progetto di comunità basato sul volontariato, l'innovazione sociale e l'impatto culturale sul territorio di Sestri Levante.",
+                "proj-tags": "COINVOLGIMENTO DELLA COMUNITÀ — GESTIONE DI PROGETTI SOCIALI — SCRITTURA DI BANDI E RACCOLTA FONDI — COORDINAMENTO DI VOLONTARI E EVENTI — SOCIAL MEDIA MANAGER — INNOVAZIONE SOCIALE",
+                "sec1-title": "L'Iniziativa e il mio Ruolo",
+                "sec1-p1": " <strong>Nassa  </strong>è un progetto di comunità vibrante nato a Sestri Levante con l'obiettivo di promuovere l'<strong>innovazione sociale</strong>, la partecipazione attiva e la rigenerazione culturale del territorio. Seguo questa iniziativa in veste di <strong>volontaria</strong>, offrendo un contributo fortemente trasversale che spazia dalla scrittura dei bandi e il fundraising alla gestione organizzativa (supportata dall'uso di strumenti come <strong>Notion</strong>), dal coordinamento dei volontari alla comunicazione social e al community engagement.",
+                "sec1-p2": "Nel corso del tempo, l'impegno profuso ha permesso di dare vita a numerosi momenti di aggregazione e animazione culturale per la cittadinanza. Tra le iniziative di maggior rilievo spiccano il <strong>torneo annuale di bocce</strong> organizzato presso la storica Bocciofila Rivana, i coinvolgenti <strong>swap party</strong>, il vivace <strong>Periferiko market</strong>, uno spazio d'incontro che unisce <strong>autoproduzioni locali, talk tematici, laboratori creativi, concerti dal vivo</strong> e <strong>proiezioni cinematografiche</strong>.",
+                "sec1-p3": "A ciò si aggiunge la costante collaborazione con l'associazione teatrale <strong>Quarta Parete Art-Lab</strong>, di cui faccio orgogliosamente parte, co-producendo workshop formativi, attività ricreative ed eventi teatrali e musicali che ricchiscono in modo significativo l'offerta culturale locale.",
+                "ig-sub": "Hub di Innovazione Sociale e di Comunità", "ig-btn": "Segui su Instagram &rarr;",
+                "sec3-title": "Lavoro di Squadra e Crescita Professionale",
+                "sec3-p1": "Sebbene Nassa sia prima di tutto un'esperienza di <strong>lavoro di squadra</strong> corale e condivisa, l'intero percorso ha allenato e consolidato profondamente le mie competenze relazionali e organizzative. Gestire progetti complessi dal forte impatto sul territorio ha messo alla prova e affinato le mie <strong>soft skills</strong>, migliorando la capacità di collaborazione all'interno di un team, l'efficacia comunicativa, la rapidità nel <strong>problem solving</strong> e la gestione completa degli eventi e degli ospiti.",
+                "sec3-p2": "Si tratta di un bagaglio di competenze strategiche che rispecchia pienamente le esigenze di un ruolo di <strong>Project Management</strong>, dove la capacità di coordinare risorse, facilitare i processi e mediare tra le diverse esigenze rappresenta la chiave per il raggiungimento degli obiettivi.",
+                "nav-prev-project": "&larr; Progetto precedente", "nav-next-project": "Progetto successivo &rarr;",
+                "footer-title": "Sono sempre aperta a nuove opportunità stimolanti.", "footer-email": "Contattami via email &rarr;", "footer-linkedin": "Collegati su LinkedIn &rarr;"
+            }
+        };
+    </script>
+
+    <script src="translate.js"></script>
+</body>
+</html>

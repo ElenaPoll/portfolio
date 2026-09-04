@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elena Polleri - Portfolio</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- STILE AGGIUNTIVO: CORRETTO FLUSSO ELASTICO E ALTEZZA BOX -->
+<style>
+    /* Forziamo la card a comportarsi da flex container fluido e sicuro */
+    .work-card,
+    article.work-card {
+        position: relative !important;
+        transition: transform 0.3s ease !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        height: auto !important;
+        padding-bottom: 50px !important;
+    }
+
+    .work-card:not(.card-04):not(.card-08) {
+        min-height: unset !important; 
+    }
+
+    /* Regola per rendere i box 5, 6 e 7 più alti */
+    .work-card.card-05,
+    .work-card.card-06,
+    .work-card.card-07 {
+        min-height: 520px !important;
+        justify-content: space-between !important;
+    }
+
+    .work-card.card-05 .card-inner-padded,
+    .work-card.card-06 .card-content-wrapper,
+    .work-card.card-07 .card-content-wrapper {
+        padding-top: 10px !important;
+        padding-bottom: 30px !important;
+        flex-grow: 1 !important;
+    }
+
+    .work-card:hover {
+        transform: scale(1.02) !important;
+    }
+
+    .card-link-overlay {
+        position: absolute !important;
+        inset: 0 !important;
+        z-index: 10 !important;
+    }
+
+    .card-08 {
+        grid-column: 1 / -1 !important;
+    }
+
+    /* Le card 09 e 10 ora non occupano l'intera larghezza, disponendosi affiancate nella griglia */
+    .card-09,
+    .card-10 {
+        grid-column: auto !important;
+    }
+
+    /* Stile coerente per i titoli di tutte le card: niente italic e font leggermente più piccolo */
+    .work-card h3,
+    .work-card .title-vertical,
+    .work-card .title-vertical-right,
+    .work-card .title-inline,
+    .work-card .title-vertical-left,
+    .work-card .title-inline-bottom,
+    .work-card .title-top-right {
+        font-family: 'Playfair Display', serif !important;
+        font-size: 26px !important;
+        font-weight: 600 !important;
+        font-style: normal !important;
+        line-height: 1.2 !important;
+        margin-bottom: 12px !important;
+        letter-spacing: -0.3px !important;
+    }
+
+    .work-card .card-tags {
+        margin-top: 4px !important;
+        margin-bottom: 16px !important;
+        display: block !important;
+    }
+
+    .work-card:not(.card-04):not(.card-08) .card-content-wrapper,
+    .work-card:not(.card-04):not(.card-08) .card-top-content,
+    .work-card:not(.card-04):not(.card-08) .card-inner-padded {
+        display: flex !important;
+        flex-direction: column !important;
+        flex-grow: 1 !important;
+        justify-content: flex-start !important;
+    }
+
+    .work-card:not(.card-04):not(.card-08) .card-description {
+        margin-top: 0px !important;
+        margin-bottom: 16px !important;
+    }
+
+    .work-card.card-01 .card-bottom-row {
+        margin-top: 15px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding-top: 10px !important;
+        width: 100% !important;
+        margin-right: 30px !important;
+    }
+
+    .work-card.card-07 .illustration-bottom-center {
+        margin-top: 15px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding-top: 5px !important;
+        margin-bottom: 10px !important;
+        width: 100% !important;
+        margin-right: 30px !important;
+    }
+
+    .work-card .illustration-target,
+    .work-card .illustration-tangle {
+        max-width: 85% !important; 
+        height: auto !important;
+        display: block !important;
+    }
+
+    .scroll-top-btn {
+        position: fixed !important;
+        bottom: 30px !important;
+        right: 30px !important;
+        z-index: 99 !important;
+        width: 45px !important;
+        height: 45px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease !important;
+        text-decoration: none !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+    }
+
+    .scroll-top-btn.show {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .scroll-top-btn:hover {
+        background-color: var(--accent-color, #555) !important;
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- NAVBAR CON SELETTORE LINGUA -->
+    <header class="navbar">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home" data-translate="nav_home">Homepage</a></li>
+                <li><a href="#about" data-translate="nav_about">About me</a></li>
+                <li><a href="#works" data-translate="nav_works">Selected works</a></li>
+                <li><a href="#contacts" data-translate="nav_contacts">Contacts</a></li>
+            </ul>
+
+            <div class="lang-switch">
+                <a href="#" class="lang-option active" data-lang="en">ENG</a>
+                <span class="lang-divider">|</span>
+                <a href="#" class="lang-option" data-lang="it">ITA</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-section">
+        <div class="hero-container">
+            <div class="hero-image-container">
+                <div class="arch-background"></div>
+                <img
+                    src="assets/hero-portrait.png"
+                    alt="Elena Polleri"
+                    class="hero-portrait"
+                >
+            </div>
+
+            <div class="hero-text-content">
+                <div class="hero-badge">
+                    <span class="dash">—</span>
+                    <span data-translate="hero_badge">
+                        AVAILABLE FOR EMPLOYMENT
+                    </span>
+                    <span class="dash">—</span>
+                </div>
+
+                <h1 class="hero-heading">
+                    <span data-translate="hero_title_hi">Hi, I'm</span>
+                    <em>Elena.</em>
+                </h1>
+
+                <p class="hero-intro" data-translate="hero_intro">
+                    I am a <strong>digital humanist</strong> bridging design,
+                    research, and project management to build human-centered
+                 experiences.
+                </p>
+
+                <!-- SOTTO-TESTO AGGIORNATO CON L'INTERRUZIONE RICHIESTA -->
+                <p class="hero-subtext" data-translate="hero_subtext">
+                    Explore my professional journey, skills and projects to discover<br>
+                    my approach to solving <strong>complex challenges</strong>.
+                </p>
+
+                <a href="#about" class="hero-btn" data-translate="hero_btn">
+                    Get to know me better &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <div class="main-container">
+
+            <!-- ABOUT ME SECTION -->
+            <section id="about" class="about-section">
+                <div class="section-title-wrapper">
+                    <div class="line"></div>
+                    <h2 class="section-title" data-translate="about_title">
+                        About me
+                    </h2>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p data-translate="about_p1">
+                            I'm a <strong>UX Designer</strong> and
+                            <strong>Digital Humanist</strong> with a background
+                            spanning product design, interactive systems, UX
+                            research, and project coordination. I hold a
+                            company-based <strong>PhD in Design</strong>,
+                            focusing on embedding <strong>accessibility</strong>
+                            into digital product development and organizational culture.
+                        </p>
+
+                        <p data-translate="about_p2">
+                            My work bridges <strong>research and strategy</strong>
+                            to translate complex challenges into clear, inclusive
+                            solutions. I combine creative thinking with a pragmatic
+                            approach—shaping user-centered products while coordinating
+                            the teams, processes, and decisions that bring them to life.
+                        </p>
+
+                        <p data-translate="about_p3">
+                            I'm now looking to grow within a dynamic team at the
+                            intersection of <strong>UX, digital experience, and
+                            project coordination</strong> — contributing not only
+                            to the quality of the final experience, but also to the
+                            people, processes, and decisions that make it possible.
+                        </p>
+                    </div>
+
+                    <div class="about-actions">
+                        <a href="https://drive.google.com/file/d/1hDPijjQROxt_BH_LPmdRqtNx6TCOZf5o/view?usp=sharing" class="action-btn" target="_blank" rel="noopener noreferrer" data-translate="btn_cv">
+    View my curriculum &rarr;
+</a>
+
+                       <a href="https://unige.iris.cineca.it/cris/rp/rp87068" class="action-btn" target="_blank" rel="noopener noreferrer" data-translate="btn_pub">
+    Explore my pubblications &rarr;
+</a>
+
+                      <a href="https://drive.google.com/file/d/1c4zVQFyh4QvlXAP3Y-TrmDYZAZjWb6-3/view?usp=sharing" class="action-btn" target="_blank" rel="noopener noreferrer" data-translate="btn_end">
+    Read my endorsements &rarr;
+</a>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- SELECTED WORKS SECTION -->
+            <section id="works" class="works-section">
+                <div class="section-title-wrapper">
+                    <div class="line"></div>
+                    <h2 class="section-title" data-translate="works_title">
+                        Selected works
+                    </h2>
+                </div>
+
+                <p class="works-intro" data-translate="works_intro">
+                    Welcome to a curated showcase of my core work across UX research,
+                    digital experience design, and project coordination. Rather than
+                    an exhaustive list, these selected projects highlight how I connect
+                    user needs, complex stakeholder environments, and accessible design
+                    systems to deliver measurable outcomes.
+                </p>
+
+                <p class="works-subintro" data-translate="works_subintro">
+                    <strong>
+                        Click on any project to explore the full case study,
+                        methodologies, and technical breakdowns.
+                    </strong>
+                </p>
+
+                <div class="works-layout">
+
+                    <!-- 01. EASYWCAG -->
+                    <article class="work-card card-01">
+                        <a href="easywcag.html" class="card-link-overlay" aria-label="EasyWCAG Case Study"></a>
+                        <div class="card-top-content">
+                            <h3 data-translate="card1_title">Designing for compliance</h3>
+                            <div class="card-tags" data-translate="card1_tags">
+                                USER RESEARCH — SEMANTIC ARCHITECTURE —
+                                WCAG COMPLIANCE & AUDITING — 
+                                EMPIRICAL VALIDATION — SEMANTIC HTML & INCLUSIVE CSS — 
+                                PROJECT COORDINATION
+                            </div>
+
+                            <p class="card-description" data-translate="card1_desc">
+                                I translated complex WCAG compliance mandates into an
+                                intuitive interface architecture
+                                that addresses core business and regulatory requirements.
+                                Through both bottom-up and top-down analysis, I combined
+                                detailed assessment of accessibility barriers, technical
+                                constraints, and interaction patterns with a broader
+                                understanding of user needs, organizational objectives,
+                                and compliance strategy. Grounded in user research,
+                                I designed and validated a fully compliant
+                                digital experience, translating complex
+                                accessibility guidelines into clear, actionable design
+                                solutions. I built a robust semantic HTML and CSS
+                                foundation and conducted rigorous accessibility testing
+                                across navigation, interaction, content structure,
+                                and user flows, ensuring a seamless and inclusive
+                                experience for all users.
+                            </p>
+                        </div>
+
+                        <div class="card-bottom-row">
+                            <div class="illustration-wrapper">
+                                <img
+                                    src="assets/project-01-easywcag.svg"
+                                    alt="Target Illustration"
+                                    class="illustration-target"
+                                >
+                            </div>
+                        </div>
+
+                        <span class="bg-number num-bottom-left">01.</span>
+                    </article>
+
+
+                    <!-- 02. ALTEREGO -->
+                    <article class="work-card card-02">
+                        <a href="alterego.html" class="card-link-overlay" aria-label="Alter Ego Case Study"></a>
+                        <div class="card-content-wrapper">
+                            <h3 data-translate="card2_title">Designing for dissemination</h3>
+                            <div class="card-tags" data-translate="card2_tags">
+                                EVENT CURATION — CALL FOR PAPERS DRAFTING —
+                                SCIENTIFIC & STAKEHOLDER OUTREACH — PEER REVIEW MANAGEMENT — 
+                                EDITORIAL DESIGN & PUBLISHING — 
+                                ACADEMIC EDITING
+                            </div>
+
+                            <p class="card-description" data-translate="card2_desc">
+                                I conceptualized and led the complete execution of a
+                                high-level academic symposium
+                                examining the intersection of artificial intelligence
+                                and creative labor. I managed the end-to-end event
+                                lifecycle—directing the call for papers, coordinating
+                                peer reviews and speakers, and overseeing academic
+                                editing to publish proceedings.
+                            </p>
+                        </div>
+
+                        <span class="bg-number num-bottom-left">02.</span>
+                    </article>
+
+
+                    <!-- 03. DIGITAL ACCESSIBILITY TRAINING -->
+                    <article class="work-card card-03">
+                        <a href="citizen-inclusion.html" class="card-link-overlay" aria-label="Digital Accessibility Training Case Study"></a>
+                        
+                        <div class="card-content-wrapper">
+                            <h3 data-translate="card3_title">Designing for education</h3>
+                            <div class="card-tags" data-translate="card3_tags">
+                                TRAINING DESIGN & COURSE MATERIAL — E-LEARNING DELIVERY — 
+                                SURVEY DESIGN & DATA ANALYSIS — 
+                                PUBLIC SECTOR UPSKILLING — 
+                                CROSS-FUNCTIONAL COMMUNICATION
+                            </div>
+
+                            <p class="card-description" data-translate="card3_desc">
+                                I designed and executed a digital
+                                inclusion program under the PNRR framework,
+                                upskilling 375 public sector professionals across
+                                15 online editions. I spearheaded the entire training
+                                lifecycle—from crafting instructional materials and
+                                high-impact slides aligned with AgID accessibility
+                                guidelines to delivering interactive
+                                sessions and analyzing quantitative survey
+                                data to measure learning impact.
+                            </p>
+                        </div>
+
+                        <span class="bg-number num-bottom-left">03.</span>
+                    </article>
+
+
+                    <!-- 04. MOBIQUITY -->
+                    <article class="work-card card-04">
+                        <a href="mobiquity.html" class="card-link-overlay" aria-label="Mobiquity Case Study"></a>
+                        
+                        <div class="mobiquity-grid">
+                            <div>
+                                <h3 data-translate="card4_title">Designing for facilitation</h3>
+                                <div class="card-tags" data-translate="card4_tags">
+                                    R&D PROJECT COORDINATION — 
+                                    ETHNOGRAPHIC RESEARCH & SHADOWING — MOBILE UX & USER JOURNEY MAPPING — 
+                                    INFORMATION ARCHITECTURE & WEBSITE DESIGN — 
+                                    MULTI-STAKEHOLDER COORDINATION
+                                </div>
+
+                                <p class="card-description" data-translate="card4_desc">
+                                    I spearheaded the user-centered research and
+                                    co-design strategy for Mobiquity, an ERDF-funded
+                                    R&D initiative reimagining urban transit
+                                    in Genoa. By facilitating Living Labs and immersive
+                                    field shadowing with disabled participants, I mapped
+                                    real-world travel barriers to architect an accessible
+                                    web platform, bridging research insights
+                                    alongside 7+ corporate, academic, and institutional stakeholders.
+                                </p>
+                            </div>
+
+                            <div class="illustration-center">
+                                <img
+                                    src="assets/project-04-mobiquity.svg"
+                                    alt="Mobiquity Illustration"
+                                    class="illustration-bulb"
+                                >
+                            </div>
+                        </div>
+
+                        <span class="bg-number num-bottom-right">04.</span>
+                    </article>
+
+
+                    <!-- 05. NASSA -->
+                    <article class="work-card card-05">
+                        <a href="nassa.html" class="card-link-overlay" aria-label="Nassa Case Study"></a>
+                        
+                        <div class="card-inner-padded">
+                            <h3 data-translate="card5_title">Designing for engagement</h3>
+                            <div class="card-tags" data-translate="card5_tags">
+                                COMMUNITY ENGAGEMENT — SOCIAL PROJECT MANAGEMENT —
+                                GRANT WRITING & FUNDRAISING — 
+                                VOLUNTEER & EVENT COORDINATION — SOCIAL MEDIA MANAGER — 
+                                SOCIAL INNOVATION
+                            </div>
+
+                            <p class="card-description" data-translate="card5_desc">
+                                I drive community engagement and
+                                social impact strategies for
+                                Nassa Sestri Levante, activating local territory
+                                through culture, youth participation, and active
+                                citizenship. Coordinating closely with partner
+                                chapters in Chiavari and Rapallo, I co-design and
+                                execute high-impact cultural events, social
+                                initiatives, and participatory projects that
+                                transform grassroots ideas into
+                                measurable local development.
+                            </p>
+                        </div>
+
+                        <span class="bg-number num-bottom-left">05.</span>
+                    </article>
+
+
+                    <!-- 06. SELF ACCETTAZIONE -->
+                    <article class="work-card card-06">
+                        <a href="self-accettazione.html" class="card-link-overlay" aria-label="Self accettazione Case Study"></a>
+                        
+                        <div class="card-content-wrapper">
+                            <h3 data-translate="card6_title">Designing for comparison</h3>
+                            <div class="card-tags" data-translate="card6_tags">
+                                HEALTHCARE UX CONSULTANCY — STRATEGIC UI & UX REDESIGN — 
+                                A/B TESTING & VALIDATION —  
+                                PROCESS OPTIMIZATION — ADOBE SUITE — 
+                                INTERVIEW FACILITATION
+                            </div>
+
+                            <p class="card-description" data-translate="card6_desc">
+                                I designed a user-centered redesign concept and
+                                A/B testing framework for a healthcare
+                                portal using Adobe XD and Figma. Structuring evaluation
+                                protocols for 30 participants via quantitative surveys
+                                and qualitative analysis, the case study proved user
+                                preference for the interface and highlighted how
+                                early UX integration cuts development costs.
+                            </p>
+                        </div>
+
+                        <span class="bg-number num-bottom-left">06.</span>
+                    </article>
+
+
+                    <!-- 07. AD'AGIO -->
+                    <article class="work-card card-07">
+                        <a href="adagio.html" class="card-link-overlay" aria-label="Ad'agio Case Study"></a>
+                        
+                        <div class="card-content-wrapper">
+                            <h3 data-translate="card7_title">Designing for inclusion</h3>
+                            <div class="card-tags" data-translate="card7_tags">
+                                PARTNER & ASSOCIATION COORDINATION — SERVICE DESIGN — PARTICIPATORY DESIGN WORKSHOP LEADERSHIP — CROSS-FUNCTIONAL STAKEHOLDER ALIGNMENT — 
+                                DIGITAL EXPERIENCE DESIGN — 
+                                PARTICIPATORY WORKSHOP LEADERSHIP
+                            </div>
+
+                            <p class="card-description" data-translate="card7_desc">
+                                I led user research, co-design strategy, and digital
+                                prototyping for a Living Lab initiative funded by the
+                                Municipality of Genoa to enhance domestic
+                                autonomy for visually impaired seniors.
+                                Translating field research into digital tools, I conducted
+                                immersive simulations with therapists and 30+ participants
+                                to map accessibility barriers, then architected a mobile-ready
+                                evaluation framework. This interactive protocol empowered
+                                field specialists to optimize home
+                                environments, bridging academic researchers,
+                                healthcare foundations, and municipal stakeholders around
+                                a unified solution.
+                            </p>
+                        </div>
+
+                        <div class="illustration-bottom-center">
+                            <img
+                                src="assets/project-07-adagio.svg"
+                                alt="Ad'agio Illustration"
+                                class="illustration-tangle"
+                            >
+                        </div>
+
+                        <span class="bg-number num-bottom-right">07.</span>
+                    </article>
+
+
+                    <!-- 08. FASCICOLO DEL CITTADINO -->
+                    <article class="work-card card-08">
+                        <a href="fascicolo.html" class="card-link-overlay" aria-label="Fascicolo del Cittadino Case Study"></a>
+                        
+                        <div class="card-content-wrapper">
+                            <h3 data-translate="card8_title">Designing for optimization</h3>
+                            <div class="card-tags" data-translate="card8_tags">
+                                USABILITY TESTING — PUBLIC SECTOR DESIGN — 
+                                QUANTITATIVE DATA ANALYSIS — INCLUSIVE DESIGN PRINCIPLES — 
+                                ACCESSIBILITY AUDITING — PROTOTYPING
+                            </div>
+
+                            <p class="card-description" data-translate="card8_desc">
+                                I conducted an in-depth user research session to evaluate usability and accessibility of the public administration portal "Fascicolo del Cittadino". Through tests with real users, including individuals with disabilities, I identified critical interaction barriers. The project translated these insights into actionable guidelines to simplify information architecture and ensure full compliance with digital accessibility standards.
+                            </p>
+                        </div>
+
+                        <span class="bg-number num-bottom-right">08.</span>
+                    </article>
+
+
+                    <!-- 09. BARILLA -->
+                    <article class="work-card card-09">
+                        <a href="barilla.html" class="card-link-overlay" aria-label="Barilla Case Study"></a>
+                        
+                        <div class="card-content-wrapper">
+                            <h3 data-translate="card9_title">Designing for product</h3>
+                            <div class="card-tags" data-translate="card9_tags">
+                                3D MODELING — 3D PRINTING — VIDEO MAKING — 
+                                MARKET RESEARCH — 2D GRAPHICS — PRODUCT DESIGN
+                            </div>
+
+                            <p class="card-description" data-translate="card9_desc">
+                                I developed a comprehensive product design initiative in collaboration with Barilla, integrating advanced prototyping techniques with market research. From initial concept generation through 3D modeling and 3D printing to video production and 2D graphic assets, the project explored innovative food design solutions and communicated them effectively through visual storytelling.
+                            </p>
+                        </div>
+
+                        <span class="bg-number num-bottom-right">09.</span>
+                    </article>
+
+
+                    <!-- 10. BOOKED TIME -->
+                    <article class="work-card card-10">
+                        <a href="bookedtime.html" class="card-link-overlay" aria-label="Booked Time Case Study"></a>
+                        
+                        <div class="card-content-wrapper">
+                            <h3 data-translate="card10_title">Designing for web</h3>
+                            <div class="card-tags" data-translate="card10_tags">
+                                LOGO DESIGN — DATA VISUALIZATION — DATA ANALYSIS — 
+                                SWOT ANALYSIS — USER RESEARCH — PROBLEM SOLVING
+                            </div>
+
+                            <p class="card-description" data-translate="card10_desc">
+                                I conceptualized and developed Booked Time, a UX/UI design case study born during quarantine to explore the evolving forms of reading. Through rigorous data analysis and data visualization, I translated behavioral patterns and real user needs into strategic insights, leveraging careful SWOT analysis to shape a high-social-value digital solution.
+                            </p>
+                        </div>
+
+                        <span class="bg-number num-bottom-right">10.</span>
+                    </article>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+
+    <!-- FOOTER / CONTACT SECTION -->
+    <footer id="contacts" class="footer-section">
+        <div class="footer-container">
+            <h2 class="footer-title" data-translate="footer_title">
+                I'm always open to meaningful opportunities.
+            </h2>
+
+            <div class="footer-actions">
+                <a
+                    href="mailto:elenapolleri@gmail.com"
+                    class="footer-btn"
+                    data-translate="btn_email"
+                >
+                    Contact me via email &rarr;
+                </a>
+
+                <a
+                    href="https://www.linkedin.com/in/elenapolleri/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="footer-btn"
+                    data-translate="btn_linkedin"
+                >
+                    Connect on LinkedIn &rarr;
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- BOTTONE BACK TO TOP -->
+    <a
+        href="#home"
+        id="scrollTopBtn"
+        class="scroll-top-btn"
+        aria-label="Torna su"
+    >
+        <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+        >
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </a>
+
+
+    <!-- SCRIPT GESTIONE LINGUA E SCROLL TO TOP -->
+    <script>
+        const translations = {
+            en: {
+                nav_home: "Homepage",
+                nav_about: "About me",
+                nav_works: "Selected works",
+                nav_contacts: "Contacts",
+                hero_badge: "AVAILABLE FOR EMPLOYMENT",
+                hero_title_hi: "Hi, I'm",
+                hero_intro: "I am a <strong>digital humanist</strong> bridging design, research, and project management to build human-centered experiences.",
+                hero_subtext: "Explore my professional journey, skills and projects to discover<br>my approach to solving <strong>complex challenges</strong>.",
+                hero_btn: "Get to know me better &rarr;",
+                about_title: "About me",
+                about_p1: "I have a background in <strong>product design and communication</strong>, through which I developed a professional path spanning experience design, innovation, and project management. I hold a <strong>PhD in Design</strong>, dedicated to the integration of <strong>accessibility</strong> into digital ecosystems, exploring strategies to make design more inclusive and conscious.",
+                about_p2: "In my work, I integrate <strong>research, strategy, and design</strong> to tackle complex challenges and transform them into clear and meaningful solutions. Alongside creative vision, I combine a structured approach to <strong>project management and coordination</strong>, following development from early phases to completion.",
+                about_p3: "I am interested in contexts where I can contribute to the <strong>design and development of experiences, projects, and events</strong>, leveraging cross-functional skills and a vision that combines <strong>design, people, and organization</strong>.",
+                btn_cv: "View my curriculum &rarr;",
+                btn_pub: "Explore my pubblications &rarr;",
+                btn_end: "Read my endorsements &rarr;",
+                works_title: "Selected works",
+                works_intro: "Welcome to a curated showcase of my core work across UX research, digital experience design, and project coordination. Rather than an exhaustive list, these selected projects highlight how I connect user needs, complex stakeholder environments, and accessible design systems to deliver measurable outcomes.",
+                works_subintro: "<strong>Click on any project to explore the full case study, methodologies, and technical breakdowns.</strong>",
+                
+                card1_title: "Designing for compliance",
+                card1_tags: "USER RESEARCH — SEMANTIC ARCHITECTURE — WCAG COMPLIANCE & AUDITING — EMPIRICAL VALIDATION — SEMANTIC HTML & INCLUSIVE CSS — PROJECT COORDINATION",
+                card1_desc: "I transformed complex accessibility obligations into a simple, scalable framework designed to help IT professionals understand requirements and design accessible services. The project simplifies the application of accessibility criteria in business processes, helping organizations to achieve compliance effectively. Through user research, I designed and validated an intuitive digital experience, developing a robust framework in HTML and CSS and testing its accessibility, navigation, and interaction.",
+                
+                card2_title: "Designing for dissemination",
+                card2_tags: "EVENT CURATION — CALL FOR PAPERS DRAFTING — SCIENTIFIC & STAKEHOLDER OUTREACH — PEER REVIEW MANAGEMENT — EDITORIAL DESIGN & PUBLISHING — ACADEMIC EDITING",
+                card2_desc: "I conceptualized and coordinated an academic symposium on the intersection of AI and creative labor. From the call for papers to peer review management and final editing, I oversaw the entire event lifecycle to publish official proceedings.",
+                
+                card3_title: "Designing for education",
+                card3_tags: "TRAINING DESIGN & COURSE MATERIAL — E-LEARNING DELIVERY — SURVEY DESIGN & DATA ANALYSIS — PUBLIC SECTOR UPSKILLING — CROSS-FUNCTIONAL COMMUNICATION",
+                card3_desc: "I designed and implemented a digital inclusion program for the Public Administration, training 375 professionals across 15 editions. From creating educational materials aligned with AgID guidelines to analyzing learning data, I supervised and coordinated all phases of the project.",
+                
+                card4_title: "Designing for facilitation",
+                card4_tags: "R&D PROJECT COORDINATION — ETHNOGRAPHIC RESEARCH & SHADOWING — MOBILE UX & USER JOURNEY MAPPING — INFORMATION ARCHITECTURE & WEBSITE DESIGN — MULTI-STAKEHOLDER COORDINATION",
+                card4_desc: "I led user research and participatory design to redesign urban mobility in Genoa. Through workshops and fieldwork with people with disabilities, I identified real transportation barriers to design an accessible web platform that helps users move around the territory of the Municipality of Genoa. I coordinated the work between research and technical development, collaborating with over 7 institutional stakeholders.",
+                
+                card5_title: "Designing for engagement",
+                card5_tags: "COMMUNITY ENGAGEMENT — SOCIAL PROJECT MANAGEMENT — GRANT WRITING & FUNDRAISING — VOLUNTEER & EVENT COORDINATION — SOCIAL MEDIA MANAGER — SOCIAL INNOVATION",
+                card5_desc: "I participate as a volunteer in the activities of a local community in the Ligurian Levant committed to activating the territory through culture, youth participation, and active citizenship. Together with the group and in collaboration with territorial partners, I co-design and coordinate cultural events, transforming community ideas into concrete projects for local development.",
+                
+                card6_title: "Designing for comparison",
+                card6_tags: "HEALTHCARE UX CONSULTANCY — STRATEGIC UI & UX REDESIGN — A/B TESTING & VALIDATION — PROCESS OPTIMIZATION — ADOBE SUITE — INTERVIEW FACILITATION",
+                card6_desc: "I conceived a redesign concept and carried out a comparison test between two versions of the interface of a healthcare portal, consulting for an IT company interested in optimizing its services. I involved 30 participants through surveys and qualitative evaluations, analyzing their preferences and identifying key interventions to significantly optimize the interface.",
+                
+                card7_title: "Designing for inclusion",
+                card7_tags: "PARTNER & ASSOCIATION COORDINATION — SERVICE DESIGN — PARTICIPATORY DESIGN WORKSHOP LEADERSHIP — CROSS-FUNCTIONAL STAKEHOLDER ALIGNMENT — DIGITAL EXPERIENCE DESIGN",
+                card7_desc: "I coordinated user research, the co-design strategy, and digital prototyping for a Living Lab initiative aimed at improving the domestic autonomy of visually impaired or blind elderly people. Translating field research into digital tools, I conducted immersive simulations with visual therapists and over 30 participants to map accessibility barriers and develop an evaluation framework. The framework took shape in an interactive protocol allowing specialists to improve home environments, engaging academic researchers, healthcare foundations, and municipal stakeholders.",
+                
+                card8_title: "Designing for optimization",
+                card8_tags: "USABILITY TESTING — PUBLIC SECTOR DESIGN — QUANTITATIVE DATA ANALYSIS — INCLUSIVE DESIGN PRINCIPLES — ACCESSIBILITY AUDITING — PROTOTYPING",
+                card8_desc: "I conducted, as a consultant for the Public Administration, a user research session to evaluate usablity and accessibility of a portal aimed at citizens. Through tests with real users, including profiles with disabilities, I identified the main barriers in interacting with the platform. The research results were translated into actionable guidelines to simplify structure and support compliance with accessibility standards.",
+                
+                card9_title: "Designing for product",
+                card9_tags: "3D MODELING — 3D PRINTING — VIDEO MAKING — MARKET RESEARCH — 2D GRAPHICS — PRODUCT DESIGN",
+                card9_desc: "I developed a comprehensive product design initiative in collaboration with Barilla, integrating advanced prototyping techniques with market research. From initial concept generation through 3D modeling and 3D printing to video production and 2D graphic assets, the project explored innovative food design solutions and communicated them effectively through visual storytelling.",
+                
+                card10_title: "Designing for web",
+                card10_tags: "LOGO DESIGN — DATA VISUALIZATION — DATA ANALYSIS — SWOT ANALYSIS — USER RESEARCH — PROBLEM SOLVING",
+                card10_desc: "I conceptualized and developed Booked Time, a UX/UI design case study born during quarantine to explore the evolving forms of reading. Through rigorous data analysis and data visualization, I translated behavioral patterns and real user needs into strategic insights, leveraging careful SWOT analysis to shape a high-social-value digital solution.",
+                
+                footer_title: "I'm always open to meaningful opportunities.",
+                btn_email: "Contact me via email &rarr;",
+                btn_linkedin: "Connect on LinkedIn &rarr;"
+            },
+            it: {
+                nav_home: "Homepage",
+                nav_about: "Chi sono",
+                nav_works: "Progetti scelti",
+                nav_contacts: "Contatti",
+                hero_badge: "DISPONIBILE PER ASSUNZIONI",
+                hero_title_hi: "Ciao, sono",
+                hero_intro: "Sono un'<strong>umanista digitale</strong> che unisce design, ricerca e project management per realizzare esperienze centrate sulle persone.",
+                hero_subtext: "Esplora il mio percorso professionale, le mie competenze e i miei progetti per scoprire il mio approccio nel risolvere <strong>sfide complesse</strong>.",
+                hero_btn: "Scopri di più su di me &rarr;",
+                about_title: "Chi sono",
+                about_p1: "Ho un background nel <strong>design del prodotto e della comunicazione</strong>, da cui ho sviluppato un percorso professionale tra progettazione di esperienze, innovazione e gestione di progetti. Ho conseguito un <strong>Dottorato in Design</strong>, dedicato all’integrazione dell’<strong>accessibilità</strong> negli ecosistemi digitali, approfondendo strategie per rendere la progettazione più inclusiva e consapevole.",
+                about_p2: "Nel mio lavoro integro <strong>ricerca, strategia e progettazione</strong> per affrontare sfide complesse e trasformarle in soluzioni chiare e significative. Affianco alla visione creativa un approccio strutturato alla <strong>gestione e al coordinamento dei progetti</strong>, seguendone lo sviluppo dalle prime fasi alla realizzazione.",
+                about_p3: "Mi interessano contesti in cui poter contribuire alla <strong>progettazione e allo sviluppo di esperienze, progetti ed eventi</strong>, mettendo a valore competenze trasversali e una visione che combina <strong>design, persone e organizzazione</strong>.",
+                btn_cv: "Visualizza il mio curriculum &rarr;",
+                btn_pub: "Esplora le mie pubblicazioni &rarr;",
+                btn_end: "Leggi le mie referenze &rarr;",
+                works_title: "Progetti selezionati",
+                works_intro: "Benvenuti in una selezione dei miei lavori principali tra UX research, digital experience design e project coordination. Piuttosto che un elenco esaustivo, questi progetti mostrano come collego i bisogni degli utenti, contesti complessi di stakeholder e sistemi di design accessibili per ottenere risultati misurabili.",
+                works_subintro: "<strong>Clicca su qualsiasi progetto per esplorare il caso studio completo, le metodologie e i dettagli tecnici.</strong>",
+                
+                card1_title: "Progettare per conformare",
+                card1_tags: "RICERCA UTENTI — ARCHITETTURA SEMANTICA — CONFORMITÀ E AUDITING WCAG — VALIDAZIONE EMPIRICA — HTML SEMANTICO E CSS INCLUSIVO — COORDINAMENTO DI PROGETTO",
+                card1_desc: "Ho trasformato i complessi obblighi di accessibilità in un framework semplice e scalabile, pensato per aiutare i professionisti digitali a comprendere i requisiti normativi. Il progetto semplifica l’applicazione dei criteri nei processi aziendali, aiutando le organizzazioni a raggiungere la conformità in modo efficace. Attraverso la ricerca, ho progettato e validato un’esperienza digitale intuitiva, sviluppando un solido framework in HTML e CSS e testandone navigazione e interazione.",
+                
+                card2_title: "Progettare per divulgare",
+                card2_tags: "CURATELA DI EVENTI — STESURA CALL FOR PAPERS — OUTREACH SCIENTIFICO E DI STAKEHOLDER — GESTIONE PEER REVIEW — EDITORIAL DESIGN E PUBLISHING — EDITING ACCADEMICO",
+                card2_desc: "Ho ideato e coordinato un simposio accademico sull'intersezione tra intelligenza artificiale e lavoro creativo. Dalla call for papers alla gestione delle peer review fino all'editing finale, ho curato l'intero ciclo di vita dell'evento per pubblicare gli atti.",
+                
+                card3_title: "Progettare per educare",
+                card3_tags: "PROGETTAZIONE DELLA FORMAZIONE E MATERIALE DIDATTICO — EROGAZIONE E-LEARNING — PROGETTAZIONE DI QUESTIONARI E ANALISI DATI — AGGIORNAMENTO SETTORE PUBBLICO — COMUNICAZIONE INTERFUNZIONALE",
+                card3_desc: "Ho progettato e realizzato un programma di inclusione digitale per la Pubblica Amministrazione, formando 375 professionisti in 15 edizioni. Dalla creazione di materiali didattici in linea con le linee guida AgID fino all’analisi dei dati, ho seguito e coordinato tutte le fasi del progetto.",
+                
+                card4_title: "Progettare per facilitare",
+                card4_tags: "COORDINAMENTO PROGETTI RICERCA E SVILUPPO — RICERCA ETNOGRAFICA E SHADOWING — MOBILE UX E MAPPATURA DI USER JOURNEY — ARCHITETTURA DELL'INFORMAZIONE E WEB DESIGN — COORDINAMENTO MULTI-STAKEHOLDER",
+                card4_desc: "Ho guidato la ricerca con gli utenti e la progettazione partecipata per ridisegnare la mobilità urbana a Genova. Attraverso laboratori e attività sul campo con persone con disabilità, ho individuato le barriere nei trasporti per progettare una piattaforma web accessibile che aiuti gli utenti a muoversi sul territorio del Comune di Genova. Ho coordinato il lavoro tra ricerca e sviluppo, collaborando con oltre 7 stakeholder istituzionali.",
+                
+                card5_title: "Progettare per coinvolgere",
+                card5_tags: "COINVOLGIMENTO DELLA COMUNITÀ — GESTIONE DI PROGETTI SOCIALI — SCRITTURA DI BANDI E RACCOLTA FONDI — COORDINAMENTO DI VOLONTARI E EVENTI — SOCIAL MEDIA MANAGER — INNOVAZIONE SOCIALE",
+                card5_desc: "Partecipo come volontaria alle attività di una comunità locale del Levante Ligure impegnata nell’attivazione del territorio attraverso cultura, partecipazione giovanile e cittadinanza attiva. Insieme al gruppo e in collaborazione con i partner territoriali, co-progetto eventi culturali, trasformando le idee della comunità in progetti concreti per lo sviluppo locale.",
+                
+                card6_title: "Progettare per confrontare",
+                card6_tags: "CONSULENZA UX SANITARIA — REDESIGN STRATEGICO UI E UX — TEST A/B E VALIDAZIONE — OTTIMIZZAZIONE DEI PROCESSI — PACCHETTO ADOBE — FACILITAZIONE DI INTERVISTE",
+                card6_desc: "Ho ideato un concept di redesign e realizzato un test di confronto tra due versioni dell’interfaccia di un portale sanitario, in consulenza a un’azienda IT interessata ad ottimizzare i propri servizi. Ho coinvolto 30 partecipanti attraverso sondaggi e valutazioni qualitative, analizzando le preferenze e individuando interventi mirati per ottimizzare l’interfaccia.",
+                
+                card7_title: "Progettare per includere",
+                card7_tags: "COORDINAMENTO DI PARTNER E ASSOCIAZIONI — SERVICE DESIGN — LEADERSHIP DI WORKSHOP DI DESIGN PARTECIPATIVO — ALLINEAMENTO DI STAKEHOLDER MULTIDISCIPLINARI — PROGETTAZIONE DI ESPERIENZE DIGITALI",
+                card7_desc: "Ho coordinato la ricerca utente, la strategia di co-design e la prototipazione digitale per un’iniziativa di Living Lab finalizzata a migliorare l’autonomia domestica degli anziani ipovedenti o ciechi. Traducendo la ricerca sul campo in strumenti digitali, ho condotto simulazioni immersive con terapisti visivi e oltre 30 partecipanti per mappare le barriere e sviluppare un framework di valutazione. Il framework ha preso forma in un protocollo interattivo che ha permesso agli specialisti di migliorare gli ambienti domestici, coinvolgendo ricercatori, fondazioni e stakeholder comunali.",
+                
+                card8_title: "Progettare per ottimizzare",
+                card8_tags: "TEST DI USABILITÀ — DESIGN PER LA PUBBLica AMMINISTRAZIONE — ANALISI DEI DATI QUANTITATIVI — PRINCIPI DI DESIGN INCLUSIVO — AUDITING DI ACCESSIBILITÀ — PROTOTIPAZIONE",
+                card8_desc: "Ho condotto, in consulenza per la PA, una sessione di ricerca con gli utenti per valutare usabilità e accessibilità di un portale rivolto ai cittadini. Attraverso test con utenti reali, inclusi profili con disabilità, ho identificato le principali barriere nell’interazione con la piattaforma. I risultati della ricerca sono stati tradotti in linee guida operative per semplificare la struttura del portale e supportare la conformità.",
+                
+                card9_title: "Progettare per il prodotto",
+                card9_tags: "MODELLAZIONE 3D — STAMPA 3D — VIDEO MAKING — RICERCA DI MERCATO — GRAFICA 2D — PRODUCT DESIGN",
+                card9_desc: "Ho sviluppato un'iniziativa completa di product design in collaborazione con Barilla, integrando tecniche di prototipazione avanzata con la ricerca di mercato. Dalla generazione iniziale del concept attraverso la modellazione 3D e la stampa 3D fino alla produzione video e agli asset grafici 2D, il progetto ha esplorato soluzioni innovative di food design e le ha comunicate efficacemente attraverso il visual storytelling.",
+                
+                card10_title: "Progettare per il web",
+                card10_tags: "LOGO DESIGN — VISUALIZZAZIONE DATI — ANALISI DATI — SWOT ANALYSIS — RICERCA UTENTI — PROBLEM SOLVING",
+                card10_desc: "Ho ideato e sviluppato Booked Time, un caso studio di design UX/UI nato durante la quarantena per esplorare le forme in evoluzione della lettura. Attraverso una rigorosa analisi e visualizzazione dei dati, ho tradotto i modelli di comportamento e i reali bisogni degli utenti in insight strategici, sfruttando un'attenta analisi SWOT per dare forma a una soluzione digitale ad alto valore sociale.",
+                
+                footer_title: "Sono sempre aperta a opportunità significative.",
+                btn_email: "Contattami via email &rarr;",
+                btn_linkedin: "Connettiti su LinkedIn &rarr;"
+            }
+        };
+
+        // Script Scroll To Top
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+    <script src="translate.js"></script>
+</body>
+</html>

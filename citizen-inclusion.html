@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elena Polleri - Project 03</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Collega il tuo file CSS principale -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Stili specifici per la pagina progetto -->
+    <link rel="stylesheet" href="project-style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR CON SFONDO BIANCO/CHIARO -->
+    <header class="navbar project-navbar">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#home" data-translate="nav-home">Homepage</a></li>
+                <li><a href="index.html#about" data-translate="nav-about">About me</a></li>
+                <li><a href="index.html#works" class="active" data-translate="nav-works">Selected works</a></li>
+                <li><a href="index.html#contacts" data-translate="nav-contacts">Contacts</a></li>
+            </ul>
+
+            <div class="lang-switch">
+                <a href="#" class="lang-option active" data-lang="en">ENG</a>
+                <span class="lang-divider">|</span>
+                <a href="#" class="lang-option" data-lang="it">ITA</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- MAIN CONTENT - CASE STUDY -->
+    <main class="project-main">
+        <div class="project-container">
+
+            <!-- TORNA AI PROGETTI -->
+            <div class="back-to-works-wrapper">
+                <a href="index.html#works" class="back-to-works-btn" data-translate="back-works">
+                    &larr; Back to all projects
+                </a>
+            </div>
+
+            <!-- HEADER DEL PROGETTO -->
+            <header class="project-header">
+                <div class="section-title-wrapper">
+                    <div class="line"></div>
+                    <span class="project-number">03.</span>
+                </div>
+                <h1 class="project-title" data-translate="proj-title">Designing for education</h1>
+                <p class="project-subtitle">
+                    <em data-translate="proj-subtitle">Designing, delivering, and evaluating a national e-learning training program for Public Administration professionals under the PNRR framework.</em>
+                </p>
+
+                <div class="project-tags-container">
+                    <span class="card-tags" data-translate="proj-tags">
+                        TRAINING DESIGN & COURSE MATERIAL — E-LEARNING DELIVERY — SURVEY DESIGN & DATA ANALYSIS — IMPACT EVALUATION — PUBLIC SECTOR UPSKILLING — CROSS-FUNCTIONAL COMMUNICATION
+                    </span>
+                </div>
+            </header>
+
+            <!-- SEZIONE INTRODUTTIVA / CONTESTO -->
+            <section class="project-section">
+                <h2 data-translate="sec1-title">The Context & The Challenge</h2>
+                <p data-translate="sec1-p1">
+                    Within the National Recovery and Resilience Plan (PNRR) — specifically Measure 1.4.2 <strong>Citizen Inclusion</strong> — <strong>digital accessibility is a strategic lever</strong> to reduce the digital divide and modernize public services across Italy.
+                </p>
+                <p data-translate="sec1-p2">
+                    The core challenge was to design and deploy an effective <strong>12-hour training program addressed to 375 professionals</strong> from Ligurian Public Administrations, translating complex regulatory frameworks into concrete operational skills.
+                </p>
+            </section>
+
+            <!-- IMMAGINE 1 -->
+            <figure class="project-figure">
+                <img src="images/img-training-1.jpg" alt="Initial screen of the e-learning training platform" class="project-image-full" loading="lazy">
+                <figcaption data-translate="fig-1">Figure 1: Initial screen of the e-learning training platform.</figcaption>
+            </figure>
+
+            <!-- SEZIONE METODOLOGIA -->
+            <section class="project-section">
+                <h2 data-translate="sec2-title">Instructional Design & Delivery</h2>
+                <p data-translate="sec2-p1">
+                    I managed the <strong>end-to-end curriculum design and online delivery</strong> across 15 editions held between May and December 2024. The syllabus was structured into core didactic modules covering:
+                </p>
+                
+                <!-- ELENCO PUNTATO CONTENUTI -->
+                <ul data-translate="sec2-list" class="project-list" style="margin-left: 20px; margin-bottom: 16px; line-height: 1.6;">
+                    <li>Regulatory framework (Legge Stanca, European Accessibility Act, AgID guidelines)</li>
+                    <li>WCAG (Web Content Accessibility Guidelines)</li>
+                    <li>Accessibility statement</li>
+                    <li>Accessible PDF documents</li>
+                    <li>User experience and usability</li>
+                    <li>Front-end development and accessible web writing</li>
+                    <li>Accessibility evaluation tools</li>
+                </ul>
+
+                <p data-translate="sec2-p2">
+                    To maximize engagement, I developed <strong>customized learning materials</strong>, including detailed slide decks, project works, and practical guidelines designed to support everyday administrative workflows.
+                </p>
+            </section>
+
+            <!-- SEZIONE RISULTATI E VALUTAZIONE D'IMPATTO -->
+            <section class="project-section">
+                <h2 data-translate="sec3-title">Impact Evaluation & Data Analysis</h2>
+                <p data-translate="sec3-p1">
+                    To measure the training's efficacy, I handled the collection and quantitative/qualitative analysis of feedback data through anonymous closed-question surveys. Out of 375 participants, <strong>145 completed the final questionnaire (~39% response rate</strong>, statistically significant).
+                </p>
+                <p data-translate="sec3-p2">
+                    The data revealed a <strong>strong correlation between initial skill levels and perceived improvement</strong>, confirming how participants with limited background knowledge gained the greatest operative benefit.
+                </p>
+            </section>
+
+            <!-- SPAZIO IMMAGINE 2 (Grafico Sankey) -->
+            <figure class="project-figure">
+                <div class="sankey-legend" data-translate="sankey-legend" style="margin-bottom: 12px; font-size: 0.9rem; color: #555; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; background: #f8f9fa; padding: 10px; border-radius: 6px;">
+                    <span><strong>Column 1:</strong> Baseline knowledge</span>
+                    <span><strong>Column 2:</strong> Perceived skill growth</span>
+                    <span><strong>Column 3:</strong> Final satisfaction</span>
+                </div>
+
+                <div class="flourish-embed flourish-sankey" data-src="visualisation/28228221"><script src="https://public.flourish.studio/resources/embed.js" defer></script><noscript><img src="https://public.flourish.studio/visualisation/28228221/thumbnail" width="100%" alt="sankey visualization" /></noscript></div>
+                
+                <figcaption data-translate="fig-2">Figure 2: Sankey diagram mapping baseline knowledge against perceived skill growth and final satisfaction.</figcaption>
+            </figure>
+
+            <!-- NAVIGAZIONE -->
+            <nav class="project-pagination" aria-label="Navigazione tra i progetti">
+                <a href="alterego.html" class="pagination-link back-to-grid" data-translate="nav-prev-project">
+                    &larr; Previous project
+                </a>
+                <a href="mobiquity.html" class="pagination-link next-project" data-translate="nav-next-project">
+                    Next project &rarr;
+                </a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <h2 class="footer-title" data-translate="footer-title">I'm always open to meaningful opportunities.</h2>
+            <div class="footer-actions">
+                <a href="mailto:elenapolleri@gmail.com" class="footer-btn" data-translate="footer-email">Contact me via email &rarr;</a>
+                <a href="https://www.linkedin.com/in/elenapolleri/" target="_blank" rel="noopener noreferrer" class="footer-btn" data-translate="footer-linkedin">Connect on LinkedIn &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTTONE BACK TO TOP -->
+    <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Torna su">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </a>
+
+    <!-- SCRIPT GESTIONE SCROLL-TO-TOP -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollBtn = document.getElementById('scrollTopBtn');
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+
+        document.getElementById('scrollTopBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <!-- SCRIPT -->
+    <script>
+        const translations = {
+            en: {
+                "nav-home": "Homepage", "nav-about": "About me", "nav-works": "Selected works", "nav-contacts": "Contacts",
+                "back-works": "&larr; Back to all projects",
+                "proj-title": "Designing for education",
+                "proj-subtitle": "Designing, delivering, and evaluating a national e-learning training program for Public Administration professionals under the PNRR framework.",
+                "proj-tags": "TRAINING DESIGN & COURSE MATERIAL — E-LEARNING DELIVERY — SURVEY DESIGN & DATA ANALYSIS — IMPACT EVALUATION — PUBLIC SECTOR UPSKILLING — CROSS-FUNCTIONAL COMMUNICATION",
+                "sec1-title": "The Context & The Challenge",
+                "sec1-p1": "Within the National Recovery and Resilience Plan (PNRR) — specifically Measure 1.4.2 <strong>Citizen Inclusion</strong> — <strong>digital accessibility is a strategic lever</strong> to reduce the digital divide and modernize public services across Italy.",
+                "sec1-p2": "The core challenge was to design and deploy an effective <strong>12-hour training program addressed to 375 professionals</strong> from Ligurian Public Administrations, translating complex regulatory frameworks into concrete operational skills.",
+                "fig-1": "Initial screen of the e-learning training platform.",
+                "sec2-title": "Instructional Design & Delivery",
+                "sec2-p1": "I managed the <strong>end-to-end curriculum design and online delivery</strong> across 15 editions held between May and December 2024. The syllabus was structured into core didactic modules covering:",
+                "sec2-list": "<li>Regulatory framework (Legge Stanca, European Accessibility Act, AgID guidelines)</li><li>WCAG (Web Content Accessibility Guidelines)</li><li>Accessibility statement</li><li>Accessible PDF documents</li><li>User experience and usability</li><li>Front-end development and accessible web writing</li><li>Accessibility evaluation tools</li>",
+                "sec2-p2": "To maximize engagement, I developed <strong>customized learning materials</strong>, including detailed slide decks, project works, and practical guidelines designed to support everyday administrative workflows.",
+                "sec3-title": "Impact Evaluation & Data Analysis",
+                "sec3-p1": "To measure the training's efficacy, I handled the collection and quantitative/qualitative analysis of feedback data through anonymous closed-question surveys. Out of 375 participants, <strong>145 completed the final questionnaire (~39% response rate</strong>, statistically significant).",
+                "sec3-p2": "The data revealed a <strong>strong correlation between initial skill levels and perceived improvement</strong>, confirming how participants with limited background knowledge gained the greatest operative benefit.",
+                "sankey-legend": "<span><strong>Column 1:</strong> Baseline knowledge</span><span><strong>Column 2:</strong> Perceived skill growth</span><span><strong>Column 3:</strong> Final satisfaction</span>",
+                "fig-2": "Sankey diagram mapping baseline knowledge against perceived skill growth and final satisfaction.",
+                "nav-prev-project": "&larr; Previous project",
+                "nav-next-project": "Next project &rarr;",
+                "footer-title": "I'm always open to meaningful opportunities.",
+                "footer-email": "Contact me via email &rarr;",
+                "footer-linkedin": "Connect on LinkedIn &rarr;"
+            },
+            it: {
+                "nav-home": "Homepage", "nav-about": "Chi sono", "nav-works": "Progetti scelti", "nav-contacts": "Contatti",
+                "back-works": "&larr; Torna a tutti i progetti",
+                "proj-title": "Progettare per educare",
+                "proj-subtitle": "Progettazione, erogazione e valutazione d'impatto di un percorso formativo a distanza per i professionisti della Pubblica Amministrazione nell'ambito del PNRR.",
+                "proj-tags": "PROGETTAZIONE DELLA FORMAZIONE E MATERIALE DIDATTICO — EROGAZIONE E-LEARNING — PROGETTAZIONE DI QUESTIONARI E ANALISI DATI — VALUTAZIONE D'IMPATTO — AGGIORNAMENTO SETTORE PUBBLICO — COMUNICAZIONE INTERFUNZIONALE",
+                "sec1-title": "Il Contesto e La Sfida",
+                "sec1-p1": "All'interno del Piano Nazionale di Ripresa e Resilienza (PNRR) — nello specifico la Misura 1.4.2 <strong>Citizen Inclusion</strong> — <strong>l'accessibilità digitale rappresenta una leva strategica</strong> per ridurre il divario digitale e migliorare i servizi pubblici.",
+                "sec1-p2": "La sfida principale è stata progettare ed erogare un <strong>percorso formativo di 12 ore rivolto a 375 professionisti</strong> delle PA liguri, traducendo quadri normativi complessi in competenze operative concrete.",
+                "fig-1": "Schermata iniziale della piattaforma di formazione online.",
+                "sec2-title": "Progettazione Didattica e Erogazione",
+                "sec2-p1": "Ho curato la <strong>progettazione e l'erogazione a distanza</strong> del corso in 15 edizioni tra maggio e dicembre 2024. Il programma è stato suddiviso in moduli didattici incentrati su:",
+                "sec2-list": "<li>Normativa di riferimento (Legge Stanca, European Accessibility Act, linee guida AgID)</li><li>WCAG (Web Content Accessibility Guidelines)</li><li>Dichiarazione di accessibilità</li><li>Documenti PDF accessibili</li><li>User experience e usabilità</li><li>Sviluppo front-end e web writing accessibile</li><li>Strumenti di valutazione dell'accessibilità</li>",
+                "sec2-p2": "Per massimizzare l'efficacia dell'apprendimento, ho predisposto <strong>materiali didattici mirati</strong>, tra cui slide di dettaglio, project work e guide operative a supporto dell'attività lavorativa quotidiana.",
+                "sec3-title": "Valutazione d'Impatto e Analisi Dati",
+                "sec3-p1": "Per misurare concretamente i risultati del corso, ho gestito la raccolta e l'analisi quantitativa/qualitativa dei dati tramite questionari anonimi. Hanno risposto <strong>145 professionisti su 375 (~39% di tasso di risposta</strong>, statisticamente significativo).",
+                "sec3-p2": "L'analisi dei dati ha evidenziato una <strong>forte correlazione tra le competenze iniziali e il miglioramento percepito</strong>, confermando l'elevato impatto del percorso soprattutto sui partecipanti con un livello di partenza base.",
+                "sankey-legend": "<span><strong>Colonna 1:</strong> Competenza iniziale</span><span><strong>Colonna 2:</strong> Miglioramento percepito</span><span><strong>Colonna 3:</strong> Grado di soddisfazione</span>",
+                "fig-2": "Diagramma di Sankey per la mappatura tra competenze iniziali, miglioramento percepito e grado di soddisfazione.",
+                "nav-prev-project": "&larr; Progetto precedente",
+                "nav-next-project": "Progetto successivo &rarr;",
+                "footer-title": "Sono sempre aperta a nuove opportunità stimolanti.",
+                "footer-email": "Contattami via email &rarr;",
+                "footer-linkedin": "Collegati su LinkedIn &rarr;"
+            }
+        };
+    </script>
+<script src="translate.js"></script>
+</body>
+</html>
