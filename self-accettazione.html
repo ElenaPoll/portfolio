@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Elena Polleri - Project 06 </title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Collega il tuo file CSS principale -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Stili specifici per la pagina progetto -->
+    <link rel="stylesheet" href="project-style.css">
+
+    <!-- Chart.js CDN per i grafici a ciambella -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Stili specifici per le card dei grafici e il carosello allineato al testo */
+        .carousel-wrapper {
+            position: relative;
+            max-width: 800px;
+            margin: 30px auto 40px auto;
+            overflow: hidden;
+        }
+        .carousel-track-container {
+            overflow: hidden;
+            width: 100%;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 0 10px;
+        }
+        .chart-card {
+            background: #fff;
+            border: 1px solid rgba(143, 160, 137, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 0 auto;
+        }
+        /* Misura impostata a 380px come richiesto */
+        .chart-canvas-container {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        /* Stile per la didascalia sotto il grafico */
+        .chart-caption {
+            font-family: 'Fira Sans Condensed', sans-serif;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-top: 18px;
+            line-height: 1.4;
+        }
+
+        /* Controlli carosello con lo stile squadrato/arrotondato scuro */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(50, 50, 50, 0.85);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .carousel-btn:hover {
+            background: rgba(30, 30, 30, 0.95);
+        }
+        .carousel-prev {
+            left: 10px;
+        }
+        .carousel-next {
+            right: 10px;
+        }
+        
+        /* Stili per i pallini (indicatori) del carosello */
+        .carousel-dots { display: flex; justify-content: center; gap: 8px; margin: 15px 0 25px 0; }
+        .carousel-dot { width: 10px; height: 10px; border-radius: 50%; background-color: #ccc; border: none; cursor: pointer; transition: background-color 0.3s, transform 0.3s; padding: 0; }
+        .carousel-dot.active { background-color: #111; transform: scale(1.2); }
+
+        .ab-test-intro-note {
+            background: #fcfbfa;
+            border-left: 4px solid #85987d;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        /* Correzione dello spessore del testo nella nota di lettura */
+        .charts-intro-wrapper p {
+            font-weight: 300; 
+        }
+
+        /* Stili per le tre immagini affiancate senza box e in formato verticale 2:3 */
+        .triple-images-container {
+            margin: 30px auto;
+            max-width: 800px;
+        }
+        .triple-images-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .triple-images-grid img {
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            display: block;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        @media (max-width: 768px) {
+            .triple-images-grid {
+                grid-template-columns: 1fr;
+            }
+            .triple-images-grid img {
+                aspect-ratio: auto;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR CON SFONDO BIANCO/CHIARO -->
+    <header class="navbar project-navbar">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#home" data-translate="nav-home">Homepage</a></li>
+                <li><a href="index.html#about" data-translate="nav-about">About me</a></li>
+                <li><a href="index.html#works" class="active" data-translate="nav-works">Selected works</a></li>
+                <li><a href="index.html#contacts" data-translate="nav-contacts">Contacts</a></li>
+            </ul>
+
+            <div class="lang-switch">
+                <a href="#" class="lang-option active" data-lang="en">ENG</a>
+                <span class="lang-divider">|</span>
+                <a href="#" class="lang-option" data-lang="it">ITA</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- MAIN CONTENT - CASE STUDY -->
+    <main class="project-main">
+        <div class="project-container">
+
+            <!-- TORNA AI PROGETTI -->
+            <div class="back-to-works-wrapper">
+                <a href="index.html#works" class="back-to-works-btn" data-translate="back-works">
+                    &larr; Back to all projects
+                </a>
+            </div>
+
+            <!-- HEADER DEL PROGETTO -->
+            <header class="project-header">
+                <div class="section-title-wrapper">
+                    <div class="line"></div>
+                    <span class="project-number">06.</span>
+                </div>
+                <h1 class="project-title" data-translate="proj-title">Designing for comparison </h1>
+                <p class="project-subtitle">
+                    <em data-translate="proj-subtitle">Transforming healthcare digital services through strategic UX consultancy, rigorous research, advanced requirement engineering, and data-driven redesign validation.</em>
+                </p>
+
+                <div class="project-tags-container">
+                    <span class="card-tags" data-translate="proj-tags">
+                        HEALTHCARE UX CONSULTANCY — STRATEGIC UI & UX REDESIGN — A/B TESTING & VALIDATION — PROCESS OPTIMIZATION — ADOBE SUITE — INTERVIEW FACILITATION
+                    </span>
+                </div>
+            </header>
+
+            <!-- SEZIONE 1: CONTESTO E ANALISI DATI -->
+            <section class="project-section">
+                <h2 data-translate="sec1-title">Context & Quantitative Data Analysis</h2>
+                <p data-translate="sec1-p1">
+                    Commissioned via high-level strategic consultancy for a primary IT solutions leader operating within the Genoa technology hub on behalf of a major private healthcare provider, the <strong>Self Accettazione</strong> service was engineered to streamline patient check-in procedures and mitigate queue congestion. Within this platform, the <strong>document upload and digital payment processing</strong> represent the two core operational steps governing the entire user interaction. To evaluate real-world performance, I applied quantitative <strong>data analysis methodologies</strong> to examine an extensive dataset of <strong>172,130 interactions</strong> recorded between July 2021 and November 2023.
+                </p>
+                <p data-translate="sec1-p2">
+                    Through demographic segmentation, I mapped active users ranging from infants (managed via legal guardians or caregivers) up to 104 years of age, identifying an engagement peak centered around the <strong>54-year mark</strong>, with core activity concentrated between <strong>46 and 65 years</strong>. Critically, my metric evaluation exposed severe business leakage directly impacting the two main interaction steps: only <strong>8.75%</strong> of users successfully uploaded required documentation, and a mere <strong>4.42%</strong> completed digital payments. This highlighted my capacity to unearth systemic friction points using empirical data as a foundation for strategic intervention.
+                </p>
+            </section>
+
+            <!-- SEZIONE 2: L'INTERVISTA AL PROGRAMMATORE -->
+            <section class="project-section">
+                <h2 data-translate="sec2-title">Technical Insights: Qualitative Developer Interview</h2>
+                <p data-translate="sec2-p1">
+                    In my capacity as a strategic consultant, to investigate infrastructural bottlenecks and requirement ambiguity, I designed and conducted a <strong>semi-structured qualitative interview</strong> with the developer responsible for the legacy build. Leveraging my expertise in qualitative research methodologies, I directed the discussion toward analyzing development workflows, technical constraints, and organizational misalignments.
+                </p>
+                <p data-translate="sec2-p2">
+                    The interview revealed how severe time constraints, informal textual briefs lacking clear interface guidelines, and a general lack of digital standardization compromised baseline product standards. By extracting these insights, I demonstrated my ability to bridge technical execution and business strategy, illustrating how the absence of upstream strategic consultancy incurs substantial long-term technical debt.
+                </p>
+            </section>
+
+            <!-- SEZIONE 3: ANALISI EURISTICA E REDESIGN -->
+            <section class="project-section">
+                <h2 data-translate="sec3-title">Heuristic Evaluation & Redesign Process</h2>
+                <p data-translate="sec3-p1">
+                    In collaboration with project stakeholders, I conducted a comprehensive <strong>expert qualitative evaluation</strong> based on established usability standards. This critical audit uncovered severe interface vulnerabilities and the absence of essential safeguards, such as confirmation receipts or clear instructions for facility access. My analysis accurately captured the root causes of user anxiety during testing, evidenced by symptomatic expressions such as <em>'Am I done?'</em> or <em>'I don't know what to do.'</em>
+                </p>
+                <p data-translate="sec3-p2">
+                    Deploying my advanced competencies in <strong>strategic consultancy, user experience design, information architecture, and UI prototyping (Adobe Suite)</strong>, I spearheaded a radical and comprehensive <strong>redesign process</strong>. I restructured the entire user journey to maximize clarity, transparency, and emotional reassurance, while strategically isolating unmodifiable external constraints (such as external payment gateway limitations).
+                </p>
+            </section>
+
+            <!-- SEZIONE 4: A/B TESTING E RISULTATI -->
+            <section class="project-section">
+                <h2 data-translate="sec4-title">A/B Testing & User Validation</h2>
+                <p data-translate="sec4-p1">
+                    To empirically validate the outcomes of my strategic consultancy and redesign, I planned, facilitated, and executed a <strong>rigorous comparative A/B test</strong> with 30 diverse participants, meticulously balanced across gender and age cohorts (20–40, 40–50, and 50–60 years). To ensure absolute scientific validity, I alternated interface presentation order to eliminate learning-curve bias and video-recorded sessions for granular behavioral analysis.
+                </p>
+                <p data-translate="sec4-p2">
+                    Following testing, I administered a comprehensive 7-dimensional satisfaction survey. My structured evaluation framework measured emotional engagement, findability, content accessibility, service efficiency, reliability, and learnability, translating qualitative user feedback into actionable, concrete metrics.
+                </p>
+                
+                <!-- TRE IMMAGINI AFFIANCATE SENZA BOX (FORMATO 2:3 VERTICALE) -->
+                <figure class="triple-images-container">
+                    <div class="triple-images-grid">
+                        <img src="images/self-1.JPG" alt="Sessione di A/B testing fase 1">
+                        <img src="images/self-2.JPG" alt="Sessione di A/B testing fase 2">
+                        <img src="images/self-3.JPG" alt="Sessione di A/B testing fase 3">
+                    </div>
+                    <figcaption data-translate="fig-ab-photo" style="margin-top: 15px; text-align: center; font-size: 0.9rem; color: #666; font-style: italic;">
+                        Moments captured during comparative A/B testing sessions across diverse participant age groups.
+                    </figcaption>
+                </figure>
+            </section>
+
+            <!-- TESTO INTRODUTTIVO DEL CAROSELLO -->
+            <div class="image-intro-text" style="margin-top: 45px; margin-bottom: 15px;">
+                <p data-translate="carousel-intro-title" style="font-weight: 600; font-size: 1.15rem; color: #5a6e54; margin-bottom: 6px;">Quantitative evaluation of the redesign</p>
+                <p data-translate="carousel-intro-desc" style="font-size: 0.95rem; line-height: 1.5; color: #555;">Analysis of user feedback collected across the seven dimensions of the comparative test, comparing the legacy interface against my strategic redesign.</p>
+            </div>
+
+            <!-- NOTA DI LETTURA -->
+            <div class="charts-intro-wrapper" style="margin-top: 50px; margin-bottom: 30px; padding: 24px; background: rgba(143, 160, 137, 0.08); border-left: 3px solid #8fa089; border-radius: 0 8px 8px 0;">
+                <h3 style="margin-bottom: 10px; font-size: 1.15rem; color: #5a6e54;" data-translate="ab-intro-title">Reading Note</h3>
+                <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: #444;" data-translate="ab-intro-note">
+                    In the following charts, <strong>Interface 1</strong> refers to the original legacy version of the service, while <strong>Interface 2</strong> represents my proposed redesign.
+                </p>
+            </div>
+
+            <!-- CAROSELLO DEI GRAFICI A CIAMBELLA (A/B TEST) -->
+            <div class="carousel-wrapper" id="chartCarousel">
+                <button class="carousel-btn carousel-prev" id="prev-btn">&#10094;</button>
+                <button class="carousel-btn carousel-next" id="next-btn">&#10095;</button>
+
+                <div class="carousel-track-container">
+                    <div class="carousel-track">
+                        
+                        <!-- SLIDE 1 -->
+                        <div class="carousel-slide">
+                            <div class="chart-card">
+                                <div class="chart-canvas-container">
+                                    <canvas id="chart1"></canvas>
+                                </div>
+                                <div class="chart-caption" data-translate="q-chart-1">EMOTIONAL ENGAGEMENT: WHICH INTERFACE PROVIDED GREATER CONFIDENCE IN FOLLOWING THE CORRECT PROCEDURE?</div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 2 -->
+                        <div class="carousel-slide">
+                            <div class="chart-card">
+                                <div class="chart-canvas-container">
+                                    <canvas id="chart2"></canvas>
+                                </div>
+                                <div class="chart-caption" data-translate="q-chart-2">INFORMATION FINDABILITY: IN WHICH INTERFACE WAS IT EASIER TO RETRIEVE INFORMATION REGARDING YOUR VISIT?</div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 3 -->
+                        <div class="carousel-slide">
+                            <div class="chart-card">
+                                <div class="chart-canvas-container">
+                                    <canvas id="chart3"></canvas>
+                                </div>
+                                <div class="chart-caption" data-translate="q-chart-3">CONTENT ACCESSIBILITY: WHICH INTERFACE FEATURES A MORE ACCESSIBLE DESIGN?</div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 4 -->
+                        <div class="carousel-slide">
+                            <div class="chart-card">
+                                <div class="chart-canvas-container">
+                                    <canvas id="chart4"></canvas>
+                                </div>
+                                <div class="chart-caption" data-translate="q-chart-4">SERVICE EFFICIENCY: WHICH INTERFACE ENABLED THE COMPLETION OF THE INTERACTION WITHOUT ENCOUNTERING OBSTACLES OR ERRORS?</div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 5 -->
+                        <div class="carousel-slide">
+                            <div class="chart-card">
+                                <div class="chart-canvas-container">
+                                    <canvas id="chart5"></canvas>
+                                </div>
+                                <div class="chart-caption" data-translate="q-chart-5">SERVICE RELIABILITY: WHICH INTERFACE INSTILLED GREATER CONFIDENCE WHEN UPLOADING SENSITIVE PERSONAL DATA?</div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 6 -->
+                        <div class="carousel-slide">
+                            <div class="chart-card">
+                                <div class="chart-canvas-container">
+                                    <canvas id="chart6"></canvas>
+                                </div>
+                                <div class="chart-caption" data-translate="q-chart-6">EASE OF RECALL: WHICH INTERFACE SIMPLIFIES LOCATING RELEVANT INFORMATION ON THE DAY OF THE APPOINTMENT?</div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 7 -->
+                        <div class="carousel-slide">
+                            <div class="chart-card">
+                                <div class="chart-canvas-container">
+                                    <canvas id="chart7"></canvas>
+                                </div>
+                                <div class="chart-caption" data-translate="q-chart-7">EASE OF LEARNING: WHICH INTERFACE PROVED MORE INTUITIVE TO NAVIGATE?</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- INDICATORI PALLINI -->
+                <div class="carousel-dots" id="carouselIndicators"></div>
+            </div>
+
+            <!-- SEZIONE 5: IMPATTO E CONCLUSIONI -->
+            <section class="project-section">
+                <h2 data-translate="sec5-title">Impact & Strategic Value</h2>
+                <p data-translate="sec5-p1">
+                    My research findings demonstrated an overwhelming user preference for the redesigned interface, validating how my user-centered design methodologies and strategic consultancy successfully eliminate ambiguity, reduce task abandonment, and restore user trust, specifically streamlining the critical steps of document uploading and payment processing.
+                </p>
+                <p data-translate="sec5-p2">
+                    Acknowledging the concrete business value of my strategic counsel and design excellence, corporate partners integrated multidisciplinary frameworks into their core development pipelines. This project serves as a testament to my core professional competencies: uniting <strong>strategic consultancy, deep analytical research, structured redesign execution, and cross-functional facilitation</strong> to drive measurable business growth and optimized product development.
+                </p>
+            </section>
+
+            <!-- NAVIGAZIONE TRA I PROGETTI -->
+            <nav class="project-pagination" aria-label="Navigazione tra i progetti">
+                <a href="nassa.html" class="pagination-link back-to-grid" data-translate="nav-prev-project">
+                    &larr; Previous project
+                </a>
+                <a href="adagio.html" class="pagination-link next-project" data-translate="nav-next-project">
+                    Next project &rarr;
+                </a>
+            </nav>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <h2 class="footer-title" data-translate="footer-title">
+                I'm always open to meaningful opportunities.
+            </h2>
+
+            <div class="footer-actions">
+                <a href="mailto:elenapolleri@gmail.com" class="footer-btn" data-translate="footer-email">
+                    Contact me via email &rarr;
+                </a>
+                <a href="https://www.linkedin.com/in/elenapolleri/" target="_blank" rel="noopener noreferrer" class="footer-btn" data-translate="footer-linkedin">
+                    Connect on LinkedIn &rarr;
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTTONE BACK TO TOP -->
+    <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Torna su">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </a>
+
+    <!-- SCRIPT INIZIALIZZAZIONE CHART.JS, CAROSELLO E GESTIONE LINGUE -->
+    <script>
+        const palette = {
+            darkGreen: '#8fa089', // Sage Green
+            lightGreen: '#b4c4ae', // Mint Pastel
+            taupe: '#d9cdbe', // Beige Warm
+            cream: '#e8e2d5' // Ecru Soft
+        };
+
+        const chartConfigs = [
+            {
+                id: 'chart1',
+                questionKey: 'q-chart-1',
+                labelsKey: ['lbl-if1', 'lbl-if2', 'lbl-both'],
+                data: [3, 26, 1],
+                colors: [palette.lightGreen, palette.darkGreen, palette.cream]
+            },
+            {
+                id: 'chart2',
+                questionKey: 'q-chart-2',
+                labelsKey: ['lbl-if1', 'lbl-if2', 'lbl-both'],
+                data: [3, 16, 11],
+                colors: [palette.lightGreen, palette.darkGreen, palette.taupe]
+            },
+            {
+                id: 'chart3',
+                questionKey: 'q-chart-3',
+                labelsKey: ['lbl-if1', 'lbl-if2', 'lbl-both'],
+                data: [3, 20, 6],
+                colors: [palette.lightGreen, palette.darkGreen, palette.cream]
+            },
+            {
+                id: 'chart4',
+                questionKey: 'q-chart-4',
+                labelsKey: ['lbl-none', 'lbl-if1', 'lbl-if2', 'lbl-both'],
+                data: [3, 1, 15, 11],
+                colors: [palette.cream, palette.lightGreen, palette.darkGreen, palette.taupe]
+            },
+            {
+                id: 'chart5',
+                questionKey: 'q-chart-5',
+                labelsKey: ['lbl-none', 'lbl-if2', 'lbl-both'],
+                data: [1, 11, 17],
+                colors: [palette.cream, palette.darkGreen, palette.taupe]
+            },
+            {
+                id: 'chart6',
+                questionKey: 'q-chart-6',
+                labelsKey: ['lbl-if1', 'lbl-if2', 'lbl-both'],
+                data: [2, 17, 10],
+                colors: [palette.lightGreen, palette.darkGreen, palette.taupe]
+            },
+            {
+                id: 'chart7',
+                questionKey: 'q-chart-7',
+                labelsKey: ['lbl-if1', 'lbl-if2', 'lbl-both'],
+                data: [4, 21, 3],
+                colors: [palette.lightGreen, palette.darkGreen, palette.cream]
+            }
+        ];
+
+        const instances = {};
+
+        function getLocalizedLabels(labelsKey) {
+            const lang = document.querySelector('.lang-option.active').getAttribute('data-lang');
+            return labelsKey.map(key => translations[lang][key] || key);
+        }
+
+        function renderCharts() {
+            const lang = document.querySelector('.lang-option.active').getAttribute('data-lang');
+
+            chartConfigs.forEach(cfg => {
+                const captionElement = document.querySelector(`#${cfg.id}`).closest('.chart-card').querySelector('.chart-caption');
+                if (captionElement && translations[lang][cfg.questionKey]) {
+                    captionElement.textContent = translations[lang][cfg.questionKey];
+                }
+
+                const ctx = document.getElementById(cfg.id).getContext('2d');
+                if (instances[cfg.id]) {
+                    instances[cfg.id].destroy();
+                }
+                instances[cfg.id] = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: getLocalizedLabels(cfg.labelsKey),
+                        datasets: [{
+                            data: cfg.data,
+                            backgroundColor: cfg.colors,
+                            borderWidth: 2,
+                            borderColor: '#ffffff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        cutout: '65%', // Spessore del cerchio centrale impostato al 65%
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        family: "'Fira Sans Condensed', sans-serif",
+                                        size: 11
+                                    },
+                                    color: '#555',
+                                    boxWidth: 12,
+                                    padding: 12
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        }
+
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const track = document.querySelector('.carousel-track');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const indicatorsContainer = document.getElementById('carouselIndicators');
+        let slideInterval;
+
+        function setupIndicators() {
+            indicatorsContainer.innerHTML = '';
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                if (index === currentIndex) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    goToSlide(index);
+                    resetTimer();
+                });
+                indicatorsContainer.appendChild(dot);
+            });
+        }
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            document.querySelectorAll('.carousel-dot').forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentIndex);
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+
+        function startTimer() {
+            slideInterval = setInterval(nextSlide, 6000);
+        }
+
+        function resetTimer() {
+            clearInterval(slideInterval);
+            startTimer();
+        }
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetTimer();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetTimer();
+        });
+
+        const carouselWrapper = document.getElementById('chartCarousel');
+        carouselWrapper.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        carouselWrapper.addEventListener('mouseleave', () => startTimer());
+
+        // Gestione comparsa/scomparsa del bottone scroll-to-top allo scroll
+        window.addEventListener('scroll', function() {
+            const scrollBtn = document.getElementById('scrollTopBtn');
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+
+        // Script per gestire il click del bottone Scroll to Top con animazione fluida
+        document.getElementById('scrollTopBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCharts();
+            setupIndicators();
+            startTimer();
+        });
+
+        // Intercetta il cambio lingua per aggiornare anche le legende dei grafici al volo
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', () => {
+                setTimeout(renderCharts, 50);
+            });
+        });
+
+        const translations = {
+            en: {
+                "nav-home": "Homepage",
+                "nav-about": "About me",
+                "nav-works": "Selected works",
+                "nav-contacts": "Contacts",
+                "back-works": "&larr; Back to all projects",
+                "proj-title" : "Designing for comparison",
+                "proj-subtitle": "Transforming healthcare digital services through strategic UX consultancy, rigorous research, advanced requirement engineering, and data-driven redesign validation.",
+                "proj-tags": "HEALTHCARE UX CONSULTANCY — STRATEGIC UI & UX REDESIGN — A/B TESTING & VALIDATION — PROCESS OPTIMIZATION — ADOBE SUITE — INTERVIEW FACILITATION",
+                "sec1-title": "Context & Quantitative Data Analysis",
+                "sec1-p1": "Commissioned via high-level strategic consultancy for a primary IT solutions leader operating within the Genoa technology hub on behalf of a major private healthcare provider, the <strong>Self Accettazione</strong> service was engineered to streamline patient check-in procedures and mitigate queue congestion. Within this platform, the <strong>document upload and digital payment processing</strong> represent the two core operational steps governing the entire user interaction. To evaluate real-world performance, I applied quantitative <strong>data analysis methodologies</strong> to examine an extensive dataset of <strong>172,130 interactions</strong> recorded between July 2021 and November 2023.",
+                "sec1-p2": "Through demographic segmentation, I mapped active users ranging from infants (managed via legal guardians or caregivers) up to 104 years of age, identifying an engagement peak centered around the <strong>54-year mark</strong>, with core activity concentrated between <strong>46 and 65 years</strong>. Critically, my metric evaluation exposed severe business leakage directly impacting the two main interaction steps: only <strong>8.75%</strong> of users successfully uploaded required documentation, and a mere <strong>4.42%</strong> completed digital payments. This highlighted my capacity to unearth systemic friction points using empirical data as a foundation for strategic intervention.",
+                "sec2-title": "Technical Insights: Qualitative Developer Interview",
+                "sec2-p1": "In my capacity as a strategic consultant, to investigate infrastructural bottlenecks and requirement ambiguity, I designed and conducted a <strong>semi-structured qualitative interview</strong> with the developer responsible for the legacy build. Leveraging my expertise in qualitative research methodologies, I directed the discussion toward analyzing development workflows, technical constraints, and organizational misalignments.",
+                "sec2-p2": "The interview revealed how severe time constraints, informal textual briefs lacking clear interface guidelines, and a general lack of digital standardization compromised baseline product standards. By extracting these insights, I demonstrated my ability to bridge technical execution and business strategy, illustrating how the absence of upstream strategic consultancy incurs substantial long-term technical debt.",
+                "sec3-title": "Heuristic Evaluation & Redesign Process",
+                "sec3-p1": "In collaboration with project stakeholders, I conducted a comprehensive <strong>expert qualitative evaluation</strong> based on established usability standards. This critical audit uncovered severe interface vulnerabilities and the absence of essential safeguards, such as confirmation receipts or clear instructions for facility access. My analysis accurately captured the root causes of user anxiety during testing, evidenced by symptomatic expressions such as <em>'Am I done?'</em> or <em>'I don't know what to do.'</em>",
+                "sec3-p2": "Deploying my advanced competencies in <strong>strategic consultancy, user experience design, information architecture, and UI prototyping (Adobe Suite)</strong>, I spearheaded a radical and comprehensive <strong>redesign process</strong>. I restructured the entire user journey to maximize clarity, transparency, and emotional reassurance, while strategically isolating unmodifiable external constraints (such as external payment gateway limitations).",
+                "sec4-title": "A/B Testing & User Validation",
+                "sec4-p1": "To empirically validate the outcomes of my strategic consultancy and redesign, I planned, facilitated, and executed a <strong>rigorous comparative A/B test</strong> with 30 diverse participants, meticulously balanced across gender and age cohorts (20–40, 40–50, and 50–60 years). To ensure absolute scientific validity, I alternated interface presentation order to eliminate learning-curve bias and video-recorded sessions for granular behavioral analysis.",
+                "sec4-p2": "Following testing, I administered a comprehensive 7-dimensional satisfaction survey. My structured evaluation framework measured emotional engagement, findability, content accessibility, service efficiency, reliability, and learnability, translating qualitative user feedback into actionable, concrete metrics.",
+                
+                "fig-ab-photo": "Moments captured during comparative A/B testing sessions across diverse participant age groups.",
+                "ab-intro-title": "Reading Note",
+                "ab-intro-note": "In the following charts, <strong>Interface 1</strong> refers to the original legacy version of the service, while <strong>Interface 2</strong> represents my proposed redesign.",
+
+                "carousel-intro-title": "Quantitative evaluation of the redesign",
+                "carousel-intro-desc": "Analysis of user feedback collected across the seven dimensions of the comparative test, comparing the legacy interface against my strategic redesign.",
+
+                "q-chart-1": "Emotional engagement: Which interface provided greater confidence in following the correct procedure?",
+                "q-chart-2": "Information findability: In which interface was it easier to retrieve information regarding your visit?",
+                "q-chart-3": "Content accessibility: Which interface features a more accessible design?",
+                "q-chart-4": "Service efficiency: Which interface enabled the completion of the interaction without encountering obstacles or errors?",
+                "q-chart-5": "Service reliability: Which interface instilled greater confidence when uploading sensitive personal data?",
+                "q-chart-6": "Ease of recall: Which interface simplifies locating relevant information on the day of the appointment?",
+                "q-chart-7": "Ease of learning: Which interface proved more intuitive to navigate?",
+
+                "lbl-if1": "Interface 1",
+                "lbl-if2": "Interface 2",
+                "lbl-both": "Both",
+                "lbl-none": "None",
+
+                "sec5-title": "Impact & Strategic Value",
+                "sec5-p1": "My research findings demonstrated an overwhelming user preference for the redesigned interface, validating how my user-centered design methodologies and strategic consultancy successfully eliminate ambiguity, reduce task abandonment, and restore user trust, specifically streamlining the critical steps of document uploading and payment processing.",
+                "sec5-p2": "Acknowledging the concrete business value of my strategic counsel and design excellence, corporate partners integrated multidisciplinary frameworks into their core development pipelines. This project serves as a testament to my core professional competencies: uniting <strong>strategic consultancy, deep analytical research, structured redesign execution, and cross-functional facilitation</strong> to drive measurable business growth and optimized product development.",
+                "nav-prev-project": "&larr; Previous project",
+                "nav-next-project": "Next project &rarr;",
+                "footer-title": "I'm always open to meaningful opportunities.",
+                "footer-email": "Contact me via email &rarr;",
+                "footer-linkedin": "Connect on LinkedIn &rarr;"
+            },
+            it: {
+                "nav-home": "Homepage",
+                "nav-about": "Chi sono",
+                "nav-works": "Progetti scelti",
+                "nav-contacts": "Contatti",
+                "back-works": "&larr; Torna a tutti i progetti",
+                "proj-title" : "Progettare per confrontare",
+                "proj-subtitle": "Trasformazione dei servizi digitali sanitari attraverso consulenza UX strategica, ricerca rigorosa, ingegneria dei requisiti avanzata e validazione empirica del redesign.",
+                "proj-tags": "CONSULENZA UX SANITARIA — REDESIGN STRATEGICO UI E UX — TEST A/B E VALIDAZIONE — OTTIMIZZAZIONE DEI PROCESSI — ADOBE SUITE — FACILITAZIONE DI INTERVISTE",
+                "sec1-title": "Il Contesto e l'Analisi Quantitativa",
+                "sec1-p1": "Nell'ambito di un'attività di consulenza strategica di alto livello svolta per conto di un'azienda leader nel settore IT sul territorio genovese, a supporto di una primaria struttura sanitaria privata, ho seguito lo sviluppo e l'ottimizzazione del servizio <strong>Self Accettazione</strong>, concepito per snellire le procedure di check-in e ridurre le code in struttura. All'interno di questa piattaforma, il <strong>caricamento dei documenti e il pagamento digitale</strong> rappresentano i due passaggi principali che definiscono l'intera interazione dell'utente. Per valutare le reali performance del servizio, ho applicato competenze avanzate di <strong>analisi dei dati quantitativi</strong>, esaminando un ampio set di <strong>172.130 interazioni</strong> registrate tra luglio 2021 e novembre 2023.",
+                "sec1-p2": "Attraverso una dettagliata segmentazione demografica, ho mappato gli utenti attivi, dai neonati (gestiti tramite caregiver) fino a 104 anni, individuando un picco di utilizzo attorno ai <strong>54 anni</strong>, con un coinvolgimento concentrato nella fascia <strong>46–65 anni</strong>. Elemento di rilievo critico, la mia valutazione delle metriche ha evidenziato tassi di abbandono significativi proprio in corrispondenza dei due passaggi chiave: solo l'<strong>8,75%</strong> ha completato il caricamento dei documenti e appena il <strong>4,42%</strong> il pagamento. Ciò ha dimostrato la mia capacità di individuare profonde criticità sistemiche partendo da dati oggettivi per guidare l'intervento di ottimizzazione strategica.",
+                "sec2-title": "Approfondimento Tecnico: Intervista Qualitativa al Programmatore",
+                "sec2-p1": "Nel mio ruolo di consulente strategico, per indagare i colli di bottiglia infrastrutturali e la vaghezza dei requisiti, ho ideato e condotto un'<strong>intervista qualitativa semi-strutturata</strong> con il programmatore responsabile della versione originaria. Sfruttando le mie competenze di ricerca metodologica, ho strutturato il confronto per analizzare flussi di sviluppo, vincoli tecnici e disallineamenti organizzativi.",
+                "sec2-p2": "L'intervista ha evidenziato come l'estrema urgenza temporale, l'uso di specifiche testuali carenti di linee guida visive e la generale assenza di standardizzazione digitale abbiano compromesso gli standard iniziali del prodotto. L'estrazione di tali evidenze ha confermato la mia attitudine a fungere da ponte tra esecuzione tecnica e strategia di business, illustrando come la mancanza di una consulenza preventiva generi un importante debito tecnico a lungo termine.",
+                "sec3-title": "Analisi Euristica e Processo di Redesign Strategico",
+                "sec3-p1": "In collaborazione con gli stakeholder di progetto, ho condotto un'approfondita <strong>valutazione qualitativa esperta</strong> basata su rigorosi standard di usabilità. Tale audit critico ha evidenziato gravi vulnerabilità di interfaccia e la totale assenza di elementi protettivi essenziali, quali ricevute di conferma o istruzioni chiare per l'accesso alla visita. La mia analisi ha mappato con precisione le cause di ansia e disorientamento degli utenti durante i test, intercettando espressioni sintomatiche quali <em>'Ho finito?'</em> oppure <em>'Non so cosa devo fare'</em>.",
+                "sec3-p2": "Mettendo in campo competenze specialistiche in <strong>consulenza strategica, esperienza utente, architettura informativa e prototipazione UI (Adobe Suite)</strong>, ho diretto personalmente un radicale e completo <strong>processo di redesign</strong>. Ho ristrutturato l'intero percorso utente per massimizzare chiarezza, trasparenza e rassicurazione emotiva, isolando al contempo i vincoli sistemici esterni non modificabili (come i limiti dei gateway di pagamento esterni).",
+                "sec4-title": "Test A/B e Validazione con gli Utenti",
+                "sec4-p1": "Per validare empiricamente gli esiti della mia consulenza e del redesign, ho pianificato, facilitato ed eseguito un <strong>rigoroso test A/B comparativo</strong> coinvolgendo 30 partecipanti, rigorosamente bilanciati per genere e fasce d'età (20–40, 40–50 e 50–60 anni). A garanzia di assoluta validità scientifica, ho alternato l'ordine di esposizione delle interfacce per azzerare i bias di apprendimento e ho videoregistrato le sessioni per un'analisi comportamentale dettagliata.",
+                "sec4-p2": "A completamento del test, ho somministrato un questionario di gradimento articolato su 7 dimensioni. Il mio framework valutativo ha misurato il coinvolgimento emotivo, la trovabilità delle informazioni, l'accessibilità dei contenuti, l'efficienza del servizio, l'affidabilità e la facilità di apprendimento, traducendo i feedback qualitativi in metriche oggettive e azionabili.",
+                
+                "fig-ab-photo": "Momenti di interazione immortalati durante le sessioni di test A/B comparativo con utenti di diverse fasce d'età.",
+                "ab-intro-title": "Nota di lettura",
+                "ab-intro-note": "Nei grafici seguenti, l'<strong>Interfaccia 1</strong> fa riferimento alla versione originaria e legacy del servizio, mentre l'<strong>Interfaccia 2</strong> rappresenta la mia nuova proposta di redesign.",
+
+                "carousel-intro-title": "Valutazione quantitativa del redesign",
+                "carousel-intro-desc": "Analisi dei feedback raccolti lungo le sette dimensioni del test comparativo, valutando le preferenze degli utenti tra la versione originaria e la mia proposta di redesign.",
+
+                "q-chart-1": "Coinvolgimento emotivo: quale interfaccia ha offerto maggiore sicurezza nel seguire la corretta procedura?",
+                "q-chart-2": "Trovabilità delle informazioni: in quale interfaccia è stato più semplice consultare i dati relativi alla propria visita?",
+                "q-chart-3": "Accessibilità dei contenuti: quale interfaccia presenta un design più accessibile?",
+                "q-chart-4": "Efficienza del servizio: quale interfaccia ha permesso di portare a termine l'interazione senza incontrare ostacoli o errori?",
+                "q-chart-5": "Affidabilità del servizio: quale interfaccia ha trasmesso maggiore tranquillità nel caricamento dei dati personali?",
+                "q-chart-6": "Facilità di ricordo: quale interfaccia agevola il ritrovamento delle informazioni utili il giorno della visita?",
+                "q-chart-7": "Facilità di apprendimento: quale interfaccia è risultata più intuitiva nell'utilizzo?",
+
+                "lbl-if1": "Interfaccia 1",
+                "lbl-if2": "Interfaccia 2",
+                "lbl-both": "Entrambi",
+                "lbl-none": "Nessuno",
+
+                "sec5-title": "Impatto e Valore Strategico",
+                "sec5-p1": "I risultati della ricerca che ho condotto hanno sancito una netta preferenza degli utenti per l'interfaccia ridisegnata, confermando come la mia metodologia di progettazione e consulenza strategica sappiano azzerare l'ambiguità, contrarre i tassi di abbandono e ripristinare la fiducia nel servizio, ottimizzando in modo mirato proprio i passaggi chiave del caricamento documenti e del pagamento.",
+                "sec5-p2": "Riconoscendo il concreto valore di business della mia consulenza e l'eccellenza del redesign, i partner aziendali hanno integrato stabilmente i framework metodologici nei propri cicli di sviluppo software. Questo progetto costituisce la massima espressione delle mie competenze professionali: coniugare <strong>consulenza strategica di alto livello, ricerca analitica approfondita, esecuzione strutturata del redesign e facilitazione cross-funzionale</strong> per stimolare una crescita di business misurabile e un'ottimizzazione dei processi di team.",
+                "nav-prev-project": "&larr; Progetto precedente",
+                "nav-next-project": "Progetto successivo &rarr;",
+                "footer-title": "Sono sempre aperta a nuove opportunità stimolanti.",
+                "footer-email": "Contattami via email &rarr;",
+                "footer-linkedin": "Collegati su LinkedIn &rarr;"
+            }
+        };
+
+    </script>
+<script src="translate.js"></script>
+</body>
+</html>
