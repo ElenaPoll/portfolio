@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- STILE AGGIUNTIVO: CORRETTO FLUSSO ELASTICO E ALTEZZA BOX -->
+    <!-- STILE AGGIUNTIVO: CORRETTO FLUSSO ELASTICO, ALTEZZA BOX E FIX MOBILE -->
 <style>
     /* Forziamo la card a comportarsi da flex container fluido e sicuro */
     .work-card,
@@ -158,6 +158,39 @@
 
     .scroll-top-btn:hover {
         background-color: var(--accent-color, #555) !important;
+    }
+
+    /* CORREZIONI SPECIFICHE PER MOBILE */
+    @media (max-width: 768px) {
+        /* Fix Card 04: ripristina dimensione e layout verticale dell'illustrazione */
+        .work-card.card-04 .mobiquity-grid {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        .work-card.card-04 .illustration-center {
+            width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+            margin-top: 20px !important;
+        }
+        .work-card.card-04 .illustration-bulb {
+            max-width: 75% !important;
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Fix Hero Section: evita che l'arco si sovrapponga a ITA/ENG e navbar */
+        .hero-section {
+            padding-top: 30px !important;
+        }
+        .hero-image-container {
+            position: relative !important;
+            margin-top: 15px !important;
+        }
+        .navbar {
+            position: relative !important;
+            z-index: 100 !important;
+        }
     }
 </style>
 </head>
@@ -717,12 +750,12 @@
                 card5_desc: "I participate as a volunteer in the activities of a local community in the Ligurian Levant committed to activating the territory through culture, youth participation, and active citizenship. Together with the group and in collaboration with territorial partners, I co-design and coordinate cultural events, transforming community ideas into concrete projects for local development.",
                 
                 card6_title: "Designing for comparison",
-                card6_tags: "HEALTHCARE UX CONSULTANCY — STRATEGIC UI & UX REDESIGN — A/B TESTING & VALIDATION — PROCESS OPTIMIZATION — ADOBE SUITE — INTERVIEW FACILITATION",
+                card6_tags: "HEALTHCARE UX CONSULTANCY — STRATEGIC UI & UX REDESIGN — A/B TESTING & VALIDATION — PROCESS OPTIMIZATION — ADOBE SUITE — FACILITAZIONE DI INTERVISTE",
                 card6_desc: "I conceived a redesign concept and carried out a comparison test between two versions of the interface of a healthcare portal, consulting for an IT company interested in optimizing its services. I involved 30 participants through surveys and qualitative evaluations, analyzing their preferences and identifying key interventions to significantly optimize the interface.",
                 
                 card7_title: "Designing for inclusion",
                 card7_tags: "PARTNER & ASSOCIATION COORDINATION — SERVICE DESIGN — PARTICIPATORY DESIGN WORKSHOP LEADERSHIP — CROSS-FUNCTIONAL STAKEHOLDER ALIGNMENT — DIGITAL EXPERIENCE DESIGN",
-                card7_desc: "I coordinated user research, the co-design strategy, and digital prototyping for a Living Lab initiative aimed at improving the domestic autonomy of visually impaired or blind elderly people. Translating field research into digital tools, I conducted immersive simulations with visual therapists and over 30 participants to map accessibility barriers and develop an evaluation framework. The framework took shape in an interactive protocol allowing specialists to improve home environments, engaging academic researchers, healthcare foundations, and municipal stakeholders.",
+                card7_desc: "I coordinated user research, the co-design strategy, and digital prototyping for a Living Lab initiative aimed at improving the domestic autonomy of visually impaired or blind elderly people. Translating field research into digital tools, I conducted immersive simulations with visual therapists and over 30 participants to mappare le barriere e sviluppare un framework di valutazione. The framework took shape in an interactive protocol allowing specialists to improve home environments, engaging academic researchers, healthcare foundations, and municipal stakeholders.",
                 
                 card8_title: "Designing for optimization",
                 card8_tags: "USABILITY TESTING — PUBLIC SECTOR DESIGN — QUANTITATIVE DATA ANALYSIS — INCLUSIVE DESIGN PRINCIPLES — ACCESSIBILITY AUDITING — PROTOTYPING",
@@ -771,7 +804,7 @@
                 
                 card3_title: "Progettare per educare",
                 card3_tags: "PROGETTAZIONE DELLA FORMAZIONE E MATERIALE DIDATTICO — EROGAZIONE E-LEARNING — PROGETTAZIONE DI QUESTIONARI E ANALISI DATI — AGGIORNAMENTO SETTORE PUBBLICO — COMUNICAZIONE INTERFUNZIONALE",
-                card3_desc: "Ho progettato e realizzato un programma di inclusione digitale per la Pubblica Amministrazione, formando 375 professionisti in 15 edizioni. Dalla creazione di materiali didattici in linea con le linee guida AgID fino all’analisi dei dati, ho seguito e coordinato tutte le fasi del progetto.",
+                card3_desc: "Ho progettato e realizzato un programma di inclusione digitale per la Pubblica Amministrazione, formando 375 professionisti in 15 edizioni. Dalla creazione di materiali didattici in linea con le linee guida AgID fino’all’analisi dei dati, ho seguito e coordinato tutte le fasi del progetto.",
                 
                 card4_title: "Progettare per facilitare",
                 card4_tags: "COORDINAMENTO PROGETTI RICERCA E SVILUPPO — RICERCA ETNOGRAFICA E SHADOWING — MOBILE UX E MAPPATURA DI USER JOURNEY — ARCHITETTURA DELL'INFORMAZIONE E WEB DESIGN — COORDINAMENTO MULTI-STAKEHOLDER",
@@ -783,14 +816,14 @@
                 
                 card6_title: "Progettare per confrontare",
                 card6_tags: "CONSULENZA UX SANITARIA — REDESIGN STRATEGICO UI E UX — TEST A/B E VALIDAZIONE — OTTIMIZZAZIONE DEI PROCESSI — PACCHETTO ADOBE — FACILITAZIONE DI INTERVISTE",
-                card6_desc: "Ho ideato un concept di redesign e realizzato un test di confronto tra due versioni dell’interfaccia di un portale sanitario, in consulenza a un’azienda IT interessata ad ottimizzare i propri servizi. Ho coinvolto 30 partecipanti attraverso sondaggi e valutazioni qualitative, analizzando le preferenze e individuando interventi mirati per ottimizzare l’interfaccia.",
+                card6_desc: "Ho ideato un concept di redesign e realizzato un test di confronto tra due versioni dell’interfaccia di un portale sanitario, in consulenza a un’azienda IT interessata ad ottimizzare i servizi. Ho coinvolto 30 partecipanti attraverso sondaggi e valutazioni qualitative, analizzando le preferenze e individuando interventi mirati per ottimizzare l’interfaccia.",
                 
                 card7_title: "Progettare per includere",
                 card7_tags: "COORDINAMENTO DI PARTNER E ASSOCIAZIONI — SERVICE DESIGN — LEADERSHIP DI WORKSHOP DI DESIGN PARTECIPATIVO — ALLINEAMENTO DI STAKEHOLDER MULTIDISCIPLINARI — PROGETTAZIONE DI ESPERIENZE DIGITALI",
                 card7_desc: "Ho coordinato la ricerca utente, la strategia di co-design e la prototipazione digitale per un’iniziativa di Living Lab finalizzata a migliorare l’autonomia domestica degli anziani ipovedenti o ciechi. Traducendo la ricerca sul campo in strumenti digitali, ho condotto simulazioni immersive con terapisti visivi e oltre 30 partecipanti per mappare le barriere e sviluppare un framework di valutazione. Il framework ha preso forma in un protocollo interattivo che ha permesso agli specialisti di migliorare gli ambienti domestici, coinvolgendo ricercatori, fondazioni e stakeholder comunali.",
                 
                 card8_title: "Progettare per ottimizzare",
-                card8_tags: "TEST DI USABILITÀ — DESIGN PER LA PUBBLica AMMINISTRAZIONE — ANALISI DEI DATI QUANTITATIVI — PRINCIPI DI DESIGN INCLUSIVO — AUDITING DI ACCESSIBILITÀ — PROTOTIPAZIONE",
+                card8_tags: "TEST DI USABILITÀ — DESIGN PER LA PUBBLICA AMMINISTRAZIONE — ANALISI DEI DATI QUANTITATIVI — PRINCIPI DI DESIGN INCLUSIVO — AUDITING DI ACCESSIBILITÀ — PROTOTIPAZIONE",
                 card8_desc: "Ho condotto, in consulenza per la PA, una sessione di ricerca con gli utenti per valutare usabilità e accessibilità di un portale rivolto ai cittadini. Attraverso test con utenti reali, inclusi profili con disabilità, ho identificato le principali barriere nell’interazione con la piattaforma. I risultati della ricerca sono stati tradotti in linee guida operative per semplificare la struttura del portale e supportare la conformità.",
                 
                 card9_title: "Progettare per il prodotto",
