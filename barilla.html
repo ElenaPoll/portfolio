@@ -20,7 +20,7 @@
     <!-- Libreria PageFlip per un vero effetto libro 3D professionale -->
     <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 
-    <!-- STILE CSS: Ombra 3D realistica e contatore tra le frecce -->
+    <!-- STILE CSS: Design system coerente con le linee sottili e il font del portfolio -->
     <style>
         .book-carousel-container {
             position: relative;
@@ -32,7 +32,6 @@
             align-items: center;
         }
 
-        
         .book-viewport {
             position: relative;
             width: 100%;
@@ -43,23 +42,22 @@
             background: transparent;
             overflow: hidden;
             margin: 0 auto;
-            /* Effetto ombra 3D intorno al libro */
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(0, 0, 0, 0.1);
             border-radius: 4px;
         }
 
         #book {
-            display: none; /* Attivato via script a caricamento completato */
+            display: none;
         }
 
-#book img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Invece di 'fill', usa 'contain' per preservare le proporzioni */
-    pointer-events: none;
-    user-select: none;
-}
+        #book img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            pointer-events: none;
+            user-select: none;
+        }
 
         .carousel-controls {
             margin-top: 25px;
@@ -88,7 +86,6 @@
             transform: scale(1.05);
         }
 
-        /* Stile per il numeratore delle pagine posizionato tra i bottoni */
         .page-counter {
             font-family: 'Fira Sans Condensed', sans-serif;
             font-size: 0.95rem;
@@ -97,6 +94,95 @@
             font-weight: 500;
             min-width: 70px;
             text-align: center;
+        }
+
+        /* Stile Trigger perfettamente integrato nel design system del portfolio */
+        .open-book-trigger {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+            padding: 30px 0;
+            margin: 50px 0;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .open-book-trigger:hover {
+            border-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .open-book-trigger .trigger-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: #111;
+        }
+
+        .open-book-trigger .trigger-action {
+            font-family: 'Fira Sans Condensed', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            color: #111;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s ease;
+        }
+
+        .open-book-trigger:hover .trigger-action {
+            gap: 14px;
+        }
+
+        /* Modale a schermo intero */
+        .book-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .book-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .close-modal-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .close-modal-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+        }
+        .book-modal .book-carousel-container {
+            max-width: 1000px;
+            width: 90%;
         }
         
         /* Stili per il contenitore video con copertina e pulsante play */
@@ -261,17 +347,26 @@
                     To articulate the entire trajectory of the project—from early contextual ethnography and technical material specifications to final CAD assemblies, rendering outputs, and systemic service frameworks—I curated and designed an extensive, publication-grade presentation book featuring a custom hardcover design layout. You can interact with and explore the complete digital edition using the interactive viewer below.
                 </p>
 
-                <!-- VISUALIZZATORE LIBRO -->
-                <div class="book-carousel-container">
-                    <div class="book-viewport">
-                        <div id="book">
-                            <!-- Le pagine vengono inserite via script -->
+                <!-- VISUALIZZATORE LIBRO CON TRIGGER COERENTE AL DESIGN SYSTEM -->
+                <div class="open-book-trigger" id="openBookTrigger">
+                    <span class="trigger-text" data-translate="trigger-book-text">Sfoglia il volume di progetto</span>
+                    <span class="trigger-action" data-translate="trigger-book-action">Apri schermo intero &rarr;</span>
+                </div>
+
+                <!-- MODALE SCHERMO INTERO -->
+                <div class="book-modal" id="bookModal">
+                    <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+                    <div class="book-carousel-container">
+                        <div class="book-viewport">
+                            <div id="book">
+                                <!-- Le pagine vengono inserite via script -->
+                            </div>
                         </div>
-                    </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn carousel-prev" id="prev-btn">&#10094;</button>
-                        <div class="page-counter" id="pageCounter">1 / 33</div>
-                        <button class="carousel-btn carousel-next" id="next-btn">&#10095;</button>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn carousel-prev" id="prev-btn">&#10094;</button>
+                            <div class="page-counter" id="pageCounter">1 / 33</div>
+                            <button class="carousel-btn carousel-next" id="next-btn">&#10095;</button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -354,6 +449,8 @@
                 "sec2-p2": "My methodological execution spanned across multiple advanced competencies: starting from meticulous <strong>2D graphics</strong> and branding guidelines for clear visual communication, moving into sophisticated <strong>3D modeling</strong> environments to optimize wall thicknesses, snap-fit mechanisms, and structural integrity. The iterative phase culminated in functional physical testing through <strong>3D printing</strong> prototyping, evaluated directly through usability sessions with students from UniGe's third-age programs to fine-tune <strong>opening forces and haptic feedback</strong>.",
                 "sec3-title": "Editorial Design & Presentation Architecture",
                 "sec3-p1": "To articulate the entire trajectory of the project—from early contextual ethnography and technical material specifications to final CAD assemblies, rendering outputs, and systemic service frameworks—I curated and designed an extensive, publication-grade presentation book featuring a custom hardcover design layout. You can interact with and explore the complete digital edition using the interactive viewer below.",
+                "trigger-book-text": "Explore the complete project volume",
+                "trigger-book-action": "Open full screen &rarr;",
                 "sec4-title": "Multimedia Storytelling & Advertising Direction",
                 "sec4-p1": "As a capstone to the strategic product development process, I independently managed the full cycle of <strong>videomaking</strong> and commercial direction. I conceptualized, shot, and edited an emotional, high-impact advertising spot designed to communicate both the ergonomic convenience of the product and its circular environmental philosophy. Watch the official promotional campaign video below.",
                 "nav-prev-project": "&larr; Previous project",
@@ -379,6 +476,8 @@
                 "sec2-p2": "La mia esecuzione metodologica ha abbracciato competenze multidisciplinari avanzate: partendo da una meticolosa ideazione di <strong>grafica 2D</strong> e codici visivi per la massima leggibilità, passando per la complessa <strong>modellazione 3D</strong> CAD finalizzata all'ottimizzazione degli spessori e dei meccanismi di incastro. La fase iterativa si è concretizzata in test funzionali tramite prototipazione con <strong>stampa 3D</strong>, valutati direttamente attraverso sessioni di usabilità con studenti dei programmi per la terza età di UniGe per calibrare le <strong>forze di apertura e il feedback aptico</strong>.",
                 "sec3-title": "Editorial Design e Architettura di Presentazione",
                 "sec3-p1": "Per documentare e valorizzare l'intero iter progettuale — dalle analisi etnografiche preliminari agli studi tecnici sui materiali, dagli assembly CAD ai render finali e ai sistemi di servizio — ho curato interamente l'impaginazione e la direzione editoriale di un volume di presentazione di livello professionale caratterizzato da una copertina personalizzata. È possibile sfogliare la versione digitale completa attraverso il visualizzatore interattivo 3D sottostante.",
+                "trigger-book-text": "Sfoglia il volume di progetto",
+                "trigger-book-action": "Apri schermo intero &rarr;",
                 "sec4-title": "Storytelling Multimediale e Regia Pubblicitaria",
                 "sec4-p1": "A completamento della strategia di lancio del prodotto, ho gestito in autonomia l'intero ciclo di <strong>videomaking</strong> e direzione artistica. Ho ideato, ripreso e montato uno spot pubblicitario d'impatto emotivo, studiato per comunicare efficacemente sia la praticità d'uso della confezione che la sua filosofia di sostenibilità circolare. Guarda qui sotto il video ufficiale della campagna promozionale.",
                 "nav-prev-project": "&larr; Progetto precedente",
@@ -389,8 +488,7 @@
             }
         };
 
-    
-        // Inizializzazione PageFlip
+        // Inizializzazione PageFlip all'interno del modale
         document.addEventListener('DOMContentLoaded', () => {
             const bookElement = document.getElementById('book');
             const totalPages = 33;
@@ -404,25 +502,37 @@
                 bookElement.appendChild(img);
             }
 
-            const pageFlip = new St.PageFlip(bookElement, {
-                width: 600,
-                height: 600,
-                size: "stretch",
-                minWidth: 300,
-                maxWidth: 1000,
-                minHeight: 300,
-                maxHeight: 1000,
-                maxShadowOpacity: 0.3,
-                showCover: true,
-                mobileScrollSupport: true
-            });
-
-            pageFlip.loadFromImages(Array.from(bookElement.querySelectorAll('img')).map(img => img.src));
-            
-            bookElement.style.display = 'block';
-
+            let pageFlip = null;
+            const openTrigger = document.getElementById('openBookTrigger');
+            const bookModal = document.getElementById('bookModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
             const pageCounterEl = document.getElementById('pageCounter');
-            
+
+            function initPageFlip() {
+                if (!pageFlip) {
+                    pageFlip = new St.PageFlip(bookElement, {
+                        width: 600,
+                        height: 600,
+                        size: "stretch",
+                        minWidth: 300,
+                        maxWidth: 1000,
+                        minHeight: 300,
+                        maxHeight: 1000,
+                        maxShadowOpacity: 0.3,
+                        showCover: true,
+                        mobileScrollSupport: true
+                    });
+
+                    pageFlip.loadFromImages(Array.from(bookElement.querySelectorAll('img')).map(img => img.src));
+                    
+                    pageFlip.on('flip', (e) => {
+                        updatePageCounter(e.data);
+                    });
+
+                    updatePageCounter(0);
+                }
+            }
+
             function updatePageCounter(pageIndex) {
                 let current = pageIndex + 1;
                 if (current === 1 || current === totalPages || pageFlip.getOrientation() === 'portrait') {
@@ -438,27 +548,37 @@
                 }
             }
 
-            pageFlip.on('flip', (e) => {
-                updatePageCounter(e.data);
+            openTrigger.addEventListener('click', () => {
+                bookModal.classList.add('active');
+                initPageFlip();
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('resize'));
+                }, 100);
             });
 
-            updatePageCounter(0);
+            closeModalBtn.addEventListener('click', () => {
+                bookModal.classList.remove('active');
+            });
 
-            // Pulsanti di navigazione con controllo dei limiti ed eventuale loop
+            // Pulsanti di navigazione
             document.getElementById('next-btn').addEventListener('click', () => {
-                if (pageFlip.getCurrentPageIndex() >= totalPages - 1) {
-                    pageFlip.turnTo(0);
-                } else {
-                    pageFlip.flipNext();
+                if (pageFlip) {
+                    if (pageFlip.getCurrentPageIndex() >= totalPages - 1) {
+                        pageFlip.turnTo(0);
+                    } else {
+                        pageFlip.flipNext();
+                    }
                 }
             });
 
             document.getElementById('prev-btn').addEventListener('click', () => {
-                const currentIndex = pageFlip.getCurrentPageIndex();
-                if (currentIndex <= 0) {
-                    pageFlip.turnTo(totalPages - 1);
-                } else {
-                    pageFlip.flipPrev();
+                if (pageFlip) {
+                    const currentIndex = pageFlip.getCurrentPageIndex();
+                    if (currentIndex <= 0) {
+                        pageFlip.turnTo(totalPages - 1);
+                    } else {
+                        pageFlip.flipPrev();
+                    }
                 }
             });
         });
