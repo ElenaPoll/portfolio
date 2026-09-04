@@ -20,12 +20,12 @@
     <!-- Libreria PageFlip per un vero effetto libro 3D professionale -->
     <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 
-    <!-- STILE CSS: Design system coerente con le linee sottili e il font del portfolio -->
+    <!-- STILE CSS: Dimensioni desktop ottimizzate e contenute -->
     <style>
         .book-carousel-container {
             position: relative;
             width: 100%;
-            max-width: 800px;
+            max-width: 800px; /* Ridotto leggermente per desktop per lasciare spazio ai controlli */
             margin: 40px auto;
             display: flex;
             flex-direction: column;
@@ -60,7 +60,7 @@
         }
 
         .carousel-controls {
-            margin-top: 25px;
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -153,6 +153,8 @@
             flex-direction: column;
             opacity: 0;
             transition: opacity 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .book-modal.active {
             display: flex;
@@ -160,13 +162,13 @@
         }
         .close-modal-btn {
             position: absolute;
-            top: 30px;
-            right: 40px;
+            top: 20px;
+            right: 30px;
             background: rgba(255, 255, 255, 0.1);
             border: none;
             color: #fff;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             font-size: 1.8rem;
             cursor: pointer;
@@ -181,8 +183,9 @@
             transform: scale(1.05);
         }
         .book-modal .book-carousel-container {
-            max-width: 1000px;
+            max-width: 850px;
             width: 90%;
+            margin: auto;
         }
         
         /* Stili per il contenitore video con copertina e pulsante play */
@@ -477,7 +480,7 @@
                 "sec3-title": "Editorial Design e Architettura di Presentazione",
                 "sec3-p1": "Per documentare e valorizzare l'intero iter progettuale — dalle analisi etnografiche preliminari agli studi tecnici sui materiali, dagli assembly CAD ai render finali e ai sistemi di servizio — ho curato interamente l'impaginazione e la direzione editoriale di un volume di presentazione di livello professionale caratterizzato da una copertina personalizzata. È possibile sfogliare la versione digitale completa attraverso il visualizzatore interattivo 3D sottostante.",
                 "trigger-book-text": "Sfoglia il volume di progetto",
-                "trigger-book-action": "Apri schermo intero &rarr;",
+                "trigger-action": "Apri schermo intero &rarr;",
                 "sec4-title": "Storytelling Multimediale e Regia Pubblicitaria",
                 "sec4-p1": "A completamento della strategia di lancio del prodotto, ho gestito in autonomia l'intero ciclo di <strong>videomaking</strong> e direzione artistica. Ho ideato, ripreso e montato uno spot pubblicitario d'impatto emotivo, studiato per comunicare efficacemente sia la praticità d'uso della confezione che la sua filosofia di sostenibilità circolare. Guarda qui sotto il video ufficiale della campagna promozionale.",
                 "nav-prev-project": "&larr; Progetto precedente",
@@ -488,7 +491,7 @@
             }
         };
 
-        // Inizializzazione PageFlip all'interno del modale
+        // Inizializzazione PageFlip con dimensioni desktop contenute e scalate
         document.addEventListener('DOMContentLoaded', () => {
             const bookElement = document.getElementById('book');
             const totalPages = 33;
@@ -510,17 +513,19 @@
 
             function initPageFlip() {
                 if (!pageFlip) {
+                    // Dimensioni base leggermente ridotte (es. 480x480 per pagina) per garantire la visibilità dei comandi
                     pageFlip = new St.PageFlip(bookElement, {
-                        width: 600,
-                        height: 600,
+                        width: 480,
+                        height: 480,
                         size: "stretch",
-                        minWidth: 300,
-                        maxWidth: 1000,
-                        minHeight: 300,
-                        maxHeight: 1000,
+                        minWidth: 200,
+                        maxWidth: 900,
+                        minHeight: 200,
+                        maxHeight: 900,
                         maxShadowOpacity: 0.3,
                         showCover: true,
-                        mobileScrollSupport: true
+                        mobileScrollSupport: true,
+                        usePortrait: false // Mantiene sempre la doppia pagina affiancata
                     });
 
                     pageFlip.loadFromImages(Array.from(bookElement.querySelectorAll('img')).map(img => img.src));
@@ -535,7 +540,9 @@
 
             function updatePageCounter(pageIndex) {
                 let current = pageIndex + 1;
-                if (current === 1 || current === totalPages || pageFlip.getOrientation() === 'portrait') {
+                if (!pageFlip) return;
+                
+                if (current === 1 || current === totalPages) {
                     pageCounterEl.textContent = `${current} / ${totalPages}`;
                 } else {
                     let leftPage = current;
@@ -550,6 +557,7 @@
 
             openTrigger.addEventListener('click', () => {
                 bookModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
                 initPageFlip();
                 setTimeout(() => {
                     window.dispatchEvent(new Event('resize'));
@@ -558,6 +566,7 @@
 
             closeModalBtn.addEventListener('click', () => {
                 bookModal.classList.remove('active');
+                document.body.style.overflow = ''; 
             });
 
             // Pulsanti di navigazione
@@ -579,6 +588,14 @@
                     } else {
                         pageFlip.flipPrev();
                     }
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (pageFlip && bookModal.classList.contains('active')) {
+                    setTimeout(() => {
+                        window.dispatchEvent(new Event('resize'));
+                    }, 100);
                 }
             });
         });
