@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="project-style.css">
     <style>
-        .project-table { width: 100%; border-collapse: collapse; margin: 25px 0 10px 0; font-size: 0.95em; text-align: center; }
+        .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 25px 0 10px 0; }
+        .project-table { width: 100%; border-collapse: collapse; margin: 0; font-size: 0.95em; text-align: center; min-width: 500px; }
         .project-table th, .project-table td { border: 1px solid #ddd; padding: 12px; vertical-align: middle; }
         .project-table th { background-color: #f8f9fa; font-weight: 600; color: #333; }
         .project-table td.category-header { background-color: #fcfcfc; font-weight: 600; color: #444; width: 30%; }
@@ -110,47 +111,49 @@
                     Nel rispetto dei protocolli metodologici di riferimento (come le linee guida eGLU per le PA), ho strutturato le sessioni di test basandole sull'esecuzione di <strong>task realistici</strong>, avvalendomi della tecnica del <em>think aloud</em> per raccogliere in tempo reale percezioni, barriere cognitive e criticità d'uso.
                 </p>
 
-                <table class="project-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th data-translate="th-smartphone">TEST DA SMARTPHONE</th>
-                            <th data-translate="th-desktop">TEST DA DESKTOP</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="category-header" rowspan="3" data-translate="td-perm-disab">CON DISABILITÀ PERMANENTI</td>
-                            <td data-translate="td-blind-mob">2 UTENTI CIECHI</td>
-                            <td data-translate="td-blind-desk">2 UTENTI CIECHI</td>
-                        </tr>
-                        <tr>
-                            <td data-translate="td-lowv-mob">1 UTENTE IPOVEDENTE</td>
-                            <td data-translate="td-lowv-desk">1 UTENTE IPOVEDENTE</td>
-                        </tr>
-                        <tr>
-                            <td data-translate="td-deaf-mob">1 UTENTE SORDO</td>
-                            <td data-translate="td-deaf-desk">1 UTENTE SORDO</td>
-                        </tr>
-                        <tr>
-                            <td class="category-header" rowspan="4" data-translate="td-no-disab">SENZA DISABILITÀ PERMANENTI</td>
-                            <td data-translate="td-chin-mob">1 UTENTE CINESE</td>
-                            <td data-translate="td-chin-desk">1 UTENTE CINESE</td>
-                        </tr>
-                        <tr>
-                            <td data-translate="td-baby-mob">1 UTENTE GENERAZIONE BABY BOOMERS</td>
-                            <td data-translate="td-baby-desk">1 UTENTE GENERAZIONE BABY BOOMERS</td>
-                        </tr>
-                        <tr>
-                            <td data-translate="td-genx-mob">1 UTENTE GENERAZIONE X</td>
-                            <td data-translate="td-genx-desk">1 UTENTE GENERAZIONE X</td>
-                        </tr>
-                        <tr>
-                            <td data-translate="td-u35-mob">1 UTENTE UNDER 35</td>
-                            <td data-translate="td-u35-desk">1 UTENTE UNDER 35</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="project-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th data-translate="th-smartphone">TEST DA SMARTPHONE</th>
+                                <th data-translate="th-desktop">TEST DA DESKTOP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="category-header" rowspan="3" data-translate="td-perm-disab">CON DISABILITÀ PERMANENTI</td>
+                                <td data-translate="td-blind-mob">2 UTENTI CIECHI</td>
+                                <td data-translate="td-blind-desk">2 UTENTI CIECHI</td>
+                            </tr>
+                            <tr>
+                                <td data-translate="td-lowv-mob">1 UTENTE IPOVEDENTE</td>
+                                <td data-translate="td-lowv-desk">1 UTENTE IPOVEDENTE</td>
+                            </tr>
+                            <tr>
+                                <td data-translate="td-deaf-mob">1 UTENTE SORDO</td>
+                                <td data-translate="td-deaf-desk">1 UTENTE SORDO</td>
+                            </tr>
+                            <tr>
+                                <td class="category-header" rowspan="4" data-translate="td-no-disab">SENZA DISABILITÀ PERMANENTI</td>
+                                <td data-translate="td-chin-mob">1 UTENTE CINESE</td>
+                                <td data-translate="td-chin-desk">1 UTENTE CINESE</td>
+                            </tr>
+                            <tr>
+                                <td data-translate="td-baby-mob">1 UTENTE GENERAZIONE BABY BOOMERS</td>
+                                <td data-translate="td-baby-desk">1 UTENTE GENERAZIONE BABY BOOMERS</td>
+                            </tr>
+                            <tr>
+                                <td data-translate="td-genx-mob">1 UTENTE GENERAZIONE X</td>
+                                <td data-translate="td-genx-desk">1 UTENTE GENERAZIONE X</td>
+                            </tr>
+                            <tr>
+                                <td data-translate="td-u35-mob">1 UTENTE UNDER 35</td>
+                                <td data-translate="td-u35-desk">1 UTENTE UNDER 35</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="table-caption" data-translate="cap-table1">Dettaglio della distribuzione del panel di 16 utenti suddiviso per tipologia di test (smartphone e desktop) e caratteristiche dei partecipanti.</div>
             </section>
 
@@ -318,31 +321,33 @@
                     Forte di un approccio metodologico rigoroso orientato alla consulenza strategica, ho tradotto le evidenze della ricerca in un piano d'intervento strutturato: nella seconda fase ho elaborato un catalogo di <strong>trentaquattro proposte di ottimizzazione</strong>, discusse e valutate in sinergia con il software engineer responsabile della manutenzione del portale. Il team ha così selezionato <strong>venticinque soluzioni effettivamente cantierabili</strong>, classificate in base a criteri di urgenza (bassa, media, alta) e facilità d'applicazione (distinguendo tra interventi rapidi, stimati in meno di un'ora, e interventi complessi superiori all'ora). Le restanti proposte sono state mappate come aree di competenza istituzionale della pubblica amministrazione.
                 </p>
                 
-                <!-- Tabella di Resoconto Implementata (Fig 55) -->
-                <table class="project-table" style="margin-top: 30px;">
-                    <thead>
-                        <tr>
-                            <th style="width: 25%;"></th>
-                            <th style="width: 25%;" data-translate="th-low-rel">RILEVANZA BASSA</th>
-                            <th style="width: 25%;" data-translate="th-med-rel">RILEVANZA MEDIA</th>
-                            <th style="width: 25%;" data-translate="th-high-rel">RILEVANZA ALTA</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="category-header" data-translate="td-easy-app">FACILE APPLICAZIONE</td>
-                            <td data-translate="el-6-low">6 elementi</td>
-                            <td data-translate="el-6-med">6 elementi</td>
-                            <td data-translate="el-3-high">3 elementi</td>
-                        </tr>
-                        <tr>
-                            <td class="category-header" data-translate="td-hard-app">DIFFICILE APPLICAZIONE</td>
-                            <td data-translate="el-1-low">1 elemento</td>
-                            <td data-translate="el-3-med">3 elementi</td>
-                            <td data-translate="el-6-high">6 elementi</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- Tabella di Resoconto Implementata (Fig 55) - Ora Mobile Responsive -->
+                <div class="table-responsive">
+                    <table class="project-table" style="margin-top: 30px;">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;"></th>
+                                <th style="width: 25%;" data-translate="th-low-rel">RILEVANZA BASSA</th>
+                                <th style="width: 25%;" data-translate="th-med-rel">RILEVANZA MEDIA</th>
+                                <th style="width: 25%;" data-translate="th-high-rel">RILEVANZA ALTA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="category-header" data-translate="td-easy-app">FACILE APPLICAZIONE</td>
+                                <td data-translate="el-6-low">6 elementi</td>
+                                <td data-translate="el-6-med">6 elementi</td>
+                                <td data-translate="el-3-high">3 elementi</td>
+                            </tr>
+                            <tr>
+                                <td class="category-header" data-translate="td-hard-app">DIFFICILE APPLICAZIONE</td>
+                                <td data-translate="el-1-low">1 elemento</td>
+                                <td data-translate="el-3-med">3 elementi</td>
+                                <td data-translate="el-6-high">6 elementi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="table-caption" data-translate="cap-table2">Matrice di prioritizzazione degli interventi correttivi in base a rilevanza e facilità di applicazione tecnica.</div>
 
                 <p style="margin-top: 20px;" data-translate="sec4-p3">
