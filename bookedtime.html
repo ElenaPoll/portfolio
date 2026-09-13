@@ -17,7 +17,7 @@
     <!-- Stili specifici per la pagina progetto -->
     <link rel="stylesheet" href="project-style.css">
 
-    <!-- STILI SPECIFICI PER I CAROSELLI, TABELLA SWOT E INTERFACCIA -->
+    <!-- STILI SPECIFICI PER I CAROSELLI, TABELLA SWOT, CURSORE E INTERFACCIA -->
     <style>
         .project-single-img {
             width: 100%;
@@ -340,7 +340,7 @@
             right: 20px;
         }
 
-        /* Bottone Scroll Top */
+        /* Bottone Scroll Top con progress ring stile Index */
         .scroll-top-btn {
             position: fixed;
             bottom: 30px;
@@ -359,6 +359,7 @@
             z-index: 999;
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             border: 1px solid #ddd;
+            text-decoration: none;
         }
         .scroll-top-btn.show {
             opacity: 1;
@@ -368,13 +369,30 @@
             background: #f5f5f5;
             transform: scale(1.05);
         }
+        .progress-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        .progress-ring circle {
+            fill: transparent;
+            stroke: #111111;
+            stroke-width: 2;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+        .arrow-icon {
+            z-index: 2;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <header class="navbar project-navbar">
+    <!-- NAVBAR CON SELETTORE LINGUA (Stile uguali a index.html) -->
+    <header class="navbar">
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html#home" data-translate="nav-home">Homepage</a></li>
@@ -409,48 +427,48 @@
                     <div class="line"></div>
                     <span class="project-number">10.</span>
                 </div>
-                <h1 class="project-title" data-translate="proj-title">Designing for web</h1>
+                <h1 class="project-title" data-translate="proj-title">Designing for web [cite: 4]</h1>
                 <p class="project-subtitle">
-                    <em data-translate="proj-subtitle">Un progetto di UX/UI design nato nel periodo della quarantena per esplorare le forme della lettura, analizzare i bisogni reali degli utenti e ideare una soluzione digitale ad alto valore sociale.</em>
+                    <em data-translate="proj-subtitle">Un progetto di UX/UI design nato nel periodo della quarantena per esplorare le forme della lettura, analizzare i bisogni reali degli utenti e ideare una soluzione digitale ad alto valore sociale. [cite: 4]</em>
                 </p>
 
                 <div class="project-tags-container">
                     <span class="card-tags" data-translate="proj-tags">
-                        LOGO DESIGN — DATA VISUALIZATION — DATA ANALYSIS — SWOT ANALYSIS — USER RESEARCH — PROBLEM SOLVING
+                        LOGO DESIGN — DATA VISUALIZATION — DATA ANALYSIS — SWOT ANALYSIS — USER RESEARCH — PROBLEM SOLVING [cite: 4]
                     </span>
                 </div>
             </header>
 
             <!-- SEZIONE 1: IL CONTESTO E LE ORIGINI -->
             <section class="project-section">
-                <h2 data-translate="sec1-title">Un tempo sospeso: il mio approccio metodologico</h2>
+                <h2 data-translate="sec1-title">Un tempo sospeso: il mio approccio metodologico [cite: 4]</h2>
                 <p data-translate="sec1-p1">
-                    Ho ideato e sviluppato questo progetto durante il periodo della quarantena COVID-19, un <strong>momento di trasformazione</strong> in cui la frenesia quotidiana ha lasciato spazio a ritmi differenti. In questo contesto ho scelto di concentrarmi sull'analisi e sulla pratica della lettura.
+                    Ho ideato e sviluppato questo progetto durante il periodo della quarantena COVID-19, un <strong>momento di trasformazione</strong> in cui la frenesia quotidiana ha lasciato spazio a ritmi differenti. In questo contesto ho scelto di concentrarmi sull'analisi e sulla pratica della lettura. [cite: 4]
                 </p>
                 <p data-translate="sec1-p2">
-                    Lavorando in autonomia e con le biblioteche chiuse, ho impostato una <strong>ricerca primaria e secondaria</strong>, coinvolgendo soggetti di indagine per mappare abitudini, gusti e preferenze di un target ampio e universale.
+                    Lavorando in autonomia e con le biblioteche chiuse, ho impostato una <strong>ricerca primaria e secondaria</strong>, coinvolgendo soggetti di indagine per mappare abitudini, gusti e preferenze di un target ampio e universale. [cite: 4]
                 </p>
                 <p data-translate="sec1-p3">
-                    Il design si configura come un <strong>metodo strutturato di pensiero</strong>. Attraverso questo progetto ho applicato competenze di osservazione della realtà per progettare un servizio digitale in grado di rispondere a bisogni concreti.
+                    Il design si configura come un <strong>metodo strutturato di pensiero</strong>. Attraverso questo progetto ho applicato competenze di osservazione della realtà per progettare un servizio digitale in grado di rispondere a bisogni concreti. [cite: 4]
                 </p>
             </section>
 
             <!-- SEZIONE 2: L'EVOLUZIONE DELLA LETTURA -->
             <section class="project-section">
-                <h2 data-translate="sec2-title">Dalla carta al digitale: Analisi strategica</h2>
+                <h2 data-translate="sec2-title">Dalla carta al digitale: Analisi strategica [cite: 4]</h2>
                 <p data-translate="sec2-p1">
-                    Nel percorso di ricerca l'indagine si è focalizzata sull'evoluzione della lettura nell'era tecnologica: le modalità digitali hanno migliorato l'esperienza del lettore o permane un legame con la carta? E perché si assiste a un <strong>calo complessivo dei lettori</strong> a fronte dell'aumento dei formati digitali?
+                    Nel percorso di ricerca l'indagine si è focalizzata sull'evoluzione della lettura nell'era tecnologica: le modalità digitali hanno migliorato l'esperienza del lettore o permane un legame con la carta? E perché si assiste a un <strong>calo complessivo dei lettori</strong> a fronte dell'aumento dei formati digitali? [cite: 4]
                 </p>
                 <p data-translate="sec2-p2">
-                    Per rispondere a questi interrogativi, è stata condotta un'indagine approfondita analizzando l'evoluzione storica del libro e <strong>confrontando le tecnologie digitali</strong> con la tradizione cartacea.
+                    Per rispondere a questi interrogativi, è stata condotta un'indagine approfondita analizzando l'evoluzione storica del libro e <strong>confrontando le tecnologie digitali</strong> con la tradizione cartacea. [cite: 4]
                 </p>
             </section>
 
             <!-- SEZIONE 3: I DATI ISTAT -->
             <section class="project-section">
-                <h2 data-translate="sec3-title">L'analisi dei dati statistici ISTAT</h2>
+                <h2 data-translate="sec3-title">L'analisi dei dati statistici ISTAT [cite: 4]</h2>
                 <p data-translate="sec3-p1">
-                    I <strong>dati quantitativi</strong> rappresentano il punto di partenza per strutturare le scelte di design. Sono stati analizzati i dati statistici ISTAT a livello nazionale, integrandoli con una ricerca mirata a carattere regionale sulla Liguria per definire il perimetro del problema.
+                    I <strong>dati quantitativi</strong> rappresentano il punto di partenza per strutturare le scelte di design. Sono stati analizzati i dati statistici ISTAT a livello nazionale, integrandoli con una ricerca mirata a carattere regionale sulla Liguria per definire il perimetro del problema. [cite: 4]
                 </p>
 
                 <!-- CAROSELLO ISTAT CON FULLSCREEN -->
@@ -476,21 +494,21 @@
                     <div class="carousel-dots" id="istatDots"></div>
                 </div>
                 <div class="image-caption" data-translate="cap-istat">
-                    Elaborazione visiva dei dati statistici ISTAT di riferimento sulle abitudini di lettura in Italia.
+                    Elaborazione visiva dei dati statistici ISTAT di riferimento sulle abitudini di lettura in Italia. [cite: 4]
                 </div>
             </section>
 
             <!-- SEZIONE 4: RISULTATI DEL QUESTIONARIO -->
             <section class="project-section">
-                <h2 data-translate="sec4-title">User Research: Indagine sul campo e questionario</h2>
+                <h2 data-translate="sec4-title">User Research: Indagine sul campo e questionario [cite: 4]</h2>
                 <p data-translate="sec4-p1">
-                    Per validare le ipotesi di progetto, è stato somministrato un questionario online a un <strong>campione di 100 utenti</strong>. L'indagine ha approfondito comportamenti d'acquisto, percezioni e pratiche di lettura, integrando un focus sul book crossing (fenomeno di condivisione spontanea in cui i libri vengono lasciati in luoghi pubblici o apposite stazioni affinché altri lettori possano prenderli, leggerli e rimetterli a loro volta in circolazione).
+                    Per validare le ipotesi di progetto, è stato somministrato un questionario online a un <strong>campione di 100 utenti</strong>. L'indagine ha approfondito comportamenti d'acquisto, percezioni e pratiche di lettura, integrando un focus sul book crossing (fenomeno di condivisione spontanea in cui i libri vengono lasciati in luoghi pubblici o apposite stazioni affinché altri lettori possano prenderli, leggerli e rimetterli a loro volta in circolazione). [cite: 4]
                 </p>
                 <p data-translate="sec4-p2">
-                    Sono state esaminate <strong>variabili chiave</strong> quali l'impatto dell'età e del titolo di studio, la propensione alla conservazione o allo scambio dei libri e le preferenze funzionali tra eBook e carta stampata.
+                    Sono state esaminate <strong>variabili chiave</strong> quali l'impatto dell'età e del titolo di studio, la propensione alla conservazione o allo scambio dei libri e le preferenze funzionali tra eBook e carta stampata. [cite: 4]
                 </p>
                 <p data-translate="sec4-p3">
-                    L'analisi dettagliata dei dati raccolti, utile a guidare le scelte di UX design, è illustrata nei grafici sottostanti.
+                    L'analisi dettagliata dei dati raccolti, utile a guidare le scelte di UX design, è illustrata nei grafici sottostanti. [cite: 4]
                 </p>
 
                 <!-- CAROSELLO QUESTIONARIO OTTIMIZZATO CON IMMAGINE CENTRALE GRANDE (80%) -->
@@ -561,21 +579,21 @@
                     <div class="carousel-dots" id="surveyDots"></div>
                 </div>
                 <div class="image-caption" data-translate="cap-survey">
-                    Risultati dell'indagine quantitativa condotta su un campione di utenti
+                    Risultati dell'indagine quantitativa condotta su un campione di utenti [cite: 4]
                 </div>
             </section>
 
             <!-- SEZIONE 5: BOOKED TIME (LOGO, MOCKUP) -->
             <section class="project-section">
-                <h2 data-translate="sec5-title">Booked Time: La soluzione di Design</h2>
+                <h2 data-translate="sec5-title">Booked Time: La soluzione di Design [cite: 4]</h2>
                 <p data-translate="sec5-p1">
-                    Dall'analisi è emerso che la lettura necessita di <strong>stimoli contemporanei</strong>. Per colmare questa lacuna, integrando le dinamiche del book crossing, è stato ideato<strong> Booked Time</strong>.
+                    Dall'analisi è emerso che la lettura necessita di <strong>stimoli contemporanei</strong>. Per colmare questa lacuna, integrando le dinamiche del book crossing, è stato ideato<strong> Booked Time</strong>. [cite: 4]
                 </p>
                 <p data-translate="sec5-p2">
-                    L'applicazione è progettata per <strong>avvicinare le nuove generazioni</strong> alla lettura attraverso la condivisione, lo scambio di consigli e l'organizzazione di momenti di incontro comunitari.
+                    L'applicazione è progettata per <strong>avvicinare le nuove generazioni</strong> alla lettura attraverso la condivisione, lo scambio di consigli e l'organizzazione di momenti di incontro comunitari. [cite: 4]
                 </p>
                 <p data-translate="sec5-p3">
-                    La fase di ideazione e produzione grafica del logo e dei mockup è stata interamente realizzata avvalendosi della <strong>Suite Adobe e di Figma</strong>. Di seguito ne vengono mostrate le immagini.
+                    La fase di ideazione e produzione grafica del logo e dei mockup è stata interamente realizzata avvalendosi della <strong>Suite Adobe e di Figma</strong>. Di seguito ne vengono mostrate le immagini. [cite: 4]
                 </p>
 
                 <!-- LOGO -->
@@ -583,7 +601,7 @@
                     <img src="images/bookedtime-24.jpg" alt="Booked Time Logo" class="project-single-img" style="max-width: 400px; display: inline-block;" onclick="openLightbox(3)" loading="lazy">
                 </div>
                 <div class="image-caption" data-translate="cap-logo">
-                    Proposta di brand identity e logo per Booked Time.
+                    Proposta di brand identity e logo per Booked Time. [cite: 4]
                 </div>
 
                 <!-- MOCKUP CON FULLSCREEN -->
@@ -592,59 +610,59 @@
                     <button class="fullscreen-btn" style="bottom: 25px; right: 10px;" onclick="openLightbox(4)" title="Fullscreen">&#x26F6;</button>
                 </div>
                 <div class="image-caption" data-translate="cap-mockup">
-                    Mockup di interfaccia dell'applicazione Booked Time.
+                    Mockup di interfaccia dell'applicazione Booked Time. [cite: 4]
                 </div>
             </section>
 
             <!-- SEZIONE 6: ANALISI SWOT (POSTICIPATA DOPO I MOCKUP) -->
             <section class="project-section">
-                <h2 data-translate="sec2-title">Analisi strategica e SWOT</h2>
+                <h2 data-translate="sec2-title">Analisi strategica e SWOT [cite: 4]</h2>
                 <p data-translate="sec2-p3">
-                    Per definire la fattibilità e la visione strategica del concept, sono stati sintetizzati i <strong>fattori critici</strong> attraverso un'attenta analisi SWOT.
+                    Per definire la fattibilità e la visione strategica del concept, sono stati sintetizzati i <strong>fattori critici</strong> attraverso un'attenta analisi SWOT. [cite: 4]
                 </p>
 
                 <!-- TABELLA ANALISI SWOT -->
                 <table class="project-table">
                     <thead>
                         <tr>
-                            <th style="width: 25%;" data-translate="swot-th-cat">Categoria / Fattore</th>
-                            <th data-translate="swot-th-analysis">Analisi SWOT - Booked Time</th>
+                            <th style="width: 25%;" data-translate="swot-th-cat">Categoria / Fattore [cite: 4]</th>
+                            <th data-translate="swot-th-analysis">Analisi SWOT - Booked Time [cite: 4]</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="category-header" data-translate="swot-s-title">Strengths</td>
+                            <td class="category-header" data-translate="swot-s-title">Strengths [cite: 4]</td>
                             <td class="row-header">
                                 <div data-translate="swot-s-list">
-                                    <p>• <strong>L’unione fa la forza</strong>: avere una community con cui condividere la propria passione incentiva la costanza e il piacere della lettura.</p>
-                                    <p>• Algoritmi di suggerimento personalizzati basati sui gusti specifici dell'utente.</p>
-                                    <p>• Valorizzazione della lettura come esperienza sociale e collettiva, superando la dimensione puramente isolata.</p>
+                                    <p>• <strong>L’unione fa la forza</strong>: avere una community con cui condividere la propria passione incentiva la costanza e il piacere della lettura. [cite: 4]</p>
+                                    <p>• Algoritmi di suggerimento personalizzati basati sui gusti specifici dell'utente. [cite: 4]</p>
+                                    <p>• Valorizzazione della lettura come esperienza sociale e collettiva, superando la dimensione puramente isolata. [cite: 4]</p>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td class="category-header" data-translate="swot-w-title">Weaknesses</td>
+                            <td class="category-header" data-translate="swot-w-title">Weaknesses [cite: 4]</td>
                             <td class="row-header">
                                 <div data-translate="swot-w-list">
-                                    <p>• Necessità di raggiungere una massa critica iniziale di utenti affinché il servizio esprima appieno il suo potenziale di condivisione.</p>
+                                    <p>• Necessità di raggiungere una massa critica iniziale di utenti affinché il servizio esprima appieno il suo potenziale di condivisione. [cite: 4]</p>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td class="category-header" data-translate="swot-o-title">Opportunities</td>
+                            <td class="category-header" data-translate="swot-o-title">Opportunities [cite: 4]</td>
                             <td class="row-header">
                                 <div data-translate="swot-o-list">
-                                    <p>• Opportunità di abilitare incontri di lettura virtuali globali, superando ogni barriera geografica e temporale.</p>
-                                    <p>• Integrazione di eventi digitali ed esperienze dirette con gli autori.</p>
+                                    <p>• Opportunità di abilitare incontri di lettura virtuali globali, superando ogni barriera geografica e temporale. [cite: 4]</p>
+                                    <p>• Integrazione di eventi digitali ed esperienze dirette con gli autori. [cite: 4]</p>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td class="category-header" data-translate="swot-t-title">Threats</td>
+                            <td class="category-header" data-translate="swot-t-title">Threats [cite: 4]</td>
                             <td class="row-header">
                                 <div data-translate="swot-t-list">
-                                    <p>• La percezione culturale radicata che la lettura debba essere un'attività strettamente individuale.</p>
-                                    <p>• Il rischio di perdita di valore costruttivo nei gruppi in caso di moderazione inadeguata.</p>
+                                    <p>• La percezione culturale radicata che la lettura debba essere un'attività strettamente individuale. [cite: 4]</p>
+                                    <p>• Il rischio di perdita di valore costruttivo nei gruppi in caso di moderazione inadeguata. [cite: 4]</p>
                                 </div>
                             </td>
                         </tr>
@@ -654,10 +672,10 @@
                 <!-- PARAGRAFI FINALI -->
                 <div class="project-conclusion" style="margin-top: 40px;">
                     <p data-translate="conclusion-p1">
-                        Lo sviluppo del progetto ha permesso di consolidare competenze avanzate nell'ambito dell'<strong>UX/UI design</strong> e della <strong>progettazione responsive</strong>, focalizzata sullo sviluppo di interfacce ottimizzate per garantire un'esperienza utente fluida e coerente sia su dispositivi <strong>mobile</strong> che <strong>desktop</strong>. L'integrazione strutturata tra ricerca strategica e analisi quantitativa ha consentito di tradurre insight complessi in specifiche tecniche rigorose e scalabili.
+                        Lo sviluppo del progetto ha permesso di consolidare competenze avanzate nell'ambito dell'<strong>UX/UI design</strong> e della <strong>progettazione responsive</strong>, focalizzata sullo sviluppo di interfacce ottimizzate per garantire un'esperienza utente fluida e coerente sia su dispositivi <strong>mobile</strong> che <strong>desktop</strong>. L'integrazione strutturata tra ricerca strategica e analisi quantitativa ha consentito di tradurre insight complessi in specifiche tecniche rigorose e scalabili. [cite: 4]
                     </p>
                     <p data-translate="conclusion-p2">
-                        Booked Time rappresenta la sintesi metodologica di un percorso rigoroso, evidenziando una capacità progettuale solida nel trasformare i bisogni reali degli utenti in un ecosistema digitale <strong>cross-device</strong> ad alto valore funzionale e sociale.
+                        Booked Time rappresenta la sintesi metodologica di un percorso rigoroso, evidenziando una capacità progettuale solida nel trasformare i bisogni reali degli utenti in un ecosistema digitale <strong>cross-device</strong> ad alto valore funzionale e sociale. [cite: 4]
                     </p>
                 </div>
             </section>
@@ -665,10 +683,10 @@
             <!-- NAVIGAZIONE TRA I PROGETTI -->
             <nav class="project-pagination" aria-label="Project Navigation">
                 <a href="barilla.html" class="pagination-link back-to-grid" data-translate="nav-prev-project">
-                    &larr; Previous project
+                    &larr; Previous project [cite: 4]
                 </a>
                 <a href="index.html#works" class="pagination-link next-project" data-translate="bottom-next-works">
-                    all project &rarr;
+                    all project &rarr; [cite: 4]
                 </a>
             </nav>
 
@@ -686,32 +704,39 @@
 
 
     <!-- FOOTER -->
-    <footer class="footer-section">
+    <footer id="contacts" class="footer-section">
         <div class="footer-container">
             <h2 class="footer-title" data-translate="footer-title">
-                I'm always open to meaningful opportunities.
+                I'm always open to meaningful opportunities. [cite: 4]
             </h2>
 
             <div class="footer-actions">
                 <a href="mailto:elenapolleri@gmail.com" class="footer-btn" data-translate="footer-email">
-                    Contact me via email &rarr;
+                    Contact me via email &rarr; [cite: 4]
                 </a>
                 <a href="https://www.linkedin.com/in/elenapolleri/" target="_blank" rel="noopener noreferrer" class="footer-btn" data-translate="footer-linkedin">
-                    Connect on LinkedIn &rarr;
+                    Connect on LinkedIn &rarr; [cite: 4]
                 </a>
             </div>
         </div>
     </footer>
 
 
-    <!-- BOTTONE BACK TO TOP -->
-    <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Back to top">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <!-- BOTTONE BACK TO TOP CON PROGRESS RING STILE INDEX -->
+    <a href="#home" id="scrollTopBtn" class="scroll-top-btn" aria-label="Torna su">
+        <svg class="progress-ring" viewBox="0 0 45 45">
+            <circle id="progressRingCircle" cx="22.5" cy="22.5" r="20.5" />
+        </svg>
+        <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 19V5M5 12l7-7 7 7"/>
         </svg>
     </a>
 
-    <!-- SCRIPT GESTIONE TRADUZIONI, CAROSELLI E LIGHTBOX -->
+    <!-- CUSTOM CURSOR STILE INDEX -->
+    <div class="custom-cursor-dot"></div>
+    <div class="custom-cursor-trail"></div>
+
+    <!-- SCRIPT GESTIONE TRADUZIONI, CAROSELLI, LIGHTBOX, CURSORE E SCROLL TO TOP -->
     <script>
         const translations = {
             en: {
@@ -816,6 +841,45 @@
             }
         };
 
+        const navbar = document.querySelector('.navbar');
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const progressRing = document.getElementById('progressRingCircle');
+        const ringCircumference = 2 * Math.PI * 20.5;
+        if (progressRing) {
+            progressRing.style.strokeDasharray = `${ringCircumference}`;
+            progressRing.style.strokeDashoffset = `${ringCircumference}`;
+        }
+
+        function updateScrollUI() {
+            const scrollY = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? Math.min(scrollY / docHeight, 1) : 0;
+
+            if (scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+
+            if (progressRing) {
+                progressRing.style.strokeDashoffset = `${ringCircumference * (1 - progress)}`;
+            }
+
+            if (navbar) {
+                navbar.classList.toggle('is-scrolled', scrollY > 40);
+            }
+        }
+
+        window.addEventListener('scroll', updateScrollUI, { passive: true });
+        updateScrollUI();
+
+        scrollTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
 
         // Gestione Carosello ISTAT
         const istatCarousel = document.getElementById('istatCarousel');
@@ -937,21 +1001,35 @@
             if(e.target === lightboxModal) closeLightbox();
         });
 
-        // Scroll to Top
-        const scrollTopBtn = document.getElementById('scrollTopBtn');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollTopBtn.classList.add('show');
-            } else {
-                scrollTopBtn.classList.remove('show');
-            }
-        });
+        // Custom Cursor
+        const dot = document.querySelector('.custom-cursor-dot');
+        const trail = document.querySelector('.custom-cursor-trail');
+        const isTouch = window.matchMedia('(hover: none)').matches;
 
-        scrollTopBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        if (!isTouch && dot && trail) {
+            let mouseX = 0, mouseY = 0;
+            let trailX = 0, trailY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                dot.style.left = `${mouseX}px`;
+                dot.style.top = `${mouseY}px`;
+            });
+
+            function animateTrail() {
+                trailX += (mouseX - trailX) * 0.20;
+                trailY += (mouseY - trailY) * 0.20;
+                trail.style.left = `${trailX}px`;
+                trail.style.top = `${trailY}px`;
+                requestAnimationFrame(animateTrail);
+            }
+            animateTrail();
+        } else {
+            if (dot) dot.style.display = 'none';
+            if (trail) trail.style.display = 'none';
+        }
     </script>
-<script src="translate.js"></script>
+    <script src="translate.js"></script>
 </body>
 </html>

@@ -292,7 +292,7 @@
                 </p>
             </section>
 
-            <!-- 5. Solution e riflessioni finali con focus sulle competenze (AMPIAMENTE ARRICCHITE) -->
+            <!-- 5. Solution e riflessioni finali con focus sulle competenze -->
             <section class="project-section">
                 <h2 data-translate="sec4-title">Solution & Final Reflections</h2>
                 <p data-translate="sec4-p1">
@@ -321,7 +321,7 @@
                     Forte di un approccio metodologico rigoroso orientato alla consulenza strategica, ho tradotto le evidenze della ricerca in un piano d'intervento strutturato: nella seconda fase ho elaborato un catalogo di <strong>trentaquattro proposte di ottimizzazione</strong>, discusse e valutate in sinergia con il software engineer responsabile della manutenzione del portale. Il team ha così selezionato <strong>venticinque soluzioni effettivamente cantierabili</strong>, classificate in base a criteri di urgenza (bassa, media, alta) e facilità d'applicazione (distinguendo tra interventi rapidi, stimati in meno di un'ora, e interventi complessi superiori all'ora). Le restanti proposte sono state mappate come aree di competenza istituzionale della pubblica amministrazione.
                 </p>
                 
-                <!-- Tabella di Resoconto Implementata (Fig 55) - Ora Mobile Responsive -->
+                <!-- Tabella di Resoconto Implementata (Fig 55) -->
                 <div class="table-responsive">
                     <table class="project-table" style="margin-top: 30px;">
                         <thead>
@@ -355,7 +355,7 @@
                 </p>
             </section>
 
-            <!-- NAVIGAZIONE AGGIORNATA A barilla.html -->
+            <!-- NAVIGAZIONE TRA I PROGETTI -->
             <nav class="project-pagination" aria-label="Navigazione tra i progetti">
                 <a href="adagio.html" class="pagination-link back-to-grid" data-translate="nav-prev-project">
                     &larr; Progetto precedente
@@ -384,12 +384,33 @@
         </div>
     </footer>
 
-    <!-- BOTTONE BACK TO TOP -->
-    <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Torna su">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <!-- BOTTONE BACK TO TOP CON PROGRESS RING (UGUALE A INDEX) -->
+    <a
+        href="#home"
+        id="scrollTopBtn"
+        class="scroll-top-btn"
+        aria-label="Torna su"
+    >
+        <svg class="progress-ring" viewBox="0 0 45 45">
+            <circle id="progressRingCircle" cx="22.5" cy="22.5" r="20.5" />
+        </svg>
+        <svg
+            class="arrow-icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+        >
             <path d="M12 19V5M5 12l7-7 7 7"/>
         </svg>
     </a>
+
+
+    <!-- CUSTOM CURSOR -->
+    <div class="custom-cursor-dot"></div>
+    <div class="custom-cursor-trail"></div>
 
 
     <script>
@@ -460,6 +481,78 @@
             });
 
             startAutoPlay();
+        }
+
+        // --- SCROLL TO TOP & PROGRESS RING SCRIPT ---
+        const navbar = document.querySelector('.navbar');
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const progressRing = document.getElementById('progressRingCircle');
+        const ringCircumference = 2 * Math.PI * 20.5;
+        if (progressRing) {
+            progressRing.style.strokeDasharray = `${ringCircumference}`;
+            progressRing.style.strokeDashoffset = `${ringCircumference}`;
+        }
+
+        function updateScrollUI() {
+            const scrollY = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? Math.min(scrollY / docHeight, 1) : 0;
+
+            if (scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+
+            if (progressRing) {
+                progressRing.style.strokeDashoffset = `${ringCircumference * (1 - progress)}`;
+            }
+
+            if (navbar) {
+                navbar.classList.toggle('is-scrolled', scrollY > 40);
+            }
+        }
+
+        window.addEventListener('scroll', updateScrollUI, { passive: true });
+        updateScrollUI();
+
+        if (scrollTopBtn) {
+            scrollTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // --- CUSTOM CURSOR SCRIPT ---
+        const dot = document.querySelector('.custom-cursor-dot');
+        const trail = document.querySelector('.custom-cursor-trail');
+        const isTouch = window.matchMedia('(hover: none)').matches;
+
+        if (!isTouch && dot && trail) {
+            let mouseX = 0, mouseY = 0;
+            let trailX = 0, trailY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                dot.style.left = `${mouseX}px`;
+                dot.style.top = `${mouseY}px`;
+            });
+
+            function animateTrail() {
+                trailX += (mouseX - trailX) * 0.20;
+                trailY += (mouseY - trailY) * 0.20;
+                trail.style.left = `${trailX}px`;
+                trail.style.top = `${trailY}px`;
+                requestAnimationFrame(animateTrail);
+            }
+            animateTrail();
+        } else {
+            if (dot) dot.style.display = 'none';
+            if (trail) trail.style.display = 'none';
         }
 
         const translations = {
@@ -610,25 +703,6 @@
         };
 
     </script>
-<script>
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            scrollTopBtn.classList.add('show');
-        } else {
-            scrollTopBtn.classList.remove('show');
-        }
-    });
-
-    scrollTopBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-</script>
-<script src="translate.js"></script>
+    <script src="translate.js"></script>
 </body>
 </html>

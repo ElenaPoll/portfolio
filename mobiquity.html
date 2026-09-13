@@ -42,56 +42,126 @@
             border-radius: 8px;
         }
 
-        /* Stile del bottone Scroll to Top modificato in bianco */
+        /* --- CURSORE PERSONALIZZATO --- */
+        @media (pointer: fine) {
+            body {
+                cursor: none;
+            }
+            a, button, [role="button"] {
+                cursor: none;
+            }
+        }
+
+        .custom-cursor-dot,
+        .custom-cursor-trail {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10000;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .custom-cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #A05236;
+        }
+
+        .custom-cursor-trail {
+            width: 24px;
+            height: 24px;
+            border: 1.5px solid rgba(160, 82, 54, 0.45);
+            transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+        }
+
+        a:hover ~ .custom-cursor-trail,
+        button:hover ~ .custom-cursor-trail {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(160, 82, 54, 0.12);
+        }
+
+        /* --- BOTTONE BACK TO TOP CON PROGRESS RING --- */
         .scroll-top-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
+            width: 45px;
+            height: 45px;
             background-color: #ffffff;
             color: #111111;
-            padding: 10px;
+            border: 1px solid #e0e0e0;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 999;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
-            z-index: 999;
+            pointer-events: none;
             text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            border: 1px solid #e0e0e0;
         }
-        .scroll-top-btn:hover {
-            background-color: #f5f5f5;
-        }
+
         .scroll-top-btn.show {
-            opacity: 1;
+            opacity: 0.9;
             visibility: visible;
+            pointer-events: auto;
+        }
+
+        .scroll-top-btn:hover {
+            background-color: #111111;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .scroll-top-btn svg.progress-ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            pointer-events: none;
+        }
+
+        .scroll-top-btn .progress-ring circle {
+            fill: none;
+            stroke: #A05236;
+            stroke-width: 2;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        .scroll-top-btn .arrow-icon {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR CON SFONDO BIANCO/CHIARO -->
-    <header class="navbar project-navbar">
+    <!-- NAVBAR CON SELETTORE LINGUA (UGUALE A INDEX) -->
+    <header class="navbar">
         <nav>
             <ul class="nav-links">
-                <li><a href="index.html#home" data-translate="nav-home">Homepage</a></li>
-                <li><a href="index.html#about" data-translate="nav-about">Chi sono</a></li>
-                <li><a href="index.html#works" class="active" data-translate="nav-works">Progetti scelti</a></li>
-                <li><a href="index.html#contacts" data-translate="nav-contacts">Contatti</a></li>
+                <li><a href="index.html#home" data-translate="nav_home">Homepage</a></li>
+                <li><a href="index.html#about" data-translate="nav_about">About me</a></li>
+                <li><a href="index.html#works" data-translate="nav_works">Selected works</a></li>
+                <li><a href="index.html#contacts" data-translate="nav_contacts">Contacts</a></li>
             </ul>
 
             <div class="lang-switch">
-                <a href="#" class="lang-option" data-lang="en">ENG</a>
+                <a href="#" class="lang-option active" data-lang="en">ENG</a>
                 <span class="lang-divider">|</span>
-                <a href="#" class="lang-option active" data-lang="it">ITA</a>
+                <a href="#" class="lang-option" data-lang="it">ITA</a>
             </div>
         </nav>
     </header>
-
 
     <!-- MAIN CONTENT - CASE STUDY -->
     <main class="project-main">
@@ -265,15 +335,15 @@
     <!-- FOOTER -->
     <footer class="footer-section">
         <div class="footer-container">
-            <h2 class="footer-title" data-translate="footer-title">
+            <h2 class="footer-title" data-translate="footer_title">
                 I'm always open to meaningful opportunities.
             </h2>
 
             <div class="footer-actions">
-                <a href="mailto:elenapolleri@gmail.com" class="footer-btn" data-translate="footer-email">
+                <a href="mailto:elenapolleri@gmail.com" class="footer-btn" data-translate="btn_email">
                     Contact me via email &rarr;
                 </a>
-                <a href="https://www.linkedin.com/in/elenapolleri/" target="_blank" rel="noopener noreferrer" class="footer-btn" data-translate="footer-linkedin">
+                <a href="https://www.linkedin.com/in/elenapolleri/" target="_blank" rel="noopener noreferrer" class="footer-btn" data-translate="btn_linkedin">
                     Connect on LinkedIn &rarr;
                 </a>
             </div>
@@ -281,15 +351,22 @@
     </footer>
 
 
-    <!-- BOTTONE BACK TO TOP BIANCO -->
-    <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Torna su">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <!-- BOTTONE BACK TO TOP CON PROGRESS RING -->
+    <a href="#top" id="scrollTopBtn" class="scroll-top-btn" aria-label="Torna su">
+        <svg class="progress-ring" viewBox="0 0 45 45">
+            <circle id="progressRingCircle" cx="22.5" cy="22.5" r="20.5" />
+        </svg>
+        <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 19V5M5 12l7-7 7 7"/>
         </svg>
     </a>
 
+    <!-- CUSTOM CURSOR -->
+    <div class="custom-cursor-dot"></div>
+    <div class="custom-cursor-trail"></div>
 
-    <!-- SCRIPT CAROSELLO, LINGUA E SCROLL -->
+
+    <!-- SCRIPT CAROSELLO, LINGUA, SCROLL, PROGRESS RING E CUSTOM CURSOR -->
     <script>
         // Script per il carosello ottimizzato con frecce, autoplay e pallini indicatori
         const carousel = document.getElementById('livingLabCarousel');
@@ -362,15 +439,39 @@
             startAutoPlay();
         }
 
-        // Script per il pulsante Scroll to Top
+        // --- SCRIPT SCROLL TO TOP CON PROGRESS RING E NAVBAR SCROLLED [cite: 17] ---
+        const navbar = document.querySelector('.navbar');
         const scrollTopBtn = document.getElementById('scrollTopBtn');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
+        const progressRing = document.getElementById('progressRingCircle');
+        const ringCircumference = 2 * Math.PI * 20.5;
+        
+        if (progressRing) {
+            progressRing.style.strokeDasharray = `${ringCircumference}`;
+            progressRing.style.strokeDashoffset = `${ringCircumference}`;
+        }
+
+        function updateScrollUI() {
+            const scrollY = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? Math.min(scrollY / docHeight, 1) : 0;
+
+            if (scrollY > 300) {
                 scrollTopBtn.classList.add('show');
             } else {
                 scrollTopBtn.classList.remove('show');
             }
-        });
+
+            if (progressRing) {
+                progressRing.style.strokeDashoffset = `${ringCircumference * (1 - progress)}`;
+            }
+
+            if (navbar) {
+                navbar.classList.toggle('is-scrolled', scrollY > 40);
+            }
+        }
+
+        window.addEventListener('scroll', updateScrollUI, { passive: true });
+        updateScrollUI();
 
         scrollTopBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -380,13 +481,42 @@
             });
         });
 
-        // Dizionario traduzioni ITA/ENG completo
+        // --- CUSTOM CURSOR SCRIPT ---
+        const dot = document.querySelector('.custom-cursor-dot');
+        const trail = document.querySelector('.custom-cursor-trail');
+        const isTouch = window.matchMedia('(hover: none)').matches;
+
+        if (!isTouch && dot && trail) {
+            let mouseX = 0, mouseY = 0;
+            let trailX = 0, trailY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                dot.style.left = `${mouseX}px`;
+                dot.style.top = `${mouseY}px`;
+            });
+
+            function animateTrail() {
+                trailX += (mouseX - trailX) * 0.20;
+                trailY += (mouseY - trailY) * 0.20;
+                trail.style.left = `${trailX}px`;
+                trail.style.top = `${trailY}px`;
+                requestAnimationFrame(animateTrail);
+            }
+            animateTrail();
+        } else {
+            if (dot) dot.style.display = 'none';
+            if (trail) trail.style.display = 'none';
+        }
+
+        // Dizionario traduzioni ITA/ENG allineato a index
         const translations = {
             en: {
-                "nav-home": "Homepage",
-                "nav-about": "About me",
-                "nav-works": "Selected works",
-                "nav-contacts": "Contacts",
+                nav_home: "Homepage",
+                nav_about: "About me",
+                nav_works: "Selected works",
+                nav_contacts: "Contacts",
                 "back-works": "&larr; Back to all projects",
                 "proj-title": "Designing for facilitation",
                 "proj-subtitle": "Designing adaptive mobile interfaces and personalized accessibility user journeys for inclusive public transport.",
@@ -424,15 +554,15 @@
                 "sec6-p5": "Mobiquity proved to be a highly formative exercise in <strong>teamwork</strong>, <strong>co-design</strong>, and <strong>multi-stakeholder facilitation</strong>. Daily dialogue with developers, designers, transport operators, and local administrations required constant problem-solving and the application of <strong>inclusive UX design</strong> principles based on <strong>dual profiling</strong>. Each phase sharpened my sensitivity toward <strong>Universal Design</strong>, turning operational challenges into a solid professional milestone.",
                 "nav-prev-project": "&larr; Previous project",
                 "nav-next-project": "Next project &rarr;",
-                "footer-title": "I'm always open to meaningful opportunities.",
-                "footer-email": "Contact me via email &rarr;",
-                "footer-linkedin": "Connect on LinkedIn &rarr;"
+                footer_title: "I'm always open to meaningful opportunities.",
+                btn_email: "Contact me via email &rarr;",
+                btn_linkedin: "Connect on LinkedIn &rarr;"
             },
             it: {
-                "nav-home": "Homepage",
-                "nav-about": "Chi sono",
-                "nav-works": "Progetti scelti",
-                "nav-contacts": "Contatti",
+                nav_home: "Homepage",
+                nav_about: "Chi sono",
+                nav_works: "Progetti scelti",
+                nav_contacts: "Contatti",
                 "back-works": "&larr; Torna a tutti i progetti",
                 "proj-title": "Progettare per facilitare",
                 "proj-subtitle": "Progettazione di interfacce mobili adattive e user journey di accessibilità personalizzata per il trasporto pubblico inclusivo.",
@@ -470,13 +600,13 @@
                 "sec6-p5": "Mobiquity si è rivelato un esercizio formativo di alto profilo nel campo del <strong>lavoro in team</strong>, del <strong>co-design</strong> e della <strong>facilitazione multi-stakeholder</strong>. Dialogare quotidianamente con sviluppatori, designer, enti di trasporto e amministrazioni locali ha richiesto un costante problem solving e l'applicazione di principi di <strong>UX design inclusivo</strong> basati su una <strong>profilazione duplice</strong>. Ogni fase ha affinato la mia sensibilità verso il <strong>Design Universale</strong>, trasformando le sfide operative in un solido traguardo di crescita professionale.",
                 "nav-prev-project": "&larr; Progetto precedente",
                 "nav-next-project": "Progetto successivo &rarr;",
-                "footer-title": "Sono sempre aperta a nuove opportunità professionali.",
-                "footer-email": "Contattami via email &rarr;",
-                "footer-linkedin": "Collegati su LinkedIn &rarr;"
+                footer_title: "Sono sempre aperta a opportunità significative.",
+                btn_email: "Contattami via email &rarr;",
+                btn_linkedin: "Connettiti su LinkedIn &rarr;"
             }
         };
 
     </script>
-<script src="translate.js"></script>
+    <script src="translate.js"></script>
 </body>
 </html>

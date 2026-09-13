@@ -295,4 +295,101 @@
     font-weight: 300; /* o usa 'normal' a seconda di come è impostato l'altro paragrafo */
     font-size: 1rem;
 }
+/* --- CURSORE PERSONALIZZATO --- */
+@media (pointer: fine) {
+    body {
+        cursor: none;
+    }
+    a, button, [role="button"] {
+        cursor: none;
+    }
+}
+
+.custom-cursor-dot,
+.custom-cursor-trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 10000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.custom-cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #A05236;
+}
+
+.custom-cursor-trail {
+    width: 24px;
+    height: 24px;
+    border: 1.5px solid rgba(160, 82, 54, 0.45);
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+}
+
+a:hover ~ .custom-cursor-trail,
+button:hover ~ .custom-cursor-trail {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(160, 82, 54, 0.12);
+}
+
+/* --- BOTTONE BACK TO TOP CON PROGRESS RING --- */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background-color: #ffffff;
+    color: #111111;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.scroll-top-btn.show {
+    opacity: 0.9;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.scroll-top-btn:hover {
+    background-color: #111111;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.scroll-top-btn svg.progress-ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    pointer-events: none;
+}
+
+.scroll-top-btn .progress-ring circle {
+    fill: none;
+    stroke: #A05236; /* --clr-terracotta */
+    stroke-width: 2;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+.scroll-top-btn .arrow-icon {
+    position: relative;
+    z-index: 1;
+}
 }
