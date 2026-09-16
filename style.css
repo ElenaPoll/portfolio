@@ -221,6 +221,16 @@ body {
     z-index: 1;
 }
 
+
+@media (max-width: 768px) {
+    .arch-background {
+        width: 280px;  
+        height: 370px; 
+        max-width: 100%;
+    }
+}
+
+
 .hero-portrait {
     position: relative;
     z-index: 2;
